@@ -1,0 +1,73 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.4.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 22, 2015 at 02:27 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `capstonegames`
+--
+CREATE DATABASE IF NOT EXISTS `capstonegames` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `capstonegames`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `games`
+--
+
+CREATE TABLE IF NOT EXISTS `games` (
+  `GameID` int(11) NOT NULL,
+  `GameName` varchar(30) NOT NULL,
+  `Description` varchar(150) NOT NULL,
+  PRIMARY KEY (`GameID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scores`
+--
+
+CREATE TABLE IF NOT EXISTS `scores` (
+  `ScoreID` int(11) NOT NULL,
+  `UserID` int(11) NOT NULL,
+  `GameID` int(11) NOT NULL,
+  `Score` int(11) NOT NULL,
+  PRIMARY KEY (`ScoreID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `UserID` int(11) NOT NULL,
+  `UserName` varchar(20) NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `Email` varchar(25) NOT NULL,
+  `SignUpDate` date NOT NULL,
+  `Bio` varchar(300) NOT NULL,
+  `Friends` int(11) NOT NULL,
+  `Comments` varchar(300) NOT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `UserName` (`UserName`,`Password`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
