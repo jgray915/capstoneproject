@@ -45,7 +45,6 @@ body{
 	text-decoration:none;
 	text-align:center;
 	line-height:24px;
-	font-family: 'Redressed', cursive;
 	font-size:18px;
 	color:#08161F;	
 	background-color:#FAD384;
@@ -60,7 +59,6 @@ body{
 	text-decoration:underline;
 	text-align:center;
 	line-height:30px;
-	font-family: 'Redressed', cursive;
 	font-size:18px;
 	color:#FAD384;	
 	background-color:#08161F;
@@ -117,7 +115,6 @@ body{
 
 .title {
 	width:940px;
-	font-family: arial, cursive;
 	text-decoration:underline;
 	font-size:44px;
 	color:#FAD384;
@@ -130,7 +127,6 @@ body{
 .title2 {
 	float:left;
 	width:100%;
-	font-family: 'Loved by the King', cursive;
 	text-decoration:underline;
 	font-size:36px;
 	color:#FAD384;
