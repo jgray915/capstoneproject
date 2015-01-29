@@ -1,7 +1,5 @@
-//fix address bar scroll, sizing to height, width is off(ratio,non-scrolling?)
+//fix scaling issue?
 //fix ball hits side of brick
-//new bricks function
-//new ball function
 //start/pause/end game screen
 var WIDTH = 480;
 var HEIGHT = 640;
@@ -17,7 +15,9 @@ var offsetTop;
 var offsetLeft;
 var scale;
 var b = 0;	//collision timer
-var balls = 3;
+var BALLS = 3
+var balls = BALLS;
+var gameOver = false;
 
 //cross-browser support
 var w = window;
@@ -158,8 +158,7 @@ window.addEventListener('touchmove', function(e) {
     // but prevent default behaviour
     // so the screen doesn't scroll
     // or zoom
-	mouseX = (e.changedTouches[0].clientX-offsetLeft-paddle.width);
-    e.preventDefault();
+    mouseX = (e.changedTouches[0].clientX-offsetLeft-paddle.width);
 }, false);
 window.addEventListener('touchend', function(e) {
     // as above
@@ -180,7 +179,7 @@ var paddle = {
 	width: 96,
 	y: HEIGHT - 64,
 	x: mouseX
-}
+};
 
 var ball = {
 	x: (WIDTH/2)-8,
@@ -189,7 +188,7 @@ var ball = {
 	speedy: 5,
 	width: 16,
 	height: 16
-}
+};
 
 var score = 0;
 
@@ -204,34 +203,51 @@ function brick(ex, why, pic, health){
 	this.height = 16;
 }
 
-
-for(var i = 0; i<50; i++)
+function newBricks()
 {
-	if(i<10)
-	{
-		bricks[i] = new brick(i*48,4,brickRedImage,5);
-	}
-	else if(i<20)
-	{
-		bricks[i] = new brick((i-10)*48,5,brickOrangeImage,4);
-	}
-	else if(i<30)
-	{
-		bricks[i] = new brick((i-20)*48,6,brickYellowImage,3);
-	}
-	else if(i<40)
-	{
-		bricks[i] = new brick((i-30)*48,7,brickGreenImage,2);
-	}
-	else if(i<50)
-	{
-		bricks[i] = new brick((i-40)*48,8,brickBlueImage,1);
-	}
+    for(var i = 0; i<50; i++)
+    {
+            if(i<10)
+            {
+                    bricks[i] = new brick(i*48,4,brickRedImage,5);
+            }
+            else if(i<20)
+            {
+                    bricks[i] = new brick((i-10)*48,5,brickOrangeImage,4);
+            }
+            else if(i<30)
+            {
+                    bricks[i] = new brick((i-20)*48,6,brickYellowImage,3);
+            }
+            else if(i<40)
+            {
+                    bricks[i] = new brick((i-30)*48,7,brickGreenImage,2);
+            }
+            else if(i<50)
+            {
+                    bricks[i] = new brick((i-40)*48,8,brickBlueImage,1);
+            }
+    }
 }
 
+function newBall()
+{
+    console.log("newBall");
+    ball.speedx = 0;
+    ball.speedy = 0;
+    ball.x = (WIDTH/2)-8;
+    ball.y = (HEIGHT/2)-8;
+    
+    setTimeout(function(){ball.speedy = 5;}, 1000);
+}
 
-
-
+function newGame()
+{ 
+    console.log("newGame");
+    setTimeout(function(){gameOver = false;}, 2000);
+    newBall();
+    
+}
 
 
 
@@ -383,10 +399,17 @@ function update(modifier) {
 	{
 		if(ball.y>=HEIGHT+ball.height)
 		{
-			//ball lost
-			wallSound.play();
-			ball.speedy *= -1;
 			balls--;
+                        if(balls === 0)
+                        {
+                            balls = BALLS;
+                            gameOver = true;
+                            newGame();
+                        }
+                        else
+                        {
+                            newBall();
+                        }
 		}
 		else
 		{
@@ -479,7 +502,16 @@ function render() {
     ctx.textBaseline = "top";
     ctx.fillText("SCORE: "+score, 8, HEIGHT-32);
     ctx.fillText("BALLS: "+balls, WIDTH*(3/4)+24, HEIGHT-32);
-    //new game and pause screen
+    
+    if(gameOver)
+    {
+    ctx.fillStyle = "#FFF";
+    ctx.font = "20px Share Tech Mono";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    var text = "GAME OVER";
+    ctx.fillText(text,WIDTH/2-(ctx.measureText(text).width/2),(HEIGHT/2)-32);
+    }
 
 };
 
@@ -503,5 +535,7 @@ function main()
 
 
 //start game
+newBricks();
+newBall();
 var then = Date.now();
 main();
