@@ -1,0 +1,37 @@
+<?php
+        
+        // php code for inserting into the Scores table
+        
+        $gameID = filter_input(INPUT_POST,'gameID'); 
+        $userID = filter_input(INPUT_POST,'userID');
+        $score = filter_input(INPUT_POST,'score');
+         $error_message = '';    
+         var_dump($_POST);
+         
+         $date = date("Y-m-d H:i:s"); 
+        
+       
+        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        
+        $dbs = $db->prepare('insert into scores set gameID=:gameID, userID=:userID, score=:score, date=:date');       
+        
+         
+        $dbs->bindParam(':gameID', $gameID, PDO::PARAM_STR);
+        $dbs->bindParam(':userID', $userID, PDO::PARAM_STR);
+        $dbs->bindParam(':score', $score, PDO::PARAM_STR);
+        $dbs->bindParam(':date', $date, PDO::PARAM_STR);
+
+        
+        
+            if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+             $error_message = '';
+            } else {
+             $error_message .= 'Inpur error';  
+            }                                           
+         
+           
+      
+        
+                include './scoresIndex.php';
+                
+        ?>
