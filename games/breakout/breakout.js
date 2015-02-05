@@ -1,23 +1,45 @@
-//fix scaling issue?
-//fix ball hits side of brick
-//start/pause/end game screen
-var WIDTH = 480;
-var HEIGHT = 640;
-var canvas = null;
-var ctx = null;
-var RATIO = null;
-var CURR_WIDTH = null;
-var CURR_HEIGHT = null;
-var a = 0;	//accumulates fractions of  a second
-var lastDown = 0;
-var mouseX;
-var offsetTop;
-var offsetLeft;
-var scale;
-var b = 0;	//collision timer
-var BALLS = 3
-var balls = BALLS;
-var gameOver = false;
+/* filename:    breakout.js
+ * author:      Jacob Gray
+ * description: A clone of the game Breakout.
+ * 
+ * TODO:
+ * fix scaling issue?
+ * fix collision issues
+ * 
+ * globals section is a mess
+ * update is too long
+ * change enter key handling
+ */
+
+/******************************************************************************\
+*  -------------------------------  GLOBALS   -------------------------------  *
+\******************************************************************************/
+{
+var then = Date.now();		//stores the time of the last game cycle
+var WIDTH = 480;			//canvas size
+var HEIGHT = 640;			//canvas size
+var canvas = null;			//canvas element
+var ctx = null;				//context
+var RATIO = null;           //WIDTH/HEIGHT
+var CURR_WIDTH = null;      //resize canvas
+var CURR_HEIGHT = null;     //resize canvas
+var lastDown = 0;			//holds last key pressed
+var mouseX;					//holds mouse x position
+var offsetTop;				//space on page above canvas
+var offsetLeft;				//space on page left of canvas
+var scale;					//scale factor of canvas
+var BALLS = 3;				//balls per game constant
+var balls = BALLS;			//current number of balls
+var gameOver = false;		//whether or not currently game over
+var score = 0;				//current score
+var hiscore = 5;			//highest of last played scores
+var level = 0;				//current set of bricks
+var newLevel = false;       //whether or not currently showing new level
+var firstPlay = true;       //whether or not the player has played a game yet
+var bricks = [];            //holds all brick objects
+var paddle=new Paddle();    //holds paddle object
+var ball = new Ball();		//holds ball object
+var pause = false;			//whether or not user has paused
 
 //cross-browser support
 var w = window;
@@ -26,20 +48,13 @@ requestAnimationFrame = w.requestAnimationFrame ||
                         w.msRequestAnimationFrame || 
                         w.mozRequestAnimationFrame;
 
-window.addEventListener('load', init(), false);
-window.addEventListener('resize', resize(), false);
-
 //hide mobile address bar
 var ua = navigator.userAgent.toLowerCase();
 var android = ua.indexOf('android') > -1 ? true : false;
 var ios = ( ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1  ) ? true : false;
 
 
-
-
-
-
-//load image
+//load images
 var bgReady = false;
 var bgImage = new Image();
 bgImage.onload = function () {
@@ -47,7 +62,6 @@ bgImage.onload = function () {
 };
 bgImage.src = "media/background.png";
 
-//load image
 var paddleReady = false;
 var paddleImage = new Image();
 paddleImage.onload = function () {
@@ -55,7 +69,6 @@ paddleImage.onload = function () {
 };
 paddleImage.src = "media/paddle.png";
 
-//load image
 var ballReady = false;
 var ballImage = new Image();
 ballImage.onload = function () {
@@ -63,7 +76,6 @@ ballImage.onload = function () {
 };
 ballImage.src = "media/ball.png";
 
-//load image
 var brickRedReady = false;
 var brickRedImage = new Image();
 brickRedImage.onload = function () {
@@ -71,7 +83,6 @@ brickRedImage.onload = function () {
 };
 brickRedImage.src = "media/brickRed.png";
 
-//load image
 var brickOrangeReady = false;
 var brickOrangeImage = new Image();
 brickOrangeImage.onload = function () {
@@ -79,7 +90,6 @@ brickOrangeImage.onload = function () {
 };
 brickOrangeImage.src = "media/brickOrange.png";
 
-//load image
 var brickYellowReady = false;
 var brickYellowImage = new Image();
 brickYellowImage.onload = function () {
@@ -87,7 +97,6 @@ brickYellowImage.onload = function () {
 };
 brickYellowImage.src = "media/brickYellow.png";
 
-//load image
 var brickGreenReady = false;
 var brickGreenImage = new Image();
 brickGreenImage.onload = function () {
@@ -95,7 +104,6 @@ brickGreenImage.onload = function () {
 };
 brickGreenImage.src = "media/brickGreen.png";
 
-//load image
 var brickBlueReady = false;
 var brickBlueImage = new Image();
 brickBlueImage.onload = function () {
@@ -130,6 +138,7 @@ document.addEventListener("keyup", function (e) {
     delete keysDown[e.keyCode];
 }, false);
 
+//listen for mouse movement
 document.addEventListener("mousemove", function (e) {
     if(!e)
 	{
@@ -140,123 +149,120 @@ document.addEventListener("mousemove", function (e) {
 	
 }, false);
 
-// listen for clicks
-window.addEventListener('click', function(e) {
-    e.preventDefault();
+// listen for clicks (not used)
+// window.addEventListener('click', function(e) {
+    // e.preventDefault();
 
-}, false);
+// }, false);
 
 // listen for touches
 window.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    // the event object has an array
-    // named touches; we just want
-    // the first touch
 }, false);
+
 window.addEventListener('touchmove', function(e) {
-    // we're not interested in this,
-    // but prevent default behaviour
-    // so the screen doesn't scroll
-    // or zoom
     mouseX = (e.changedTouches[0].clientX-offsetLeft-paddle.width);
 }, false);
+
 window.addEventListener('touchend', function(e) {
-    // as above
     e.preventDefault();
 }, false);
 
 
+}
+/******************************************************************************\
+*  -------------------------------  OBJECTS   -------------------------------  *
+\******************************************************************************/
+{
+//classes are implemented as functions in js
+function Paddle()
+{
+	this.height = 16;
+	this.width = 96;
+	this.y = HEIGHT - 64;
+	this.x = WIDTH/2;
+}
 
+function Ball()
+{
+	this.x = (WIDTH/2)-8;
+	this.y = (HEIGHT/2)-8;
+	this.speedx = 0;
+	this.speedy = 0;
+	this.height = 16;
+    this.width = 16;
+}
 
-
-
-
-
-
-//objects
-var paddle = {
-	height: 16,
-	width: 96,
-	y: HEIGHT - 64,
-	x: mouseX
-};
-
-var ball = {
-	x: (WIDTH/2)-8,
-	y: (HEIGHT/2)-8,
-	speedx: 0,
-	speedy: 5,
-	width: 16,
-	height: 16
-};
-
-var score = 0;
-
-var bricks = [];
-
-function brick(ex, why, pic, health){
+function Brick(ex, why, pic, health)
+{
 	this.image = pic;
 	this.life = health;
 	this.x =  ex;
+
 	this.y = why*16;
 	this.width = 48;
 	this.height = 16;
 }
 
-function newBricks()
+}
+/******************************************************************************\
+*  ------------------------------  FUNCTIONS   ------------------------------  *
+\******************************************************************************/
 {
+//game init
+function newGame()
+{
+	score = 0;
+	balls = BALLS;
+}
+
+//startNewLevel is the perfect name for this function
+function startNewLevel()
+{
+	level++;
+	
+	//time out the new level message
+	setTimeout(function(){newLevel = false;}, 2000);
+	
+	//populate bricks
     for(var i = 0; i<50; i++)
     {
-            if(i<10)
-            {
-                    bricks[i] = new brick(i*48,4,brickRedImage,5);
-            }
-            else if(i<20)
-            {
-                    bricks[i] = new brick((i-10)*48,5,brickOrangeImage,4);
-            }
-            else if(i<30)
-            {
-                    bricks[i] = new brick((i-20)*48,6,brickYellowImage,3);
-            }
-            else if(i<40)
-            {
-                    bricks[i] = new brick((i-30)*48,7,brickGreenImage,2);
-            }
-            else if(i<50)
-            {
-                    bricks[i] = new brick((i-40)*48,8,brickBlueImage,1);
-            }
+		if(i<10)
+		{
+			bricks[i] = new Brick(i*48,4,brickRedImage,1);
+		}
+		else if(i<20)
+		{
+			bricks[i] = new Brick((i-10)*48,5,brickOrangeImage,1);
+		}
+		else if(i<30)
+		{
+			bricks[i] = new Brick((i-20)*48,6,brickYellowImage,1);
+		}
+		else if(i<40)
+		{
+			bricks[i] = new Brick((i-30)*48,7,brickGreenImage,1);
+		}
+		else if(i<50)
+		{
+			bricks[i] = new Brick((i-40)*48,8,brickBlueImage,1);
+		}
     }
 }
 
+//reset ball
 function newBall()
 {
-    console.log("newBall");
-    ball.speedx = 0;
-    ball.speedy = 0;
-    ball.x = (WIDTH/2)-8;
-    ball.y = (HEIGHT/2)-8;
-    
+	ball.x = (WIDTH/2)-8;
+	ball.y = (HEIGHT/2)-8;
+	ball.speedy = 0;
+	ball.speedx = 0;
     setTimeout(function(){ball.speedy = 5;}, 1000);
 }
 
-function newGame()
-{ 
-    console.log("newGame");
-    setTimeout(function(){gameOver = false;}, 2000);
-    newBall();
-    
-}
-
-
-
-
-
-
-
+//returns true if there is a collision
 function collides(rect1,rect2)
-{
+{ 
 	if (rect1.x < rect2.x + rect2.width &&
 	rect1.x + rect1.width > rect2.x &&
 	rect1.y < rect2.y + rect2.height &&
@@ -267,33 +273,59 @@ function collides(rect1,rect2)
 	return false;
 }
 
-function collidesSide(rect1,rect2)
+//returns if obj1 hit obj2 on "top", "bottom", "left", or "right"
+//
+function collisionDirection(obj1, obj2)
 {
-	if (rect1.x < rect2.x + rect2.width &&
-	rect1.x + rect1.width > rect2.x &&
-	rect1.y < rect2.y + rect2.height &&
-	rect1.height + rect1.y > rect2.y) 
+	var obj1Bottom = obj1.y + obj1.height;
+	var obj2Bottom = obj2.y + obj2.height;
+	var obj1Right = obj1.x + obj1.width;
+	var obj2Right = obj2.x + obj2.width;
+	
+	var collB = obj2Bottom - obj1.y;
+	var collT = obj1Bottom - obj2.y;
+	var collL = obj1Right - obj2.x;
+	var collR = obj2Right - obj1.y;
+
+	if(collT < collB &&
+		collT < collL &&
+		collT < collR)
 	{
-		return true;
+		return "top";
 	}
-	return false;
+	if(collL < collR &&
+		collL < collT &&
+		collL < collB)
+	{
+		return "left";
+	}
+	if(collR < collB &&
+		collR < collL &&
+		collR < collT)
+	{
+		return "right";
+	}
+	if(collB < collT &&
+		collB < collL &&
+		collB < collR)
+	{
+		return "bottom";
+	}
 }
 
+//non-game, canvas init
 function init()
 {
     RATIO = WIDTH/HEIGHT;
     CURR_WIDTH = WIDTH;
     CURR_HEIGHT = HEIGHT;
-	
-	
     canvas = document.createElement("canvas");
     ctx = canvas.getContext("2d");
-
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-	
-	
-	
+	offsetTop = canvas.offsetTop;
+	offsetLeft = canvas.offsetLeft;
+
     //style the page
     document.body.appendChild(canvas);
     document.body.style.fontFamily = 'Share Tech Mono';
@@ -307,19 +339,19 @@ function init()
     //google font
     var newStyle = document.createElement('style');
     newStyle.appendChild(document.createTextNode(
-            "@font-face\n\
-            {font-family: 'Share Tech Mono'; \n\
-            font-style: normal; font-weight: 400; \n\
-            src: local('Share Tech Mono'), local('ShareTechMono-Regular'), url(http://fonts.gstatic.com/s/sharetechmono/v4/RQxK-3RA0Lnf3gnnnNrAsYdJ2JT0J65PSe7wdxAnx_I.woff2) format('woff2'); \n\
-            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;}"
-            ));
+		"@font-face\n\
+		{font-family: 'Share Tech Mono'; \n\
+		font-style: normal; font-weight: 400; \n\
+		src: local('Share Tech Mono'), local('ShareTechMono-Regular'), \n\
+        url(http://fonts.gstatic.com/s/sharetechmono/v4/RQxK-3RA0Lnf3gnnnNrAsYdJ2JT0J65PSe7wdxAnx_I.woff2) \n\
+        format('woff2'); \n\
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, \n\
+        U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;}"
+		));
     document.head.appendChild(newStyle);
-	
-	offsetTop = canvas.offsetTop;
-	offsetLeft = canvas.offsetLeft;
 }
 
-
+//called by init and render, resizes canvas to window
 function resize()
 {
     //resize width in proportion to height
@@ -331,6 +363,7 @@ function resize()
         CURR_WIDTH = window.innerWidth;
         CURR_HEIGHT = CURR_WIDTH * (1+RATIO);
     }
+
     //some extra space to scroll past the address bar
     if (android || ios) 
     {
@@ -345,144 +378,182 @@ function resize()
     {
         window.scrollTo(0,1);
     }, 1);
-	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**************\
-**   UPDATE   **
-\**************/
+}
+/******************************************************************************\
+*  --------------------------------  UPDATE  --------------------------------  *
+\******************************************************************************/
 //game logic runs here
-function update(modifier) {
-    a += modifier*5;
+function update(modifier) 
+{	
+    var direction;  //holds direction of collision between ball and brick
 	
-    paddle.x = (mouseX-(paddle.width/2))/scale;
+	if(13 in keysDown)	//13 = enter
+		{
+			if(firstPlay)
+			{
+				firstPlay = false;
+				
+			}
+			else if(gameOver)
+			{
+				gameOver = false;
+			}
+			else
+			{
+				pause = !pause;
+			}
+		}
+	
+		//set paddle to mouse
+		paddle.x = (mouseX-(paddle.width/2))/scale;
+	
+	//entire function depends on whether or not game is running
+	if(!gameOver && !firstPlay && !pause)
+	{
+		//move ball
+		ball.x += ball.speedx;
+		ball.y += ball.speedy;
 
-    ball.x += ball.speedx;
-	ball.y += ball.speedy;
-	
-    if(a>1)
-    {
-        a = 0;
-    }
-	if(b)
-	{
-		b -= a;
-		if(b<0)
-		{
-			b=0;
-		}
-	}
-	//wall collision
-	if(	
-	ball.x<=0 ||
-	ball.x>=WIDTH-ball.width)
-	{
-		wallSound.play();
-		ball.speedx *= -1;
-	}
-	if(	
-	ball.y<=0 ||
-	ball.y>=HEIGHT+ball.height)
-	{
-		if(ball.y>=HEIGHT+ball.height)
-		{
-			balls--;
-                        if(balls === 0)
-                        {
-                            balls = BALLS;
-                            gameOver = true;
-                            newGame();
-                        }
-                        else
-                        {
-                            newBall();
-                        }
-		}
-		else
+		//wall collision
+		if(	
+		ball.x<=0 ||
+		ball.x>=WIDTH-ball.width)
 		{
 			wallSound.play();
-			ball.speedy *= -1;
+			ball.speedx *= -1;
 		}
-	}
-	
-	//paddle collision
-	if (collides(ball,paddle)) 
-    {
-		paddleSound.play();
-		ball.speedx *= -1;
-		ball.speedy *= -1;
-		if(ball.x>paddle.x+(paddle.width*(2/3))-(ball.width/2))
+		
+		if(	
+		ball.y<=0 ||
+		ball.y>=HEIGHT+(ball.height))
 		{
-			ball.speedx = 5;
-		}
-		else if(ball.x<paddle.x+(paddle.width*(1/3))-(ball.width/2))
-		{
-			ball.speedx = -5;
-		}
-		else
-		{
-			ball.speedx = 0;
-		}
-
-	}
-	
-	//brick collision
-	for(var i = 0; i<bricks.length; i++)
-	{
-		if(bricks[i])
-		{
-			if(collides(ball,bricks[i]) && !b)
+			if(ball.y>=HEIGHT+(ball.height))
 			{
-				b = .1;
-				ball.speedy *= -1;
-				bricks[i].life--;
-				score++;
-				if(bricks[i].life <=0)
+				balls--;
+				newBall();
+				if(balls === 0)
 				{
-					brickKillSound.play();
-					delete bricks[i];
+					gameOver = true;
+					newGame();
 				}
-				else
+			}
+			else
+			{
+				wallSound.play();
+				ball.speedy *= -1;
+			}
+		}
+		
+		//paddle collision
+		if (collides(ball,paddle)) 
+		{
+			paddleSound.play();
+			ball.speedx *= -1;
+			ball.speedy *= -1;
+			if(ball.x>paddle.x+(paddle.width*(2/3))-(ball.width/2))
+			{
+				ball.speedx = 5;
+			}
+			else if(ball.x<paddle.x+(paddle.width*(1/3))-(ball.width/2))
+			{
+				ball.speedx = -5;
+			}
+			else
+			{
+				ball.speedx = 0;
+			}
+
+		}
+		
+		//brick collision
+		var bricksleft = 0;
+		for(var i = 0; i<bricks.length; i++)
+		{
+			if(bricks[i])
+			{
+				bricksleft++;
+				if(collides(ball,bricks[i]))
 				{
-						brickSound.play();
+					bricks[i].life--;
+					score++;
+					if(score>hiscore)
+					{
+						hiscore = score;
+					}
+					
+					direction = collisionDirection(ball, bricks[i]);
+					
+					if(direction === "top")
+					{
+						ball.speedy *= -1;
+					}
+					if(direction === "left")
+					{
+						ball.speedx *= -1;
+					}
+					if(direction === "right")
+					{
+						ball.speedx *= -1;
+					}
+					if(direction === "bottom")
+					{
+						ball.speedy *= -1;
+					}
+
+					if(bricks[i].life <=0)
+					{
+						brickKillSound.play();
+						delete bricks[i];
+					}
+					else
+					{
+							brickSound.play();
+					}
 				}
 			}
 		}
+		
+		//new level when all bricks are destroyed
+		if(!bricksleft)
+			{
+				newLevel = true;
+				startNewLevel();
+			}
 	}
-
 };
-
-
-/**************\
-**   RENDER   **
-\**************/
+/******************************************************************************\
+*  --------------------------------  RENDER  --------------------------------  *
+\******************************************************************************/
 //game drawing runs here
-function render() {
-    if (bgReady) {
+function render() 
+{
+    //text to render
+    var txtHiScore;
+    var txtGameOver = "GAME OVER";
+    var txtGameOver2 = "PRESS ENTER TO PLAY AGAIN";
+	var txtFirstPlay = "PRESS ENTER TO PLAY";
+	var txtnewLevel = "LEVEL "+level;
+	var txtPaused = "PAUSED";
+	
+	//so game resizes (somewhat) smoothly on window resize
+	resize();
+	
+	//draw images
+    if (bgReady) 
+	{
         ctx.drawImage(bgImage, 0, 0);
     }
-	
-	if (ballReady) {
+	//do not draw ball while there is a message
+	if (ballReady && !gameOver && !firstPlay) 
+	{
         ctx.drawImage(ballImage, ball.x, ball.y);
     }
-	
-	if (paddleReady) {
+	if (paddleReady) 
+	{
         ctx.drawImage(paddleImage, paddle.x, paddle.y);
     }
-	
 	if(brickRedReady,brickOrangeReady,brickYellowReady,brickGreenReady,brickBlueReady)
 	{
 		for(var i = 0; i < bricks.length; i++)
@@ -492,40 +563,57 @@ function render() {
 				ctx.drawImage(bricks[i].image,bricks[i].x,bricks[i].y);
 			}
 		}
-		
 	}
 
-    //score
+    //set font
     ctx.fillStyle = "#FFF";
     ctx.font = "20px Share Tech Mono";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
+
+    //show score
     ctx.fillText("SCORE: "+score, 8, HEIGHT-32);
+    //show balls left
     ctx.fillText("BALLS: "+balls, WIDTH*(3/4)+24, HEIGHT-32);
-    
+	//show hiscore
+	txtHiScore = "HI-SCORE: "+hiscore;
+    ctx.fillText(txtHiScore, (WIDTH/2)-(ctx.measureText(txtHiScore).width/2), HEIGHT-32);
+	
+	//show gameover message
     if(gameOver)
     {
-    ctx.fillStyle = "#FFF";
-    ctx.font = "20px Share Tech Mono";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
-    var text = "GAME OVER";
-    ctx.fillText(text,WIDTH/2-(ctx.measureText(text).width/2),(HEIGHT/2)-32);
+        
+		ctx.fillText(txtGameOver,WIDTH/2-(ctx.measureText(txtGameOver).width/2),(HEIGHT/2)-32);
+		ctx.fillText(txtGameOver2,WIDTH/2-(ctx.measureText(txtGameOver2).width/2),(HEIGHT/2));
     }
-
+	
+	//show new level message
+    if(newLevel)
+    {
+		ctx.fillText(txtnewLevel,WIDTH/2-(ctx.measureText(txtnewLevel).width/2),8);
+    }
+	
+	//show first play message
+	if(firstPlay)
+    {
+		ctx.fillText(txtFirstPlay,WIDTH/2-(ctx.measureText(txtFirstPlay).width/2),(HEIGHT/2)-32);
+    }
+	
+	//show pause message
+	if(pause)
+    {
+		ctx.fillText(txtPaused,WIDTH/2-(ctx.measureText(txtPaused).width/2),(HEIGHT/2)-32);
+    }
 };
-
-
-/************\
-**   LOOP   **
-\************/
+/******************************************************************************\
+*  ---------------------------------  MAIN  ---------------------------------  *
+\******************************************************************************/
 function main()			
 {
-    var now = Date.now();
-    var delta = now - then;
+    var now = Date.now();		//time of current game cycle
+    var delta = now - then;		//delta == difference in time
 
     update(delta / 1000);
-
     render();
 
     then = now;
@@ -533,9 +621,14 @@ function main()
     requestAnimationFrame(main);
 };
 
+//more handlers
+window.addEventListener('load', init(), false);
+window.addEventListener('resize', resize(), false);		//doesn't work? resize() runs in render()
 
-//start game
-newBricks();
+//game init
+startNewLevel();
 newBall();
-var then = Date.now();
+
+//game start
+then = Date.now();
 main();
