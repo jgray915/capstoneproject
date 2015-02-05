@@ -1,0 +1,39 @@
+<?php
+       
+        // php code for inserting into the users table
+        
+        $userName = filter_input(INPUT_POST, 'userName'); 
+        $password = filter_input(INPUT_POST,'password');
+        $email = filter_input(INPUT_POST,'email');
+	$signUpDate = filter_input(INPUT_POST,'signUpDate');
+	$bio = filter_input(INPUT_POST,'bio');
+        var_dump($_POST);
+        $error_message = '';                        
+                  
+       
+        
+       
+        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        
+        $dbs = $db->prepare('insert into users set userName=:userName, password=:password, email=:email, signUpDate=:signUpDate, bio=:bio ');
+        
+        
+         
+        $dbs->bindParam(':userName', $userName, PDO::PARAM_STR);
+        $dbs->bindParam(':password', $password, PDO::PARAM_STR);
+        $dbs->bindParam(':email', $email, PDO::PARAM_STR);
+        $dbs->bindParam(':signUpDate', $signUpDate, PDO::PARAM_STR);
+	$dbs->bindParam(':bio', $bio, PDO::PARAM_STR);
+        
+            if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+             $error_message = '';
+            } else {
+             $error_message .= 'Inpur error';  
+            }                                           
+         
+           
+      
+        
+                include './index.php';
+                
+        ?>
