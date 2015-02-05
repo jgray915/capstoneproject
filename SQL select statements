@@ -1,0 +1,36 @@
+-- All Time top 10 scores for a game.
+
+SELECT * FROM `scores` WHERE `GameID`= 1
+ORDER BY `Score` DESC
+LIMIT 10
+
+-- Top 10 scores for a day
+
+SELECT * FROM `scores` WHERE `GameID`= 1 AND datediff(curdate(), date) <= 1
+ORDER BY `Score`DESC
+LIMIT 10
+
+-- top 10 from the past 7 days
+
+SELECT * FROM `scores` WHERE `GameID`= 1 AND datediff(curdate(), date) <= 7
+ORDER BY `Score`DESC
+LIMIT 10
+
+-- Top 10 for month
+
+SELECT * FROM `scores` WHERE `GameID`= 1 AND Month(`date`) = Month(curdate())
+ORDER BY `Score`DESC
+LIMIT 10	
+
+-- Top 10 scores for a specific user for a day
+
+SELECT * FROM `scores` WHERE `GameID`= 1 AND `UserID`= "player" AND datediff(curdate(), date) <= 1
+ORDER BY `Score`DESC
+LIMIT 10
+
+-- How many times a user plays a game
+
+SELECT COUNT(*) FROM scores WHERE `GameID` = 1 and `UserID`= 1
+
+
+
