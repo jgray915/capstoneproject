@@ -21,6 +21,34 @@
 <div id="main-content">
 
 <div id="article-wrapper">
+    <h1 class="title2">Brick Breaker</h1>
+    <p>Smash a wall of bricks by deflecting a bouncing ball with a paddle. Score points with each broken brick.  When all the bricks have been destroyed, you’ll advances to a new level. Miss the ball and you’ll lose a life.  Once all lives are lost, the game will end.</p>
+    <img src="media/Breaker.jpg" alt=""/>
+        <div id="scores">
+		<?php
+        // php code for retrieving data from the Scores table
+        $userID = filter_input(INPUT_POST,'userID');
+        $score = filter_input(INPUT_POST,'score');
+			$error_message = '';    
+      
+        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT * FROM `scores` WHERE `GameID`= 1 ORDER BY `Score` DESC LIMIT 10'); 
+
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			?><ul> Top 10 Scores:<?php
+			foreach ($scores as $value) {
+			?><li>Score: <?php echo '<td>', $value['Score'],'</td>';?> 
+			UserID: <?php echo '<td>', $value['UserID'],'</td>';?></li><?php
+			echo '</tr>';
+				}
+			}			
+        ?>
+            </ul>
+        </div>
+</div><!-- end article -->
+
+<div id="article-wrapper">
     <h1 class="title2">Pac-Man</h1>
     <p>Send Pac-Man through a maze while eating pellets and earning points. When all pellets are eaten, Pac-Man is taken to the next stage.  Four enemies roam the maze trying to catch Pac-Man. If an enemy touches you, a life is lost. When all lives have been lost, the game ends.</p>
     <img src="media/Pacman.jpg" alt=""/>
@@ -56,34 +84,6 @@
             <li>Score Eight</li>
             <li>Score Nine</li>
             <li>Score Ten</li>
-            </ul>
-        </div>
-</div><!-- end article -->
-
-<div id="article-wrapper">
-    <h1 class="title2">Brick Breaker</h1>
-    <p>Smash a wall of bricks by deflecting a bouncing ball with a paddle. Score points with each broken brick.  When all the bricks have been destroyed, you’ll advances to a new level. Miss the ball and you’ll lose a life.  Once all lives are lost, the game will end.</p>
-    <img src="media/Breaker.jpg" alt=""/>
-        <div id="scores">
-		<?php
-        // php code for retrieving data from the Scores table
-        $userID = filter_input(INPUT_POST,'userID');
-        $score = filter_input(INPUT_POST,'score');
-			$error_message = '';    
-      
-        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT * FROM `scores` WHERE `GameID`= 1 ORDER BY `Score` DESC LIMIT 10'); 
-
-        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			?><ul> Top 10 Scores:<?php
-			foreach ($scores as $value) {
-			?><li>Score: <?php echo '<td>', $value['Score'],'</td>';?> 
-			UserID: <?php echo '<td>', $value['UserID'],'</td>';?></li><?php
-			echo '</tr>';
-				}
-			}			
-        ?>
             </ul>
         </div>
 </div><!-- end article -->
