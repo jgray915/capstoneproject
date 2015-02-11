@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Log In</title>
-        <link rel="stylesheet" type="text/css" href="main.css"/>
-    </head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Capstone Arcade</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+</head>
+
 <body>
-    <div id="wrapper">
-        <?php 
-        include_once 'header.php'; ?>
-        <div id="container ">
-            <div id="main-content">
-                <div id="article-wrapper">
+        
+<!-- Main Wrapper -->
+<div id="wrapper">
+<?php include ('header.php');?>
+<!-- Start Inner Wrapper for site content -->
+<!-- Start Inner Wrapper for site content -->
+<div id="container">
+	<h1 class="title">Capstone Arcade Presents:</h1>
+	<!-- Main content div -->
+		<div id="main-content">
+			<div id="article-wrapper">
                     <h1 class="title2">Log In</h1>
                     <form action="login2.php" method="post"></select>
                     <br />
@@ -39,9 +45,24 @@
                     </ul>
                     <?php endif; ?>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+			</div><!-- end article wrapper -->
+		</div><!-- end main content -->
+<!-- sidebar -->
+	<div id="sidebar">
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+	</div><!--  end sidebar -->
+</div><!-- end container -->
+<?php include ('footer.php');?>
+</div><!-- End wrapper -->
+
 </body>
 </html>

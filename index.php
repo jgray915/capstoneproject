@@ -10,7 +10,22 @@
         
 <!-- Main Wrapper -->
 <div id="wrapper">
-<?php include ('mark/header.php');?>
+<div id="header">
+    <div id="nav">
+        <div id="buttons">
+            <a class="btn" href="index.php">HOME</a>
+            <a class="btn" href="mark/signup.php">JOIN</a>
+            <?php
+            session_start();
+            if ( !empty($_SESSION['loggedin']) ) {
+            echo '<a class="btn" href="mark/logout.php">Logout</a>';
+            } else {
+            echo '<a class="btn" href="mark/login.php">LogIn</a>';
+            }
+            ?>
+        </div>
+    </div><!-- close nav -->
+</div><!-- End Header -->
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 
@@ -21,7 +36,7 @@
 <div id="main-content">
 
 <div id="article-wrapper">
-    <h1 class="title2">Brick Breaker</h1>
+    <h1 class="title2">Breakout</h1>
     <p>Smash a wall of bricks by deflecting a bouncing ball with a paddle. Score points with each broken brick.  When all the bricks have been destroyed, you’ll advances to a new level. Miss the ball and you’ll lose a life.  Once all lives are lost, the game will end.</p>
     <img src="media/Breaker.jpg" alt=""/>
         <div id="scores">
