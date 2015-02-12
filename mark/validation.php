@@ -3,12 +3,12 @@ class validation {
     
    function check_login($email, $password)
 {
-    //$password = sha1($password);
+    $password = sha1($password);
     
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-    $dbs = $db->prepare('SELECT * FROM users WHERE Email = :email AND Password = :password');
-    $dbs->bindParam(':email', $email, PDO::PARAM_STR);
-    $dbs->bindParam(':password', $password, PDO::PARAM_STR);
+    $dbs = $db->prepare("SELECT email, password FROM users WHERE password = :password AND email = :email");
+		$dbs->bindParam(':email', $email);
+		$dbs->bindParam(':password', $password);
     if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
         return true;
     } else {
@@ -20,10 +20,10 @@ function check_email($email)
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
     $dbs = $db->prepare('SELECT * FROM users WHERE Email = :email');
     $dbs->bindParam(':email', $email, PDO::PARAM_STR);
-    if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-        return true;
-    } else {
+    if ( $dbs->execute() && $dbs->rowCount() == 0 ) {
         return false;
+    } else {
+        return true;
     }
 }
 function valid_email($email)
