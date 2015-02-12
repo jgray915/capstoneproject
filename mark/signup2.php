@@ -1,7 +1,11 @@
 <?php
-$email = filter_input(INPUT_POST, 'email');
-$password = filter_input(INPUT_POST, 'password');
+$userName = filter_input(INPUT_POST, 'userName'); 
+$password = filter_input(INPUT_POST,'password');
+$email = filter_input(INPUT_POST,'email');
+$signUpDate = date("Y-m-d H:i:s"); 
+$bio = filter_input(INPUT_POST,'bio');
 $errors = array();
+
 include './validation.php';
 $functions = new validation();
 if ($functions->valid_email($email)== false){
@@ -19,16 +23,20 @@ if (isset($email)&& count($errors)== 0){
     include('signup.php');
     
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-    $dbs = $db->prepare('INSERT into users set Email = :email, password = :password');
-    $dbs->bindParam(':email', $email, PDO::PARAM_STR);
-    $dbs->bindParam(':password', $password, PDO::PARAM_STR);
+    $dbs = $db->prepare('insert into users set userName=:userName, password=:password, email=:email, signUpDate=:signUpDate, bio=:bio ');
+		$dbs->bindParam(':userName', $userName, PDO::PARAM_STR);
+        $dbs->bindParam(':password', $password, PDO::PARAM_STR);
+        $dbs->bindParam(':email', $email, PDO::PARAM_STR);
+        $dbs->bindParam(':signUpDate', $signUpDate, PDO::PARAM_STR);
+		$dbs->bindParam(':bio', $bio, PDO::PARAM_STR);
     
     if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-        echo "Sign Up Complete";
+        echo "";
     } else {
-        echo "Sign Up Incomplete";
+		var_dump($_POST);
     }    
 } else {
     include('signup.php');
+	
 }
 ?>

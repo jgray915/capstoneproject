@@ -15,14 +15,16 @@
 <!-- Start Inner Wrapper for site content -->
 		<?php
         // php code for inserting into the users table
-        
+        if (isset($email)&& count($errors)== 0){
         $userName = filter_input(INPUT_POST, 'userName'); 
         $password = filter_input(INPUT_POST,'password');
         $email = filter_input(INPUT_POST,'email');
-		$signUpDate = filter_input(INPUT_POST,'signUpDate');
+		$signUpDate = date("Y-m-d H:i:s"); 
 		$bio = filter_input(INPUT_POST,'bio');
-        $error_message = '';                        
+        $errors = array();                       
                   
+		$password = sha1($password);		  
+				  
         $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('insert into users set userName=:userName, password=:password, email=:email, signUpDate=:signUpDate, bio=:bio ');
                  
@@ -31,12 +33,8 @@
         $dbs->bindParam(':email', $email, PDO::PARAM_STR);
         $dbs->bindParam(':signUpDate', $signUpDate, PDO::PARAM_STR);
 		$dbs->bindParam(':bio', $bio, PDO::PARAM_STR);
-        
-        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-             $error_message = '';
-            } else {
-             $error_message .= 'Input error';  
-            }                                           
+		}
+                                         
         ?>
 <div id="container">
 <h1 class="title">Capstone Arcade Presents:</h1>
@@ -49,22 +47,22 @@
                     <br />
 
 					<label>Username:&nbsp;&nbsp;</label>
-                    <input type="text" name="userName" />
+                    <input type="text" name="userName" value="<?php echo $userName;?>" />
                     <br />
                     <br />
 					
                     <label>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input type="text" name="email" />
+                    <input type="text" name="email" value="<?php echo $email; ?>" />
                     <br />
                     <br />
 
                     <label>Password:&nbsp;&nbsp;&nbsp;</label>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" value="<?php echo $password;?>" />
                     <br />
                     <br />
 					
 					<label>Biography:&nbsp;&nbsp;</label>
-                    <input type="text" name="bio" />
+                    <input type="text" name="bio" value="<?php echo $bio; ?>" />
                     <br />
                     <br />
                 
