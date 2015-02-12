@@ -3,7 +3,7 @@ class validation {
     
    function check_login($email, $password)
 {
-    $password = sha1($password);
+    //$password = sha1($password);
     
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
     $dbs = $db->prepare('SELECT * FROM users WHERE Email = :email AND Password = :password');

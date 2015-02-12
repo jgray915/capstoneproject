@@ -6,7 +6,7 @@ $signUpDate = date("Y-m-d H:i:s");
 $bio = filter_input(INPUT_POST,'bio');
 $errors = array();
 
-include './validation.php';
+include 'validation.php';
 $functions = new validation();
 if ($functions->valid_email($email)== false){
     $errors[] = "Invalid email.";
@@ -37,6 +37,5 @@ if (isset($email)&& count($errors)== 0){
     }    
 } else {
     include('signup.php');
-	
 }
 ?>

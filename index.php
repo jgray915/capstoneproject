@@ -16,11 +16,10 @@
             <a class="btn" href="index.php">HOME</a>
             <a class="btn" href="mark/signup.php">JOIN</a>
             <?php
-            session_start();
             if ( !empty($_SESSION['loggedin']) ) {
-            echo '<a class="btn" href="mark/logout.php">Logout</a>';
+            echo '<a class="btn" href="mark/logout.php">LOGOUT</a>';
             } else {
-            echo '<a class="btn" href="mark/login.php">LogIn</a>';
+            echo '<a class="btn" href="mark/login.php">LOGIN</a>';
             }
             ?>
         </div>

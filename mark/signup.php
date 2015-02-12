@@ -13,32 +13,18 @@
 <?php include ('header.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
-		<?php
-        // php code for inserting into the users table
-        if (isset($email)&& count($errors)== 0){
-        $userName = filter_input(INPUT_POST, 'userName'); 
-        $password = filter_input(INPUT_POST,'password');
-        $email = filter_input(INPUT_POST,'email');
-		$signUpDate = date("Y-m-d H:i:s"); 
-		$bio = filter_input(INPUT_POST,'bio');
-        $errors = array();                       
-                  
-		$password = sha1($password);		  
-				  
-        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('insert into users set userName=:userName, password=:password, email=:email, signUpDate=:signUpDate, bio=:bio ');
-                 
-        $dbs->bindParam(':userName', $userName, PDO::PARAM_STR);
-        $dbs->bindParam(':password', $password, PDO::PARAM_STR);
-        $dbs->bindParam(':email', $email, PDO::PARAM_STR);
-        $dbs->bindParam(':signUpDate', $signUpDate, PDO::PARAM_STR);
-		$dbs->bindParam(':bio', $bio, PDO::PARAM_STR);
-		}
-                                         
-        ?>
 <div id="container">
 <h1 class="title">Capstone Arcade Presents:</h1>
-
+<?php
+if (!isset($_POST['userName'])) {
+$userName = "";}
+if (!isset($_POST['email'])) {
+$email = "";}
+if (!isset($_POST['password'])) {
+$password = "";}
+if (!isset($_POST['bio'])) {
+$bio = "";}
+?>
 <!-- Main content div -->
 <div id="main-content">
 	<div id="article-wrapper">

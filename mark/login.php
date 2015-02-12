@@ -7,7 +7,12 @@
 </head>
 
 <body>
-        
+<?php
+if (!isset($_POST['email'])) {
+$email = "";}
+if (!isset($_POST['password'])) {
+$password = "";}
+?>        
 <!-- Main Wrapper -->
 <div id="wrapper">
 <?php include ('header.php');?>
@@ -23,12 +28,12 @@
                     <br />
 
                     <label>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <input type="text" name="email" />
+                    <input type="text" name="email" value="<?php echo $email; ?>" />
                     <br />
                     <br />
 
                     <label>Password:&nbsp;&nbsp;</label>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" value="<?php echo $password;?>"/>
                     <br />
                     <br />
                 

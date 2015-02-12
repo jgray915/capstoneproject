@@ -1,17 +1,18 @@
 <?php
-$email = filter_input(INPUT_POST, 'email');
-$password = filter_input(INPUT_POST, 'password');
+$password = filter_input(INPUT_POST,'password');
+$email = filter_input(INPUT_POST,'email');
 $errors = array();
-include './validation.php';
+
+include 'validation.php';
 session_start();
 $functions = new validation();
-if ($functions->check_email($email)== false)
-{
-   $errors[] = "Invalid Email.  Email not found.";
-}
 if ($functions->check_login($email, $password)== true)
 {
-    $_SESSION['loggedin']=true;
+	$_SESSION['loggedin'] == true;
+}
+if ($functions->check_email($email)== false)
+{
+	$errors[] = "Invalid Email.  Email not found.";
 }
 else
 {
