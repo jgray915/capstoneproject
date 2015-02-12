@@ -15,7 +15,7 @@ if ($functions->check_login($email, $password)== true)
 else
 {
     $_SESSION['loggedin']=false;
-    $errors[] = "Invalid Login.  Please reenter email and password.".sha1($password);
+    $errors[] = "Invalid Login.  Please reenter email and password.";
 }
     
 if ($_SESSION['loggedin'] == true) {
