@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Capstone Arcade</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
-</head>
-
-<body>
-        
-<!-- Main Wrapper -->
-<div id="wrapper">
 <?php include ('header.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
@@ -70,16 +58,16 @@ $bio = "";}
 </div><!-- end main content -->
 <!-- sidebar -->
 <div id="sidebar">
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 </div><!--  end sidebar -->
 </div><!-- end container -->
 <?php include ('footer.php');?>

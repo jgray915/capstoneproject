@@ -1,5 +1,4 @@
-
-<?php include ('header.php');?>
+<?php include ('mark/header.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 
@@ -96,7 +95,7 @@
 
 </div><!--  end sidebar -->
 </div><!-- end inner container -->
-<?php include ('footer.php');?>
+<?php include ('mark/footer.php');?>
 </div><!-- End Main Wrapper -->
 	
 
