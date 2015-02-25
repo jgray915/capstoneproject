@@ -1,0 +1,521 @@
+/* filename:    breakout.js
+ * author:      Jacob Gray
+ * description: A clone of the game Breakout.
+ * 
+ * TODO:
+ * TEST TAPPING
+ */
+
+/******************************************************************************\
+*  -------------------------------  GLOBALS   -------------------------------  *
+\******************************************************************************/
+{
+var WIDTH = 500;			//canvas size
+var HEIGHT = 800;			//canvas size
+var then = Date.now();		//stores the time of the last game cycle
+var canvas = document.createElement("canvas");  //canvas element
+var ctx = canvas.getContext("2d");				//context
+var mouseX;					//holds mouse x position
+var scale;					//scale factor of canvas
+var score = 0;				//current score
+var hiscore = 5;			//highest of last played scores
+var level = 0;				//current set of bricks
+var a = 0;					//accumulates time
+
+var pause = false;			//whether or not user has paused
+var enterKeyHit = false;    //flag for enter key
+var gameOver = false;		//whether or not currently game over
+var newLevel = false;       //whether or not currently showing new level
+var firstPlay = true;       //whether or not the player has played a game yet
+var touchDrag = false;		//touch control flag
+
+var nextBlock;
+var currBlock;
+var board = [];
+
+//cross-browser support
+var w = window;
+requestAnimationFrame = w.requestAnimationFrame || 
+                        w.webkitRequestAnimationFrame || 
+                        w.msRequestAnimationFrame || 
+                        w.mozRequestAnimationFrame;
+
+//hide mobile address bar
+var ua = navigator.userAgent.toLowerCase();
+var android = ua.indexOf('android') > -1 ? true : false;
+var ios = ( ua.indexOf('iphone') > -1 || ua.indexOf('ipad') > -1  ) ? true : false;
+}
+/******************************************************************************\
+*  ------------------------------  LOAD MEDIA  ------------------------------  *
+\******************************************************************************/
+{
+//load images*******************************************************************
+var bgReady = false;
+var bgImage = new Image();
+bgImage.onload = function () {
+    bgReady = true;
+};
+bgImage.src = "media/background.png";
+
+var c1Ready = false;
+var c1Image = new Image();
+c1Image.onload = function () {
+    c1Ready = true;
+};
+c1Image.src = "media/1.png";
+
+var c2Ready = false;
+var c2Image = new Image();
+c2Image.onload = function () {
+    c2Ready = true;
+};
+c2Image.src = "media/2.png";
+
+var c3Ready = false;
+var c3Image = new Image();
+c3Image.onload = function () {
+    c3Ready = true;
+};
+c3Image.src = "media/3.png";
+
+var c4Ready = false;
+var c4Image = new Image();
+c4Image.onload = function () {
+    c4Ready = true;
+};
+c4Image.src = "media/4.png";
+
+var c5Ready = false;
+var c5Image = new Image();
+c5Image.onload = function () {
+    c5Ready = true;
+};
+c5Image.src = "media/5.png";
+
+var c6Ready = false;
+var c6Image = new Image();
+c6Image.onload = function () {
+    c6Ready = true;
+};
+c6Image.src = "media/6.png";
+
+//load sound *******************************************************************
+//var noise = new Audio("media/noise.wav");
+//noise.load();
+
+}
+/******************************************************************************\
+*  ----------------------------  INPUT HANDLING  ----------------------------  *
+\******************************************************************************/
+{
+document.addEventListener("keydown", function (e) {
+	if(e.keyCode == 13)
+	{
+		enterKeyHit = true;
+	}
+}, false);
+
+//listen for mouse movement
+document.addEventListener("mousemove", function (e) {
+    if(!e)
+	{
+		var e = event;
+	}
+	mouseX = e.pageX;
+}, false);
+
+//listen for clicks
+window.addEventListener('click', function(e) {
+    enterKeyHit = true;
+}, false);
+
+//listen for touches
+window.addEventListener('touchstart', function(e) {
+	e.preventDefault(); 
+	//if the touch ends in 200mS, it was a tap?
+	setTimeout(function (){
+        if (!touchStarted){
+            enterKeyHit = true;
+        }
+    },200);
+}, false);
+
+window.addEventListener('touchmove', function(e) {
+	e.preventDefault(); 
+	touchDrag = true;
+    mouseX = e.changedTouches[0].clientX;
+}, false);
+
+window.addEventListener('touchend', function(e) {
+	e.preventDefault(); 
+	touchDrag = false;
+}, false);
+
+
+}
+/******************************************************************************\
+*  -------------------------------  OBJECTS   -------------------------------  *
+\******************************************************************************/
+{
+//classes are implemented as functions in js
+function TBlock(x, y)
+{
+	this.color = Math.floor(Math.random()*10%6);
+	this.shape = [[1,1,1],[0,1,0]];
+	this.brickHeight = 16;
+	this.brickWidth = 16;
+	this.height = 0;
+	this.width = 0;
+	this.y = y;
+	this.x = x;
+	
+	for(var i = 0; i < this.shape.length; i++)
+	{
+		for(var j = 0; j < this.shape[i].length; j++)
+		{
+			if(this.shape[i][j] === 1)
+			{
+				this.shape[i][j] = new Brick(this.x+i*this.brickWidth,this.y+j*this.brickWidth, this.color);
+				allBricks.push(this.shape[i][j]);
+				
+			}
+		}
+	}
+}
+
+function Brick(x, y, color)
+{
+	this.color = color;
+	this.height = 16;
+	this.width = 16;
+	this.y = y;
+	this.x = x;
+}
+
+}
+/******************************************************************************\
+*  ------------------------------  FUNCTIONS   ------------------------------  *
+\******************************************************************************/
+{
+
+//canvas functions *************************************************************
+function init()
+{
+    canvas.width = WIDTH;
+    canvas.height = HEIGHT;
+
+    //style the page
+    document.body.appendChild(canvas);
+    document.body.style.fontFamily = 'Share Tech Mono';
+    document.body.style.backgroundColor = "#FFF";
+    document.body.style.margin = "auto";
+    
+    //style the canvas
+    canvas.style.display = "block";
+    canvas.style.margin = "auto";
+    
+    //google font
+    var newStyle = document.createElement('style');
+    newStyle.appendChild(document.createTextNode(
+		"@font-face\n\
+		{font-family: 'Share Tech Mono'; \n\
+		font-style: normal; font-weight: 400; \n\
+		src: local('Share Tech Mono'), local('ShareTechMono-Regular'), \n\
+        url(http://fonts.gstatic.com/s/sharetechmono/v4/RQxK-3RA0Lnf3gnnnNrAsYdJ2JT0J65PSe7wdxAnx_I.woff2) \n\
+        format('woff2'); \n\
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, \n\
+        U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;}"
+		));
+    document.head.appendChild(newStyle);
+}
+
+//called by init and render, resizes canvas to window
+function resize()
+{
+    var RATIO = WIDTH/HEIGHT;
+    var CURR_WIDTH = WIDTH;     //resize canvas
+    var CURR_HEIGHT = HEIGHT;   //resize canvas
+
+    //resize width in proportion to height
+    CURR_HEIGHT = window.innerHeight;
+    CURR_WIDTH = CURR_HEIGHT * RATIO;
+	
+    if(CURR_WIDTH > window.innerWidth)
+    {
+        CURR_WIDTH = window.innerWidth;
+        CURR_HEIGHT = CURR_WIDTH / RATIO;
+    }
+
+    //some extra space to scroll past the address bar
+    if (android || ios) 
+    {
+        //document.body.style.height = (window.innerHeight + 50) + 'px';
+    }
+
+    //scale it with CSS
+    canvas.style.width = CURR_WIDTH + 'px';
+    canvas.style.height = CURR_HEIGHT + 'px';
+    //some mobile browsers don't fire without a delay
+    window.setTimeout(function() 
+    {
+        window.scrollTo(0,1);
+    }, 1);
+	
+	scale = CURR_WIDTH/WIDTH;
+}
+
+
+//game functions ***************************************************************
+function newGame()
+{
+	score = 0;
+    level = 0;
+    startNewLevel();
+	
+	for(var i = 0; i < boardHeight; i++)
+	{
+		board[i] = new Array;
+		for(var j = 0; j < boardWidth; j++)
+		{
+			board[i][j] = 0;
+		}
+	}
+}
+
+//startNewLevel is the perfect name for this function
+function startNewLevel()
+{
+	level++;
+	
+	//time out the new level message
+	setTimeout(function(){newLevel = false;}, 2000);
+}
+
+//collision handling ***********************************************************
+function collides(rect1,rect2)
+{ 
+	if (rect1.x < rect2.x + rect2.width &&
+	rect1.x + rect1.width > rect2.x &&
+	rect1.y < rect2.y + rect2.height &&
+	rect1.height + rect1.y > rect2.y) 
+	{
+		return true;
+	}
+	return false;
+}
+
+//returns if obj1 hit obj2 on "top", "bottom", "left", or "right"
+function collisionDirection(obj1, obj2)
+{
+	var obj1Bottom = obj1.y + obj1.height;
+	var obj2Bottom = obj2.y + obj2.height;
+	var obj1Right = obj1.x + obj1.width;
+	var obj2Right = obj2.x + obj2.width;
+	
+	var collB = obj2Bottom - obj1.y;
+	var collT = obj1Bottom - obj2.y;
+	var collL = obj1Right - obj2.x;
+	var collR = obj2Right - obj1.x;
+	
+	if(collT < collB &&
+		collT < collL &&
+		collT < collR)
+	{
+		return "top";
+	}
+	if(collL < collR &&
+		collL < collT &&
+		collL < collB)
+	{
+		return "left";
+	}
+	if(collR < collB &&
+		collR < collL &&
+		collR < collT)
+	{
+		return "right";
+	}
+	if(collB < collT &&
+		collB < collL &&
+		collB < collR)
+	{
+		return "bottom";
+	}
+}
+
+}
+/******************************************************************************\
+*  --------------------------------  UPDATE  --------------------------------  *
+\******************************************************************************/
+//game logic runs here
+function update(modifier) 
+{
+	a += modifier;
+	
+	if(a >= 1)
+	{
+		a = 0;
+	}
+	
+    //handle enter key
+	if(enterKeyHit)
+	{
+        enterKeyHit = false;
+		if(firstPlay)
+		{
+			firstPlay = false;
+		}
+		else if(gameOver)
+		{
+			gameOver = false;
+		}
+		else
+		{
+			pause = !pause;
+		}
+	}
+	
+	//if game is playing vs message displaying
+	if(!gameOver && !firstPlay && !pause)
+	{
+		if(!nextBlock)
+		{
+			switch(1)//Math.floor(Math.random()*10%7)+1)
+			{
+				case 1:
+					nextBlock = new TBlock(WIDTH-96, 48);
+					break;
+				case 2:
+					nextBlock = new TBlock();
+					break;
+				case 3:
+					nextBlock = new TBlock();
+					break;
+				case 4:
+					nextBlock = new TBlock();
+					break;
+				case 5:
+					nextBlock = new TBlock();
+					break;
+				case 6:
+					nextBlock = new TBlock();
+					break;
+				case 7:
+					nextBlock = new TBlock();
+					break;
+			}
+			console.log("new nextBlock "+nextBlock.color);
+		}
+		
+		if(!currBlock)
+		{
+			currBlock = nextBlock;
+			currBlock.x = WIDTH/2;
+			currBlock.y = 0;
+			nextBlock = 0;
+			console.log("new currBlock "+currBlock.color);
+		}
+		else
+		{
+			if(a === 0)
+			{
+				currBlock.x += 16;
+			}
+		}
+	}
+}
+/******************************************************************************\
+*  --------------------------------  RENDER  --------------------------------  *
+\******************************************************************************/
+//game drawing runs here
+function render() 
+{
+    //text to render
+	var txtScore  = score;
+    var txtHiScore  = hiscore;
+    var txtGameOver = "GAME OVER";
+    var txtGameOver2 = "CLICK OR TAP TO PLAY AGAIN";
+	var txtFirstPlay = "CLICK OR TAP TO PLAY";
+	var txtnewLevel = "LEVEL "+level;
+	var txtPaused = "PAUSED";
+	
+	//so game resizes (somewhat) smoothly on window resize
+	resize();
+	
+	//draw images
+    if (bgReady) 
+	{
+        ctx.drawImage(bgImage, 0, 0);
+    }
+	if (c1Ready && c2Ready && c3Ready && c4Ready && c5Ready && c6Ready) 
+	{
+		var images = [c1Image, c2Image, c3Image, c4Image, c5Image, c6Image];
+        for(var i = 0; i < allBricks.length; i++)
+		{
+			ctx.drawImage(images[allBricks[i].color], allBricks[i].x, allBricks[i].y);
+		}
+    }
+    //set font
+    ctx.fillStyle = "#FFF";
+    ctx.font = "12px Share Tech Mono";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+
+    //show score
+    ctx.fillText(txtScore, WIDTH - 140, HEIGHT-65);
+	
+	//show hiscore
+	txtHiScore
+    ctx.fillText(txtHiScore, WIDTH - 140, HEIGHT-33);
+	
+	//show gameover message
+    if(gameOver)
+    {
+		ctx.fillText(txtGameOver,WIDTH/2-(ctx.measureText(txtGameOver).width/2),(HEIGHT/2)-32);
+		ctx.fillText(txtGameOver2,WIDTH/2-(ctx.measureText(txtGameOver2).width/2),(HEIGHT/2));
+    }
+	
+	//show new level message
+    if(newLevel)
+    {
+		ctx.fillText(txtnewLevel,WIDTH/2-(ctx.measureText(txtnewLevel).width/2),8);
+    }
+	
+	//show first play message
+	if(firstPlay)
+    {
+		ctx.fillText(txtFirstPlay,WIDTH/2-(ctx.measureText(txtFirstPlay).width/2),(HEIGHT/2)-32);
+    }
+	
+	//show pause message
+	if(pause)
+    {
+		ctx.fillText(txtPaused,WIDTH/2-(ctx.measureText(txtPaused).width/2),(HEIGHT/2)-32);
+    }
+};
+/******************************************************************************\
+*  ---------------------------------  MAIN  ---------------------------------  *
+\******************************************************************************/
+function main()			
+{
+    var now = Date.now();		//time of current game cycle
+    var delta = now - then;		//delta == difference in time
+
+    update(delta / 1000);
+    render();
+
+    then = now;
+
+    requestAnimationFrame(main);
+};
+
+//more handlers
+window.addEventListener('load', init(), false);
+window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
+
+//game init
+startNewLevel();
+
+//game start
+then = Date.now();
+main();
