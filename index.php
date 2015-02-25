@@ -1,30 +1,5 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Capstone Arcade</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
-</head>
 
-<body>
-        
-<!-- Main Wrapper -->
-<div id="wrapper">
-<div id="header">
-    <div id="nav">
-        <div id="buttons">
-            <a class="btn" href="index.php">HOME</a>
-            <a class="btn" href="mark/signup.php">JOIN</a>
-            <?php
-            if ( !empty($_SESSION['loggedin']) ) {
-            echo '<a class="btn" href="mark/logout.php">LOGOUT</a>';
-            } else {
-            echo '<a class="btn" href="mark/login.php">LOGIN</a>';
-            }
-            ?>
-        </div>
-    </div><!-- close nav -->
-</div><!-- End Header -->
+<?php include ('header.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 
@@ -59,6 +34,7 @@
 			}			
         ?>
             </ul>
+			<a class="play" href="games/breakout/index.php"> </a>
         </div>
 </div><!-- end article -->
 
@@ -111,15 +87,15 @@
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-    <div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-    <div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+	<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
 
 </div><!--  end sidebar -->
 </div><!-- end inner container -->
-<?php include ('mark/footer.php');?>
+<?php include ('footer.php');?>
 </div><!-- End Main Wrapper -->
 	
 

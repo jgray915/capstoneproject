@@ -52,6 +52,15 @@ body{
 	text-shadow:1px 1px 3px black;	
 }
 
+.play{
+	float:left;
+	width:250px;
+	height:59px;
+	background-image:url("../media/Play.jpg");
+	margin:2px;
+	text-shadow:1px 1px 3px black;	
+}
+
 .btn:hover{
 	float:left;
 	width:316px;
