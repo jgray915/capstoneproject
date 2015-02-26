@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Capstone Arcade</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
 </head>
 
 <body>
@@ -14,18 +14,22 @@
 <div id="header">
     <div id="nav">
         <div id="buttons">
-            <a class="btn" href="~/index.php">HOME</a>
-            <a class="btn" href="~../signup.php">JOIN</a>
-			<?php
+			<?php 
 			//start session
 			if(!isset($_SESSION)){
-			session_start ();
-			}
-			if(empty($_SEESION['loggedin']) ) {
-			echo '<a class ="btn" href="~/mark/login.php">LOGIN</a>';  
-			echo $_SESSION['loggedin'];
+			session_start();
+			} 
+			//echo session_id();
+			//var_dump($_SESSION['loggedin']);
+			?>
+            <a class="btn" href="index.php">HOME</a>
+			<?php
+			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true) {
+			echo '<a class="btn" href="profile.php">PROFILE</a>';
+            echo '<a class="btn" href="logout.php">LOGOUT</a>';
 			} else {
-			echo '<a class ="btn" href="?logout=true">LOGOUT</a>'; 
+			echo '<a class="btn" href="signup.php">JOIN</a>';
+			echo '<a class="btn" href="login.php">LOGIN</a>';
 			}
 			?>
         </div>

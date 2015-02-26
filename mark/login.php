@@ -43,16 +43,16 @@ $password = "";}
 		</div><!-- end main content -->
 <!-- sidebar -->
 	<div id="sidebar">
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
 	</div><!--  end sidebar -->
 </div><!-- end container -->
 <?php include ('footer.php');?>
