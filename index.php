@@ -16,21 +16,24 @@
 		<?php
         // php code for retrieving data from the Scores table
         $userID = filter_input(INPUT_POST,'userID');
+        $gameID = filter_input(INPUT_POST,'gameID');
         $score = filter_input(INPUT_POST,'score');
-			$error_message = '';    
-      
+	$error_message = '';    
+        $i = 0;
         $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT * FROM `scores` WHERE `GameID`= 1 ORDER BY `Score` DESC LIMIT 10'); 
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =1 ORDER BY score DESC LIMIT 10'); 
 
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			?><ul> Top 10 Scores:<?php
+			?><ul> Top 10 Scores:</br><?php
 			foreach ($scores as $value) {
-			?><li>Score: <?php echo '<td>', $value['Score'],'</td>';?> 
-			UserID: <?php echo '<td>', $value['UserID'],'</td>';?></li><?php
+                            $i++;
+                            echo $i;
+			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
+			User Name: <?php echo '<td>', $value['userName'],'</td>';?></br><?php
 			echo '</tr>';
 				}
-			}			
+			}  			
         ?>
             </ul>
 			<a class="play" href="games/breakout/index.html"> </a>
