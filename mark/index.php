@@ -33,7 +33,7 @@
 			}			
         ?>
             </ul>
-			<a class="play" href="games/breakout/index.html"> </a>
+			<a class="play" href="../games/breakout/index.html"> </a>
         </div>
 </div><!-- end article -->
 
@@ -54,7 +54,7 @@
             <li>Score Nine</li>
             <li>Score Ten</li>
             </ul>
-			<a class="play" href="games/tetris/index.html"> </a>
+			<a class="play" href="../games/tetris/index.html"> </a>
         </div>
 </div><!-- end article -->
 
@@ -75,7 +75,7 @@
             <li>Score Nine</li>
             <li>Score Ten</li>
             </ul>
-			<a class="play" href="games/spaceinvaders/index.html"> </a>
+			<a class="play" href="../games/spaceinvaders/index.html"> </a>
         </div>
 </div><!-- end article -->
 
