@@ -187,7 +187,7 @@
                             $i++;
                             echo $i;
 			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
-			User Name: <?php echo '<td>', $value['userName'],'</td>';?></br><?php
+			User Name: <?php echo '<td>', $value['username'],'</td>';?></br><?php
 			echo '</tr>';
 				}
 			}                        
