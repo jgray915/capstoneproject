@@ -1,4 +1,5 @@
 <?php
+include ('../sara/functions.php');
 $password = filter_input(INPUT_POST,'password');
 $email = filter_input(INPUT_POST,'email');
 
@@ -12,6 +13,7 @@ $functions = new validation();
 if ($functions->check_login($email, $password)== true)
 {
 	$_SESSION['loggedin'] = true;
+	$_SESSION['email'] = $email;
 	header('Location: profile.php');
 }
 else

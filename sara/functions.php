@@ -21,8 +21,6 @@
             }     
 
             echo $gameID.$userID.$score;
-
-    
     }
     
 
@@ -34,7 +32,8 @@
 	$error_message = '';    
         $i = 0;
         $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =1 ORDER BY score DESC LIMIT 10'); 
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =1 ORDER BY score DESC LIMIT 10'); 
 
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 

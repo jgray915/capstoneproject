@@ -1,4 +1,5 @@
 <?php include ('header.php');?>
+<?php include ('../sara/functions.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 
@@ -14,28 +15,9 @@
     <img src="../media/Breaker.jpg" alt=""/>
         <div id="scores">
 		<?php
-         // php code for retrieving data from the Scores table
-        $userID = filter_input(INPUT_POST,'userID');
-        $gameID = filter_input(INPUT_POST,'gameID');
-        $score = filter_input(INPUT_POST,'score');
-	$error_message = '';    
-        $i = 0;
-        $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =1 ORDER BY score DESC LIMIT 10'); 
-
-        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			?><ul> Top 10 Scores:</br><?php
-			foreach ($scores as $value) {
-                            $i++;
-                            echo $i;
-			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
-			User Name: <?php echo '<td>', $value['userName'],'</td>';?></br><?php
-			echo '</tr>';
-				}
-			}  			
+		// Retrieve top 10 scores
+         topTenScoresGame1();			
         ?>
-            </ul>
 			<a class="play" href="../games/breakout/index.html"> </a>
         </div>
 </div><!-- end article -->
@@ -46,26 +28,8 @@
     <img src="../media/Tetris.jpg" alt=""/>
         <div id="scores">
             <?php
-                 // php code for retrieving data from the Scores table
-                $userID = filter_input(INPUT_POST,'userID');
-                $gameID = filter_input(INPUT_POST,'gameID');
-                $score = filter_input(INPUT_POST,'score');
-                $error_message = '';    
-                $i = 0;
-                $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-                $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =2 ORDER BY score DESC LIMIT 10'); 
-
-                if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-                    $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			?><ul> Top 10 Scores:</br><?php
-			foreach ($scores as $value) {
-                            $i++;
-                            echo $i;
-			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
-			User Name: <?php echo '<td>', $value['userName'],'</td>';?></br><?php
-			echo '</tr>';
-				}
-			}  
+            // Retrieve top 10 scores
+			topTenScoresGame2();
             ?>
 			<a class="play" href="../games/tetris/index.html"> </a>
         </div>
@@ -77,26 +41,8 @@
     <img src="../media/Invaders.jpeg" alt=""/>
         <div id="scores">
              <?php
-                 // php code for retrieving data from the Scores table
-                $userID = filter_input(INPUT_POST,'userID');
-                $gameID = filter_input(INPUT_POST,'gameID');
-                $score = filter_input(INPUT_POST,'score');
-                $error_message = '';    
-                $i = 0;
-                $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-                $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.userName FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =3 ORDER BY score DESC LIMIT 10'); 
-
-                if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-                    $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			?><ul> Top 10 Scores:</br><?php
-			foreach ($scores as $value) {
-                            $i++;
-                            echo $i;
-			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
-			User Name: <?php echo '<td>', $value['userName'],'</td>';?></br><?php
-			echo '</tr>';
-				}
-			}  
+            // Retrieve top 10 scores
+			topTenScoresGame3();
             ?>
 			<a class="play" href="../games/spaceinvaders/index.html"> </a>
         </div>

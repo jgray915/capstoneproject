@@ -41,5 +41,20 @@ function valid_password($password)
    } else {
        return true;
    }
+}
+
+// Function created by Mark to get User Data for display purposes
+function getUserData($email)
+{
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT userID, userName, email, signUpDate, bio FROM users WHERE email = :email'); 
+		$dbs->bindParam(':email', $email);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		return true;
+		} else {
+        return false;
+		}
 } 
+ 
 }
