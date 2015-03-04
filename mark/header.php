@@ -1,3 +1,4 @@
+<?php include ('../sara/functions.php')?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -20,12 +21,14 @@
 			if(!isset($_SESSION)){
 			session_start();
 			} 
-			//echo session_id();
-			//var_dump($_SESSION['loggedin']);
 			?>
             <a class="btn" href="index.php">HOME</a>
 			<?php
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true) {
+			$_SESSION['userID'] = getUserID($_SESSION['email']);
+			//echo session_id();
+			//var_dump($_SESSION['loggedin']);
+			//var_dump($_SESSION['userID']);
 			echo '<a class="btn" href="profile.php">PROFILE</a>';
             echo '<a class="btn" href="logout.php">LOGOUT</a>';
 			} else {

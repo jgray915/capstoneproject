@@ -191,4 +191,30 @@
 				}
 			}                        
     }
+	
+// Function created by Mark to get User ID for display purposes
+function getUserID($email)
+{
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT userID FROM users WHERE email = :email'); 
+		$dbs->bindParam(':email', $email);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
+		return $value;
+		}
+}
+
+// Function created by Mark to get User Data for display purposes
+function getUserName($email)
+{
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT userName FROM users WHERE email = :email'); 
+		$dbs->bindParam(':email', $email);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
+		return $value;
+		}
+}  	
 ?>  

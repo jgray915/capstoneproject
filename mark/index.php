@@ -1,5 +1,4 @@
 <?php include ('header.php');?>
-<?php include ('../sara/functions.php');?>
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 
