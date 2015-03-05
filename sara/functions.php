@@ -25,7 +25,7 @@
     
 
     function topTenScoresGame1(){
-        // php code for retrieving data from the Scores table
+        // php code for retrieving data from the Scores table (Breakout)
         $userID = filter_input(INPUT_POST,'userID');
         $gameID = filter_input(INPUT_POST,'gameID');
         $score = filter_input(INPUT_POST,'score');
@@ -50,7 +50,7 @@
     
     
     function topTenScoresGame2(){
-        // php code for retrieving data from the Scores table
+        // php code for retrieving data from the Scores table (Space Invaders)
         $userID = filter_input(INPUT_POST,'userID');
         $gameID = filter_input(INPUT_POST,'gameID');
         $score = filter_input(INPUT_POST,'score');
@@ -74,7 +74,7 @@
     
     
     function topTenScoresGame3(){
-        // php code for retrieving top 10 all time scores from game 3 from the Scores table
+        // php code for retrieving top 10 all time scores from game 3 from the Scores table (Helicopter)
         $userID = filter_input(INPUT_POST,'userID');
         $gameID = filter_input(INPUT_POST,'gameID');
         $score = filter_input(INPUT_POST,'score');
@@ -154,7 +154,10 @@
         $error_message = '';    
         $i = 0;
         $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE GameID =1 AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
+		WHERE GameID =1 AND Month(`date`) = Month(curdate()) 
+		ORDER BY score DESC LIMIT 10'); 
 
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
@@ -169,7 +172,7 @@
 			}                        
     }
     
-    function topTenScoresforUser(){
+    function topTenScoresforUsers(){
         // php code for retrieving top 10 scores for a user for a specific game from the Scores table
         $userID = filter_input(INPUT_POST,'userID');
         $gameID = filter_input(INPUT_POST,'gameID');
@@ -177,7 +180,9 @@
 			$error_message = '';    
         $i = 0;
         $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date FROM Scores INNER JOIN Users ON Scores.userID = Users.userID WHERE gameID =1 AND Scores.userID=1 AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
+		WHERE gameID =1 AND Scores.userID=1 AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
 
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
@@ -191,6 +196,37 @@
 				}
 			}                        
     }
+
+// php code for retrieving top 10 scores for a user from the Scores table
+function topTenScoresforUser($userID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT scores.score, games.GameName 
+		FROM scores INNER JOIN games ON scores.gameID = games.gameID  
+		WHERE userID = :userID
+		ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':userID', $userID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			?> Score: <?php echo '<td>', $value['score'],'</td>';?> 
+			playing  <?php echo '<td>', $value['GameName'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+		else { echo 'You have no records to display!';}
+}
+
+function getGameNameByGameID ($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT gameName
+		FROM games WHERE gameID = :gameID');
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		return gameName;
+		}
+}
 	
 // Function created by Mark to get User ID for display purposes
 function getUserID($email)
@@ -205,7 +241,7 @@ function getUserID($email)
 		}
 }
 
-// Function created by Mark to get User Data for display purposes
+// Function created by Mark to get User Name for display purposes
 function getUserName($email)
 {
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
@@ -216,5 +252,18 @@ function getUserName($email)
 		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
 		return $value;
 		}
-}  	
+}
+
+// Function created by Mark to get User Biography for display purposes
+function getUserBio($email)
+{
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT bio FROM users WHERE email = :email'); 
+		$dbs->bindParam(':email', $email);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
+		return $value;
+		}
+}   	
 ?>  

@@ -31,7 +31,9 @@ if (isset($email)&& count($errors)== 0){
 		$dbs->bindParam(':bio', $bio, PDO::PARAM_STR);
     
     if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-        echo "";
+        $_SESSION['loggedin'] = true;
+		$_SESSION['email'] = $email;
+		header('Location: profile.php');
     } else {
 		var_dump($_POST);
     }    

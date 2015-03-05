@@ -28,7 +28,7 @@
         <div id="scores">
             <?php
             // Retrieve top 10 scores
-			topTenScoresGame2();
+			topTenScoresGame3();
             ?>
 			<a class="play" href="../games/tetris/index.html"> </a>
         </div>
@@ -41,7 +41,7 @@
         <div id="scores">
              <?php
             // Retrieve top 10 scores
-			topTenScoresGame3();
+			topTenScoresGame2();
             ?>
 			<a class="play" href="../games/spaceinvaders/index.html"> </a>
         </div>
