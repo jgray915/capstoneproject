@@ -22,15 +22,15 @@
 </div><!-- end article -->
 
 <div id="article-wrapper">
-    <h1 class="title2">Tetris</h1>
-    <p>Geometric shapes composed of four square blocks each fall down the playing field.  Manipulate the pieces by moving each one sideways (if the player feels the need) and rotating it by 90 degree units, with the aim of creating a horizontal line of ten blocks without gaps. When such a line is created, it disappears, and any block above the deleted line will fall. When a certain number of lines are cleared, the game enters a new level. The game ends when the stack reaches the top of the playing field and no pieces are able to enter.</p>
-    <img src="../media/Tetris.jpg" alt=""/>
+    <h1 class="title2">Helicopter</h1>
+    <p>Fly your helicopter across the landscape while trying to avoid obstacles.  The longer you stay in the air, the more points you earn.  The game continues until you hit one of the various obstacles.</p>
+    <img src="../media/Helicopter.jpg" alt=""/>
         <div id="scores">
             <?php
             // Retrieve top 10 scores
 			topTenScoresGame3();
             ?>
-			<a class="play" href="../games/tetris/index.html"> </a>
+			<a class="play" href="../games/helicopter/index.html"> </a>
         </div>
 </div><!-- end article -->
 
