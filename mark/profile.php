@@ -6,17 +6,28 @@ $Bio = getUserBio ($_SESSION['email']);
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 <div id="container">
-	<h1 class="title">Welcome Back, <?php echo $Name['userName'] ?>!</h1>
+	<h1 class="titleMain">Welcome Back, <?php echo $Name['userName'] ?>!</h1>
 	<!-- Main content div -->
-		<div id="main-content"><div id="article-wrapper">
-			<h1 class="title2"><?php echo $Name['userName']?></h1>
-			<p>User ID for <?php echo $Name['userName']?> is: <?php echo $ID['userID'] ?></p>
-			<p>All About <?php echo $Name['userName']?>:</p>
-			<p><?php echo $Bio['bio']?> </p>
-			<p>Top 10 Scores for <?php echo $Name['userName']?></p>
-			<p><?php //var_dump($ID);?></p>
-			<p><?php topTenScoresforUser($ID['userID']) ?></p>
-			<img src="" alt=""/>
+		<div id="main-content">
+			<div id="article-wrapper">
+				<h1 class="titleArticle"><?php echo $Name['userName']?></h1>
+				<div id= "profilePic">
+				</div>
+				<div id ="biography">
+					<p class ="underlinedCenter">About Me</p>
+					<p><?php echo $Bio['bio']?> </p>
+				</div>
+				<div id= "scoresWrapper">
+					<div id ="profileTitle" class ="underlinedCenter">
+						<p>Top Scores for <?php echo $Name['userName']?></p>
+					</div>
+					<div id ="profileScores">
+						<p><?php topTenScoresforUser($ID['userID']) ?></p>
+					</div>
+					<div id ="profileGames">
+						<p><?php topTenGamesforUser($ID['userID']) ?></p>
+					</div>
+				</div>
 			</div><!-- end article -->
 		</div><!-- end main content -->
 <!-- sidebar -->
