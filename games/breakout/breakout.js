@@ -1,10 +1,9 @@
 /* filename:    breakout.js
+ *
  * author:      Jacob Gray
+ *
  * description: A clone of the game Breakout.
  * 
- * TODO:
- * TEST TAPPING
- * fix aspect ratio
  */
 
 /******************************************************************************\
@@ -12,7 +11,7 @@
 \******************************************************************************/
 {
 var WIDTH = 480;			//canvas size
-var HEIGHT = 640;			//canvas size
+var HEIGHT = 768;			//canvas size
 var then = Date.now();		//stores the time of the last game cycle
 var canvas = document.createElement("canvas");  //canvas element
 var ctx = canvas.getContext("2d");				//context
@@ -245,7 +244,7 @@ function init()
 //called by init and render, resizes canvas to window
 function resize()
 {
-    var RATIO = 10/16;          //canvas WIDTH/HEIGHT
+    var RATIO = WIDTH/HEIGHT;
     var CURR_WIDTH = WIDTH;     //resize canvas
     var CURR_HEIGHT = HEIGHT;   //resize canvas
 
@@ -418,6 +417,7 @@ function checkWallColl()
 		    if(balls === 0)
 		    {
 			    gameOver = true;
+                            ajax_post(); 
 			    newGame();
 		    }
 	    }
@@ -686,3 +686,18 @@ newBall();
 //game start
 then = Date.now();
 main();
+
+function ajax_post(){
+                var hr = new XMLHttpRequest();                                
+                hr.open("POST", "index.php", true);
+                hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                hr.onreadystatechange = function(){
+                    if(hr.readyState == 4 && hr.status == 200){                        
+                        alert(hr.responceText);
+                        
+                        };
+                    };
+                
+                hr.send("&score="+score);
+                console.log(score);                
+            }

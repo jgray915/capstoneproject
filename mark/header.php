@@ -1,4 +1,6 @@
-<?php include ('../sara/functions.php')?>
+<?php 
+$path = $_SERVER['DOCUMENT_ROOT'];
+include ($path.'/capstoneproject/sara/functions.php')?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 

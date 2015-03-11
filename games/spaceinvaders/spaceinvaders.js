@@ -1,13 +1,9 @@
-/* filename:    breakout.js
+/* filename:    spaceinvaders.js
+ *
  * author:      Jacob Gray
- * description: A clone of the game Breakout.
+ *
+ * description: A clone of the game Space Invaders.
  * 
- * TODO:
- * TEST TAPPING
- * fix ratio still, change orientation?
- * fix alien flash, change images
- * stop ship at sides
- * animate ship kill
  */
 
 /******************************************************************************\
@@ -45,6 +41,7 @@ var ships = SHIPS;			//
 var aliensHigh = 5;
 var aliensWide = 8;
 var bottomAliens = [];
+var shipHitTimer = 0;
 
 //cross-browser support
 var w = window;
@@ -98,6 +95,13 @@ bulletImage.onload = function () {
 };
 bulletImage.src = "media/bullet.png";
 
+var bullet2Ready = false;
+var bullet2Image = new Image();
+bullet2Image.onload = function () {
+    bullet2Ready = true;
+};
+bullet2Image.src = "media/bullet2.png";
+
 var shipReady = false;
 var shipImage = new Image();
 shipImage.onload = function () {
@@ -105,6 +109,12 @@ shipImage.onload = function () {
 };
 shipImage.src = "media/ship.png";
 
+var boomReady = false;
+var boomImage = new Image();
+boomImage.onload = function () {
+    boomReady = true;
+};
+boomImage.src = "media/boom.png";
 
 //load sound *******************************************************************
 // var noise = new Audio("media/noise.wav");
@@ -460,8 +470,22 @@ function update(modifier)
 		}
 	}
 	
+	if(shipHitTimer)
+	{
+		shipHitTimer -= modifier;
+		if(shipHitTimer <= 0)
+		{
+			shipHitTimer = 0;
+		}
+	}
+	
 	//set ship to mouse
-	ship.x = ((mouseX - canvas.offsetLeft)/scale) - ship.width/2;
+	if	((mouseX - canvas.offsetLeft)/scale > 0+ship.width/2 && 
+		(mouseX - canvas.offsetLeft)/scale < WIDTH-ship.width/2 &&
+		!shipHitTimer)
+	{
+		ship.x = ((mouseX - canvas.offsetLeft)/scale) - ship.width/2;
+	}
 	
 	//if game is playing vs message displaying
 	if(!gameOver && !firstPlay && !pause)
@@ -592,7 +616,7 @@ function update(modifier)
 				{
 					lasers.splice(i,1);
 					ships--;
-					console.log("dead, "+ships+" remaining");
+					shipHitTimer = 2;
 				}
 
 				for(var j = 0; j < walls.length; j++)
@@ -650,9 +674,16 @@ function render()
 	{
         ctx.drawImage(bgImage, 0, 0);
     }
-	if (shipReady) 
+	if (shipReady && boomReady) 
 	{
-        ctx.drawImage(shipImage, ship.x, ship.y);
+		if(shipHitTimer)
+		{
+			ctx.drawImage(boomImage, ship.x, ship.y);
+		}
+		else
+		{
+			ctx.drawImage(shipImage, ship.x, ship.y);
+		}
     }
 	
 	if (brickReady) 
@@ -692,11 +723,11 @@ function render()
 	
     }
 	
-	if (bulletReady)
+	if (bulletReady && bullet2Ready)
 	{
 		if(bullet)
 		{
-			ctx.drawImage(bulletImage, bullet.x, bullet.y);
+			ctx.drawImage(bullet2Image, bullet.x, bullet.y);
 		}
 		for(var i = 0; i < lasers.length; i++)
 		{
