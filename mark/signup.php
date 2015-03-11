@@ -2,7 +2,7 @@
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 <div id="container">
-<h1 class="title">Capstone Arcade Presents:</h1>
+<h1 class="titleMain">Capstone Arcade Presents:</h1>
 <?php
 if (!isset($_POST['userName'])) {
 $userName = "";}
@@ -16,8 +16,8 @@ $bio = "";}
 <!-- Main content div -->
 <div id="main-content">
 	<div id="article-wrapper">
-                    <h1 class="title2">Sign Up</h1>
-                    <form action="signup2.php" method="post"></select>
+                    <h1 class="titleArticle">Sign Up</h1>
+                    <form action="signupCheck.php" method="post"></select>
                     <br />
 
 					<label>Username:&nbsp;&nbsp;</label>

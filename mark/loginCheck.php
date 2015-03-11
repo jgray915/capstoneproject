@@ -1,5 +1,4 @@
 <?php
-include ('../sara/functions.php');
 $password = filter_input(INPUT_POST,'password');
 $email = filter_input(INPUT_POST,'email');
 
