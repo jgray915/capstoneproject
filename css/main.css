@@ -1,6 +1,4 @@
-/* Body Styling */
-/* Body Styling */
-
+/*Styling for the body of the pages including background image  */
 body{
     background-image:url("../media/Background.jpg");
 	background-color:black;
@@ -12,18 +10,22 @@ body{
 	color:white;
 }
 
+/* Main wrapper for the entire page */
 #wrapper{
 	background-color:black;
 	width:980px;
 	margin:auto;
 }
 
+/* Styling for the header which appears on every page */
 #header{
 	float:left;
 	width:980px;
 	background-color:#76715E;
 }
 
+/****************** Stylings for navigation bar and buttons ******************/
+/****************** Stylings for navigation bar and buttons ******************/
 #nav{
 	float:right;
 	width:960px;
@@ -52,15 +54,6 @@ body{
 	text-shadow:1px 1px 3px black;	
 }
 
-.play{
-	float:left;
-	width:250px;
-	height:59px;
-	background-image:url("../media/Play.jpg");
-	margin:2px;
-	text-shadow:1px 1px 3px black;	
-}
-
 .btn:hover{
 	float:left;
 	width:316px;
@@ -74,55 +67,18 @@ body{
 	margin:1px;
 	text-shadow:1px 1px 3px black;	
 }
+/******************* End stylings for navigation bar and buttons *******************/
+/******************* End stylings for navigation bar and buttons *******************/
 
+/* Container holding the main content of the page including titles */
 #container {
 	float:left;
 	width:980px;
 	margin:10px 0px 10px 0px;
 }
 
-#main-content {
-	float:left;
-	width:700px;
-	margin-top:15px;
-	margin-left:20px;
-	padding:10px;
-	background-color:#0B2333;
-	border:1px solid black;
-}
-
-#article-wrapper {
-	float:left;
-	width:700px;
-	margin-bottom:20px;
-	border-bottom:1px dotted #38B1FF;
-	padding-bottom:20px;
-}
-
-#article-wrapper img {
-	float:left;
-	margin-right:15px;
-	margin-bottom:15px;
-	border:2px solid #FF7F27;
-}
-
-#scores {
-	float:left;
-	width:400px;
-	margin-bottom:20px;
-	margin-right:10px;
-	padding-bottom:20px;
-}
-
-#sidebar {
-	float:right;
-	width:200px;
-	margin-top:15px;
-	margin-right:20px;
-	background-color:black;
-}
-
-.title {
+/* Main title styling */
+.titleMain {
 	width:940px;
 	text-decoration:underline;
 	font-size:44px;
@@ -133,9 +89,35 @@ body{
 	text-shadow:1px 1px 5px black;
 }
 
-.title2 {
+/* Holding all the content for the page less main title */
+#main-content {
 	float:left;
+	width:700px;
+	margin-top:15px;
+	margin-left:20px;
+	padding:10px;
+	background-color:#0B2333;
+	border:1px solid black;
+}
+
+
+/*******************	Start Article Stylings	******************/
+/*******************	Start Article Stylings	******************/
+/* Div containing data for each individual game */
+#article-wrapper {
+	float:left;
+	width:700px;
+	margin-bottom:20px;
+	border-bottom:1px dotted #38B1FF;
+	padding-bottom:20px;
+}
+
+/* Styling for the titles inside the article wrapper */
+.titleArticle {
+	float:left;
+	text-align: center;
 	width:100%;
+	height: 40px;
 	text-decoration:underline;
 	font-size:36px;
 	color:#FAD384;
@@ -143,6 +125,152 @@ body{
 	text-shadow:1px 1px 5px black;
 }
 
+/* Styling for the descriptions displayed in the articles */
+.descriptionArticle{
+	float:left;
+	width:100%;
+	width: 700px;
+	font-size:18px;
+	color:white;
+	padding: 10px;
+}
+/* Styling for the images inside the article wrappers only */
+#article-wrapper img {
+	float:left;
+	margin-right:15px;
+	margin-bottom:15px;
+	border:2px solid #FF7F27;
+}
+/* Styling for the scores displayed in the articles */
+.scoresArticle {
+	float:left;
+	width:100%;
+	width: 390px;
+	min-height:100px;
+	font-size:18px;
+	color:white;
+	margin-left:10px;
+}
+/*Wrapper to hold scores and link sorting options */
+#scores-wrapper{
+float:left;
+	width:100%;
+	width: 400px;
+	min-height:250px;
+	margin-left:10px;
+	margin-bottom:10px; 
+}
+/*Styling for the links to sort data */
+.sortLinks{
+	float:right;
+	color: white;
+	margin-left:5px;
+}
+.sortLinks a:link {
+color:white;
+text-decoration:underline;
+}
+.sortLinks a:active {
+color:white;
+text-decoration:underline;
+}
+.sortLinks a:visited {
+color:white;
+text-decoration:underline;
+}
+/* Styling for the "play" button */
+.play{
+	float:left;
+	width:250px;
+	height:59px;
+	background-image:url("../media/Play.jpg");
+	background-repeat:no-repeat;
+	margin-left:10px;
+	text-shadow:1px 1px 3px black;	
+}
+
+/* Styling for the scores displayed inside the article wrappers on the home page */
+#mainScores {
+	float:left;
+	width:400px;
+	margin-right:10px;
+}
+/*******************	End Article Stylings	******************/
+/*******************	End Article Stylings 	******************/
+
+
+/* Holds all the advertisement images */
+#sidebar {
+	float:right;
+	width:200px;
+	margin-top:15px;
+	margin-right:20px;
+	background-color:black;
+}
+
+
+/******************* Aditional stylings for profile page ******************/
+/******************* Aditional stylings for profile page ******************/
+#profilePic{
+	float:right;
+	width: 250px;
+	height: 300px;
+	margin-left:10px;
+	margin-right:10px;
+	border:2px solid white;
+	padding: 10px;
+}
+#biography{
+	float:right;
+	width: 360px;
+	height: 300px;
+	font-size:24px;
+	color:white;
+	margin-left:10px;
+	margin-right:10px;
+	border:2px solid white;
+	padding: 10px;
+}
+.underlinedCenter{
+	text-decoration:underline;
+	text-align:center;
+}
+#scoresWrapper{
+	float:right;
+	text-align: left;
+	width: 654px;
+	font-size:30px;
+	color:white;
+	margin-left:10px;
+	margin-right:10px;
+	border:2px solid white;
+	padding: 10px;
+}
+#profileTitle{
+	float:right;
+	text-align: center;
+	width: 654px;
+	font-size:30px;
+	color:white;
+	margin-left:10px;
+	margin-right:10px;
+}
+#profileScores{
+	float:left;
+	text-align: left;
+	width: 225px;
+}
+#profileGames{
+	float:left;
+	text-align: left;
+	width: 325px;
+}
+/******************* End additional stylings for profile page ******************/
+/******************* End additional stylings for profile page ******************/
+
+
+/******************* Footer styling and footer button stylings ******************/
+/******************* Footer styling and footer button stylings ******************/
 #footer{
 	background-color:#76715E;
 	clear:both;
@@ -182,3 +310,5 @@ text-decoration:underline;
 color:#FAD384;
 text-decoration:none;
 }
+/******************* End footer styling and footer button stylings ******************/
+/******************* End footer styling and footer button stylings ******************/
