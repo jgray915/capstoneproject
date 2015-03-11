@@ -162,7 +162,7 @@ float:left;
 }
 /*Styling for the links to sort data */
 .sortLinks{
-	float:right;
+	float:leftS;
 	color: white;
 	margin-left:5px;
 }

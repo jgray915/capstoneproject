@@ -14,8 +14,8 @@
 	<div id ="scores-wrapper">
         <div id="mainScores" class="scoresArticle">
 		<?php
-		$sortOption = '';
-		$sortOption = $_GET['sortOption'];
+		//$sortOption = '';
+		//$sortOption = $_GET['sortOption'];
 		// Retrieve top 10 scores
 		//if ($sortOption = 'month'){
 		//	topTenScoresGameforMonthAll(1);
