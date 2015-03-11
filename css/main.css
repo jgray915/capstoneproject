@@ -141,42 +141,57 @@ body{
 	margin-bottom:15px;
 	border:2px solid #FF7F27;
 }
-/* Styling for the scores displayed in the articles */
-.scoresArticle {
-	float:left;
-	width:100%;
-	width: 390px;
-	min-height:100px;
-	font-size:18px;
-	color:white;
-	margin-left:10px;
-}
 /*Wrapper to hold scores and link sorting options */
 #scores-wrapper{
-float:left;
+	float:left;
 	width:100%;
 	width: 400px;
 	min-height:250px;
 	margin-left:10px;
 	margin-bottom:10px; 
 }
+
+/* Styling for the scores displayed inside the article wrappers on the home page */
+#numbers {
+	float:left;
+	font-size:18px;
+	text-align: left;
+	width: 50px;
+	color: #FF7F27;
+}
+#mainScores {
+	float:left;
+	font-size:18px;
+	text-align: left;
+	width:100px;
+	color: #FF7F27;
+	margin-top:3px;
+}
+#mainUsers{
+	float:left;
+	font-size:18px;
+	text-align: left;
+	width: 238px;
+	color: #FF7F27;
+	margin-top:3px;
+}
+
 /*Styling for the links to sort data */
 .sortLinks{
-	float:leftS;
+	float:left;
 	color: white;
-	margin-left:5px;
 }
 .sortLinks a:link {
-color:white;
-text-decoration:underline;
+	color:white;
+	text-decoration:underline;
 }
 .sortLinks a:active {
-color:white;
-text-decoration:underline;
+	color:white;
+	text-decoration:underline;
 }
 .sortLinks a:visited {
-color:white;
-text-decoration:underline;
+	color:white;
+	text-decoration:underline;
 }
 /* Styling for the "play" button */
 .play{
@@ -189,12 +204,7 @@ text-decoration:underline;
 	text-shadow:1px 1px 3px black;	
 }
 
-/* Styling for the scores displayed inside the article wrappers on the home page */
-#mainScores {
-	float:left;
-	width:400px;
-	margin-right:10px;
-}
+
 /*******************	End Article Stylings	******************/
 /*******************	End Article Stylings 	******************/
 
