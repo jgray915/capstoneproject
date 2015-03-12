@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2015 at 03:10 AM
+-- Generation Time: Mar 12, 2015 at 02:04 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `games` (
 INSERT INTO `games` (`GameID`, `GameName`, `Description`) VALUES
 (1, 'Breakout', 'A layer of bricks lines the top third of the screen. A ball travels across the screen, bouncing off the top and side walls of the screen. When a brick'),
 (2, 'Space Invaders', 'Space Invaders is a two-dimensional fixed shooter game in which the player controls a laser cannon by moving it horizontally across the bottom of the '),
-(3, 'Pacman', 'The player controls Pac-Man through a maze, eating pac-dots (also called pellets). When all pac-dots are eaten, Pac-Man is taken to the next stage. Be');
+(3, 'Helicopter', 'The game is very simple, all you got to do is fly a helicopter. But be careful here as there would be blocks from which you will have to protect your ');
 
 -- --------------------------------------------------------
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `scores` (
   PRIMARY KEY (`ScoreID`),
   KEY `ScoreID` (`ScoreID`,`UserID`,`GameID`,`Score`),
   KEY `UserID` (`UserID`,`GameID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Dumping data for table `scores`
@@ -82,7 +82,41 @@ INSERT INTO `scores` (`ScoreID`, `GameID`, `UserID`, `Score`, `date`) VALUES
 (14, 1, 5, 45, '2015-02-05 00:36:21'),
 (15, 1, 10, 10000, '2015-02-05 00:36:32'),
 (16, 1, 11, 150, '2015-02-05 00:36:42'),
-(17, 1, 10, 112, '2014-12-16 13:27:33');
+(17, 1, 10, 112, '2014-12-16 13:27:33'),
+(18, 1, 12, 112, '2015-03-05 03:45:08'),
+(19, 1, 12, 200, '2015-03-05 03:45:31'),
+(20, 3, 10, 115, '2015-03-11 21:11:09'),
+(21, 2, 18, 320, '2015-03-11 22:47:45'),
+(22, 3, 18, 1350, '2015-03-11 22:47:56'),
+(23, 3, 18, 1560, '2015-03-11 22:48:03'),
+(24, 3, 18, 330, '2015-03-11 22:48:09'),
+(25, 2, 18, 550, '2015-03-11 22:48:16'),
+(26, 2, 18, 320, '2015-03-11 22:48:20'),
+(27, 2, 18, 1280, '2015-03-11 22:48:25'),
+(28, 2, 17, 660, '2015-03-11 22:49:00'),
+(29, 2, 17, 420, '2015-03-11 22:49:07'),
+(30, 3, 17, 550, '2015-03-11 22:49:16'),
+(31, 3, 17, 440, '2015-03-11 22:49:37'),
+(32, 3, 17, 1880, '2015-03-11 22:49:45'),
+(33, 1, 18, 6, '2015-03-12 00:10:46'),
+(34, 1, 18, 22, '2015-03-12 00:13:36'),
+(39, 1, 19, 5, '2015-03-12 01:00:42'),
+(40, 1, 19, 6, '2015-03-12 01:05:44'),
+(41, 1, 19, 1, '2015-03-12 01:19:28'),
+(42, 3, 19, 1355, '2015-03-12 01:48:17'),
+(43, 3, 19, 2315, '2015-03-12 01:48:28'),
+(44, 3, 18, 4060, '2015-03-12 01:48:42'),
+(45, 3, 18, 1325, '2015-03-12 01:48:51'),
+(46, 3, 10, 1955, '2015-03-12 01:49:01'),
+(47, 3, 10, 1680, '2015-03-12 01:49:07'),
+(48, 3, 5, 1665, '2015-03-12 01:49:16'),
+(49, 3, 5, 2140, '2015-03-12 01:49:22'),
+(50, 2, 8, 1520, '2015-03-12 01:56:51'),
+(51, 2, 8, 660, '2015-03-12 01:56:57'),
+(52, 2, 12, 1845, '2015-03-12 01:57:05'),
+(53, 2, 12, 1845, '2015-03-12 01:57:06'),
+(54, 2, 12, 1715, '2015-03-12 01:57:12'),
+(55, 2, 12, 2325, '2015-03-12 01:57:20');
 
 -- --------------------------------------------------------
 
@@ -101,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Comments` varchar(300) NOT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `UserName` (`UserName`,`Password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `users`
@@ -119,7 +153,13 @@ INSERT INTO `users` (`UserID`, `UserName`, `Password`, `Email`, `SignUpDate`, `B
 (10, 'Stan', 'asdqwe', 'stan@email.com', '2015-01-10', '', 0, ''),
 (11, 'Tim', 'qwerty', 'tim@email.com', '2014-10-05', 'Timmy!!', 0, ''),
 (12, 'Andy', 'asdasd', 'andy@email.com', '2015-02-01', '', 0, ''),
-(13, 'mark', 'password', 'mark@email.com', '2015-02-02', '', 0, '');
+(13, 'mark', 'password', 'mark@email.com', '2015-02-02', '', 0, ''),
+(14, 'jimmy', 'a94a8fe5ccb19ba61c4c', 'jimmy@email.com', '2015-03-05', '', 0, ''),
+(15, 'mike', 'a94a8fe5ccb19ba61c4c', 'mike@email.com', '2015-03-05', '', 0, ''),
+(16, 'sammy', 'a94a8fe5ccb19ba61c4c', 'sammy@email.com', '2015-03-05', '', 0, ''),
+(17, 'andy', 'a94a8fe5ccb19ba61c4c', 'andy@mail.com', '2015-03-11', '', 0, ''),
+(18, 'Blake', 'a94a8fe5ccb19ba61c4c', 'blake@mail.com', '2015-03-11', '', 0, ''),
+(19, 'sara', 'a94a8fe5ccb19ba61c4c', 'sara@mail.com', '2015-03-12', '', 0, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
