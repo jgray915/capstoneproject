@@ -314,7 +314,7 @@ function getUserName($email)
 
 		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
 		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
-		return $value;
+		return $value['userName'];
 		}
 }
 
@@ -327,7 +327,7 @@ function getUserBio($email)
 
 		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
 		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
-		return $value;
+		return $value['bio'];
 		}
 }
 

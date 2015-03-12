@@ -6,20 +6,20 @@ $Bio = getUserBio ($_SESSION['email']);
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 <div id="container">
-	<h1 class="titleMain">Welcome Back, <?php echo $Name['userName'] ?>!</h1>
+	<h1 class="titleMain">Welcome Back, <?php echo $Name ?>!</h1>
 	<!-- Main content div -->
 		<div id="main-content">
 			<div id="article-wrapper">
-				<h1 class="titleArticle"><?php echo $Name['userName']?></h1>
+				<h1 class="titleArticle"><?php echo $Name?></h1>
 				<div id= "profilePic">
 				</div>
 				<div id ="biography">
 					<p class ="underlinedCenter">About Me</p>
-					<p><?php echo $Bio['bio']?> </p>
+					<p><?php echo $Bio?> </p>
 				</div>
 				<div id= "scoresWrapper">
 					<div id ="profileTitle" class ="underlinedCenter">
-						<p>Top Scores for <?php echo $Name['userName']?></p>
+						<p>Top Scores for <?php echo $Name?></p>
 					</div>
 					<div id ="profileScores">
 						<p><?php topTenScoresforUser($ID) ?></p>
