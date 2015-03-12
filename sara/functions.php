@@ -1,27 +1,4 @@
 <?php
- 
-    function insertScore()
-    {    
-        //php code for inserting into scores table
-            $gameID = filter_input(INPUT_POST,'gameID');
-            $userID = filter_input(INPUT_POST,'userID');
-            $score = filter_input(INPUT_POST,'score');
-            $date = date("Y-m-d H:i:s"); 
-
-            $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-            $dbs = $db->prepare('INSERT into scores set gameID=:gameID, userID=:userID, score=:score, date=:date');
-
-             $dbs->bindParam(':gameID', $gameID, PDO::PARAM_STR);
-             $dbs->bindParam(':userID', $userID, PDO::PARAM_STR);
-             $dbs->bindParam(':score', $score, PDO::PARAM_STR);
-             $dbs->bindParam(':date', $date, PDO::PARAM_STR);
-
-              if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-                $dataSaved = true;
-            }     
-
-            echo $gameID.$userID.$score;
-    }
 
     function topTenScoresGame1(){
         // php code for retrieving data from the Scores table (Breakout)
@@ -192,7 +169,7 @@
 				}
 			}                        
     }
-	
+
 // php code for retrieving top 10 scores for a user from the Scores table
 function topTenScoresforUser($userID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
@@ -212,7 +189,7 @@ function topTenScoresforUser($userID){
 		else { echo 'You have no records to display!';}
 }
 
-// php code for retrieving top 10 game names for a user from the Scores table
+// php code for retrieving top 10 scores for a user from the Scores table
 function topTenGamesforUser($userID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT scores.score, games.GameName 
@@ -228,55 +205,9 @@ function topTenGamesforUser($userID){
 			echo '</tr>';
 				}
 			}
-			else { echo 'You have no records to display!';}
+		else { echo 'You have no records to display!';}
 }
 
-
-
-
-
-// php code for retrieving top 10 scores from the Scores table
-function topTenGameScoresforAllTime($gameID){
-	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT scores.score
-		FROM scores INNER JOIN games ON scores.gameID = games.gameID  
-		WHERE games.gameID = :gameID
-		ORDER BY score DESC LIMIT 10'); 
-		$dbs->bindParam(':gameID', $gameID);
-		
-        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			foreach ($scores as $value) {
-			echo '<td>', $value['score'],'</td>';?></br><?php
-			echo '</tr>';
-				}
-			}
-}
-
-// php code for retrieving top 10 user names from the Scores table
-function topTenUserNamesforAllTime($gameID){
-	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
-        $dbs = $db->prepare('SELECT users.userName 
-		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
-		INNER JOIN users ON(users.userID = scores.userID)
-		WHERE games.gameID = :gameID
-		ORDER BY score DESC LIMIT 10'); 
-		$dbs->bindParam(':gameID', $gameID);
-		
-        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
-            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
-			foreach ($scores as $value) {
-			?> <?php echo '<td>', $value['userName'],'</td>';?></br><?php
-			echo '</tr>';
-				}
-			}
-}
-
-
-
-
-
-// Function created by Mark to get a games name for display purposes
 function getGameNameByGameID ($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT gameName
@@ -297,7 +228,7 @@ function getUserID($email)
 
 		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
 		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
-		return $value;
+		return $value['userID'];
 		}
 }
 

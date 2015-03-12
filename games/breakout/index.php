@@ -9,12 +9,13 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 include ($path.'/capstoneproject/mark/header.php');
 
-
 //function to insert into scores table
-
-    $userID = getUserID($_SESSION['userID']);
-    $gameID = 3;   
-    $userID = filter_input(INPUT_POST,'userID');    
+    
+    $userID = getUserID($_SESSION['email']);   
+    
+    
+    $gameID = 1;   
+       
     $score = filter_input(INPUT_POST,'score');
     $date = date("Y-m-d H:i:s"); 
     
@@ -30,9 +31,8 @@ include ($path.'/capstoneproject/mark/header.php');
         $dataSaved = true;
     }     
     
-    //echo $gameID.$userID.$score;
     
-    //var_dump($userID);
+    
 ?>
     
 <script src="breakout.js"></script>

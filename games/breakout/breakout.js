@@ -693,11 +693,11 @@ function ajax_post(){
                 hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                 hr.onreadystatechange = function(){
                     if(hr.readyState == 4 && hr.status == 200){                        
-                        alert(hr.responceText);
+                        
                         
                         };
                     };
                 
-                hr.send("&score="+score);
+                hr.send("score="+score);
                 console.log(score);                
             }
