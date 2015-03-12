@@ -22,10 +22,10 @@ $Bio = getUserBio ($_SESSION['email']);
 						<p>Top Scores for <?php echo $Name['userName']?></p>
 					</div>
 					<div id ="profileScores">
-						<p><?php topTenScoresforUser($ID['userID']) ?></p>
+						<p><?php topTenScoresforUser($ID) ?></p>
 					</div>
 					<div id ="profileGames">
-						<p><?php topTenGamesforUser($ID['userID']) ?></p>
+						<p><?php topTenGamesforUser($ID) ?></p>
 					</div>
 				</div>
 			</div><!-- end article -->

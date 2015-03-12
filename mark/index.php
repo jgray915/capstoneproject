@@ -14,10 +14,10 @@
 	<div id ="scores-wrapper">
 			<div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
 			<div id ="mainScores">
-				<p><?//php topTenGameScoresforAllTime(1) ?></p>
+				<p><?php topTenGameScoresforAllTime(1) ?></p>
 			</div>
 			<div id ="mainUsers">
-				<p><?//php topTenUserNamesforAllTime(1) ?></p>
+				<p><?php topTenUserNamesforAllTime(1) ?></p>
 			</div>
 			<p class="sortLinks"><a>Sort By: </a>
 				<a href ="index.php?sortOption=day" method = "get">Day </a> |
@@ -27,7 +27,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="../games/breakout/index.html"> </a>
+		<a class="play" href="../games/breakout/index.php"> </a>
 		
 		
 </div><!-- end article -->
@@ -52,7 +52,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="../games/breakout/index.html"> </a>
+		<a class="play" href="../games/breakout/index.php"> </a>
 </div><!-- end article -->
 
 <div id="article-wrapper">
@@ -75,7 +75,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="../games/breakout/index.html"> </a>
+		<a class="play" href="../games/breakout/index.php"> </a>
 </div><!-- end article -->
 
 </div><!-- end main content -->

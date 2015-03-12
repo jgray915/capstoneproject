@@ -28,9 +28,6 @@ include ($path.'/capstoneproject/sara/functions.php')?>
 			<?php
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true) {
 			$_SESSION['userID'] = getUserID($_SESSION['email']);
-			//echo session_id();
-			//var_dump($_SESSION['loggedin']);
-			//var_dump($_SESSION['userID']);
 			echo '<a class="btn" href="profile.php">PROFILE</a>';
             echo '<a class="btn" href="logout.php">LOGOUT</a>';
 			} else {
