@@ -5,17 +5,15 @@
 <body>
 
 <?php
-//incluse header and sessions
-$path = $_SERVER['DOCUMENT_ROOT'];
-include ($path.'/capstoneproject/mark/header.php');
+//include header and sessions
+$path = $_SERVER['DOCUMENT_ROOT'].'/capstoneproject';
+include ($path.'/pages/header.php');
 
 //function to insert into scores table
-    
+    if(!empty($_SESSION)){
     $userID = getUserID($_SESSION['email']);   
-    
-    
+     
     $gameID = 1;   
-       
     $score = filter_input(INPUT_POST,'score');
     $date = date("Y-m-d H:i:s"); 
     
@@ -27,12 +25,10 @@ include ($path.'/capstoneproject/mark/header.php');
      $dbs->bindParam(':score', $score, PDO::PARAM_STR);
      $dbs->bindParam(':date', $date, PDO::PARAM_STR);
      
-      if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
         $dataSaved = true;
-    }     
-    
-    
-    
+		}     
+	}
 ?>
     
 <script src="breakout.js"></script>

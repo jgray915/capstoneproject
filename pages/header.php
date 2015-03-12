@@ -24,15 +24,15 @@ include ($path.'/validations/functions.php')?>
 			session_start();
 			} 
 			?>
-            <a class="btn" href="home.php">HOME</a>
+            <a class="btn" href="../pages/home.php">HOME</a>
 			<?php
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true) {
 			$_SESSION['userID'] = getUserID($_SESSION['email']);
-			echo '<a class="btn" href="profile.php">PROFILE</a>';
-            echo '<a class="btn" href="logout.php">LOGOUT</a>';
+			echo '<a class="btn" href="../pages/profile.php">PROFILE</a>';
+            echo '<a class="btn" href="../pages/logout.php">LOGOUT</a>';
 			} else {
-			echo '<a class="btn" href="signup.php">JOIN</a>';
-			echo '<a class="btn" href="login.php">LOGIN</a>';
+			echo '<a class="btn" href="../pages/signup.php">JOIN</a>';
+			echo '<a class="btn" href="../pages/login.php">LOGIN</a>';
 			}
 			?>
         </div>
