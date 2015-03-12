@@ -20,7 +20,7 @@ if ($functions->check_email($email)== true) {
 if (isset($email)&& count($errors)== 0){
     $password = sha1($password);
     
-    include('signup.php');
+    include('../pages/signup.php');
     
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
     $dbs = $db->prepare('insert into users set userName=:userName, password=:password, email=:email, signUpDate=:signUpDate, bio=:bio ');
@@ -33,11 +33,11 @@ if (isset($email)&& count($errors)== 0){
     if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
         $_SESSION['loggedin'] = true;
 		$_SESSION['email'] = $email;
-		header('Location: profile.php');
+		header('Location: ../pages/profile.php');
     } else {
 		var_dump($_POST);
     }    
 } else {
-    include('signup.php');
+    include('../pages/signup.php');
 }
 ?>

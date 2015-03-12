@@ -13,12 +13,12 @@ if ($functions->check_login($email, $password)== true)
 {
 	$_SESSION['loggedin'] = true;
 	$_SESSION['email'] = $email;
-	header('Location: profile.php');
+	header('Location: ../pages/profile.php');
 }
 else
 {
     $_SESSION['loggedin'] = false;
     $errors[] = "Invalid Login.  Please reenter email and password.";
 }
-    include('login.php');
+    include('../pages/login.php');
 ?>

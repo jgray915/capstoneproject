@@ -1,4 +1,6 @@
-<?php include ('header.php');
+<?php 
+$path = $_SERVER['DOCUMENT_ROOT'].'/capstoneproject';
+include ($path.'/pages/header.php');
 $ID = getUserID($_SESSION['email']);
 $Name = getUserName($_SESSION['email']);
 $Bio = getUserBio ($_SESSION['email']);

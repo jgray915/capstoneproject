@@ -13,7 +13,7 @@ $password = "";}
 		<div id="main-content">
 			<div id="article-wrapper">
                     <h1 class="titleArticle">Log In</h1>
-                    <form action="loginCheck.php" method="post"></select>
+                    <form action="../validations/loginCheck.php" method="post"></select>
                     <br />
 
                     <label>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>

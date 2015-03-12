@@ -17,7 +17,7 @@ $bio = "";}
 <div id="main-content">
 	<div id="article-wrapper">
                     <h1 class="titleArticle">Sign Up</h1>
-                    <form action="signupCheck.php" method="post"></select>
+                    <form action="../validations/signupCheck.php" method="post"></select>
                     <br />
 
 					<label>Username:&nbsp;&nbsp;</label>

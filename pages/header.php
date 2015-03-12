@@ -1,13 +1,13 @@
 <?php 
-$path = $_SERVER['DOCUMENT_ROOT'];
-include ($path.'/capstoneproject/sara/functions.php')?>
+$path = $_SERVER['DOCUMENT_ROOT'].'/capstoneproject';
+include ($path.'/validations/functions.php')?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <title>Capstone Arcade</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo '../css/main.css' ?>"/>
 </head>
 
 <body>
@@ -24,7 +24,7 @@ include ($path.'/capstoneproject/sara/functions.php')?>
 			session_start();
 			} 
 			?>
-            <a class="btn" href="index.php">HOME</a>
+            <a class="btn" href="home.php">HOME</a>
 			<?php
 			if (isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true) {
 			$_SESSION['userID'] = getUserID($_SESSION['email']);
