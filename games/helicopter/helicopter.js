@@ -603,7 +603,7 @@ newGame();
 
 //game start
 then = Date.now();
-main
+main();
 
 function ajax_post()
 {
