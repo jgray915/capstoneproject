@@ -16,7 +16,7 @@ var then = Date.now();		//stores the time of the last game cycle
 var canvas = document.createElement("canvas");  //canvas element
 var ctx = canvas.getContext("2d");				//context
 var mouseX;					//holds mouse x position
-var scale;					//scale factor of canvas
+var scale = WIDTH/WIDTH;					//scale factor of canvas
 var score = 0;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
@@ -57,68 +57,68 @@ var bgImage = new Image();
 bgImage.onload = function () {
     bgReady = true;
 };
-bgImage.src = "media/background.png";
+bgImage.src = "breakout/media/background.png";
 
 var paddleReady = false;
 var paddleImage = new Image();
 paddleImage.onload = function () {
     paddleReady = true;
 };
-paddleImage.src = "media/paddle.png";
+paddleImage.src = "breakout/media/paddle.png";
 
 var ballReady = false;
 var ballImage = new Image();
 ballImage.onload = function () {
     ballReady = true;
 };
-ballImage.src = "media/ball.png";
+ballImage.src = "breakout/media/ball.png";
 
 var brickRedReady = false;
 var brickRedImage = new Image();
 brickRedImage.onload = function () {
     brickRedReady = true;
 };
-brickRedImage.src = "media/brickRed.png";
+brickRedImage.src = "breakout/media/brickRed.png";
 
 var brickOrangeReady = false;
 var brickOrangeImage = new Image();
 brickOrangeImage.onload = function () {
     brickOrangeReady = true;
 };
-brickOrangeImage.src = "media/brickOrange.png";
+brickOrangeImage.src = "breakout/media/brickOrange.png";
 
 var brickYellowReady = false;
 var brickYellowImage = new Image();
 brickYellowImage.onload = function () {
     brickYellowReady = true;
 };
-brickYellowImage.src = "media/brickYellow.png";
+brickYellowImage.src = "breakout/media/brickYellow.png";
 
 var brickGreenReady = false;
 var brickGreenImage = new Image();
 brickGreenImage.onload = function () {
     brickGreenReady = true;
 };
-brickGreenImage.src = "media/brickGreen.png";
+brickGreenImage.src = "breakout/media/brickGreen.png";
 
 var brickBlueReady = false;
 var brickBlueImage = new Image();
 brickBlueImage.onload = function () {
     brickBlueReady = true;
 };
-brickBlueImage.src = "media/brickBlue.png";
+brickBlueImage.src = "breakout/media/brickBlue.png";
 
 //load sound *******************************************************************
-var paddleSound = new Audio("media/collPaddle.wav");
+var paddleSound = new Audio("breakout/media/collPaddle.wav");
 paddleSound.load();
 
-var wallSound = new Audio("media/collWall.wav");
+var wallSound = new Audio("breakout/media/collWall.wav");
 wallSound.load();
 
-var brickSound = new Audio("media/collBrick.wav");
+var brickSound = new Audio("breakout/media/collBrick.wav");
 brickSound.load();
 
-var brickKillSound = new Audio("media/collBrickKill.wav");
+var brickKillSound = new Audio("breakout/media/collBrickKill.wav");
 brickKillSound.load();
 }
 /******************************************************************************\
@@ -417,7 +417,7 @@ function checkWallColl()
 		    if(balls === 0)
 		    {
 			    gameOver = true;
-                            ajax_post(); 
+				ajax_post(); 
 			    newGame();
 		    }
 	    }
@@ -451,7 +451,6 @@ function checkBrickColl()
 			    }
 			
 			    direction = collisionDirection(ball, bricks[i]);
-				console.log(direction);
 				
 			    if(direction === "top" &&
                 ball.speedy > 0)
@@ -593,7 +592,7 @@ function render()
 	var txtPaused = "PAUSED";
 	
 	//so game resizes (somewhat) smoothly on window resize
-	resize();
+	//resize();
 	
 	//draw images
     if (bgReady) 
@@ -677,7 +676,7 @@ function main()
 
 //more handlers
 window.addEventListener('load', init(), false);
-window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
+//window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
 
 //game init
 startNewLevel();
@@ -687,17 +686,18 @@ newBall();
 then = Date.now();
 main();
 
-function ajax_post(){
-                var hr = new XMLHttpRequest();                                
-                hr.open("POST", "index.php", true);
-                hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                hr.onreadystatechange = function(){
-                    if(hr.readyState == 4 && hr.status == 200){                        
-                        
-                        
-                        };
-                    };
-                
-                hr.send("score="+score);
-                console.log(score);                
-            }
+function ajax_post()
+{
+	var hr = new XMLHttpRequest();                                
+	hr.open("POST", "game.php", true);
+	hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	
+	hr.onreadystatechange = function()
+	{
+		if(hr.readyState == 4 && hr.status == 200){                        
+			console.log("score="+score); 
+		};
+	};
+
+	hr.send("score="+score);         
+}

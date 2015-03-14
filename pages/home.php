@@ -27,7 +27,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="/capstoneproject/games/breakout/index.php"> </a>
+		<a class="play" href="../games/game.php?gameID=1"> </a>
 		
 		
 </div><!-- end article -->
@@ -52,7 +52,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="/capstoneproject/games/helicopter/index.php"> </a>
+		<a class="play" href="../games/game.php?gameID=3"> </a>
 </div><!-- end article -->
 
 <div id="article-wrapper">
@@ -75,7 +75,7 @@
 				<?php //var_dump($sortOption);?> 
 			</p>
         </div>
-		<a class="play" href="../games/spaceinvaders/index.php"> </a>
+		<a class="play" href="../games/game.php?gameID=2"> </a>
 </div><!-- end article -->
 
 </div><!-- end main content -->

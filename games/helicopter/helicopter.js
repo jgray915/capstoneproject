@@ -16,7 +16,7 @@ var then = Date.now();		//stores the time of the last game cycle
 var canvas = document.createElement("canvas");  //canvas element
 var ctx = canvas.getContext("2d");				//context
 var mouseX;					//holds mouse x position
-var scale;					//scale factor of canvas
+var scale = WIDTH/WIDTH;					//scale factor of canvas
 var score = 0;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
@@ -59,35 +59,35 @@ var bgImage = new Image();
 bgImage.onload = function () {
     bgReady = true;
 };
-bgImage.src = "media/background.png";
+bgImage.src = "helicopter/media/background.png";
+
+var bgReady2 = false;
+var bgImage2 = new Image();
+bgImage2.onload = function () {
+    bgReady2 = true;
+};
+bgImage2.src = "helicopter/media/background2.png";
 
 var blockReady = false;
 var blockImage = new Image();
 blockImage.onload = function () {
     blockReady = true;
 };
-blockImage.src = "media/block.png";
-
-var block2Ready = false;
-var block2Image = new Image();
-block2Image.onload = function () {
-    block2Ready = true;
-};
-block2Image.src = "media/block2.png";
+blockImage.src = "helicopter/media/block.png";
 
 var heliReady = false;
 var heliImage = new Image();
 heliImage.onload = function () {
     heliReady = true;
 };
-heliImage.src = "media/heli.png";
+heliImage.src = "helicopter/media/heli.png";
 
 var boomReady = false;
 var boomImage = new Image();
 boomImage.onload = function () {
     boomReady = true;
 };
-boomImage.src = "media/boom.png";
+boomImage.src = "helicopter/media/boom.png";
 
 //load sound *******************************************************************
 //var noise = new Audio("media/noise.wav");
@@ -161,6 +161,8 @@ window.addEventListener('touchend', function(e) {
 *  -------------------------------  OBJECTS   -------------------------------  *
 \******************************************************************************/
 {
+var backgrounds = [0,WIDTH,WIDTH*2];
+var backgrounds2 = [0,WIDTH,WIDTH*2];
 
 var shapes = 	[
 						[	[1,1,1,1,1,1,1,1],
@@ -207,7 +209,7 @@ function Helicopter()
 	this.width = 100;
 	this.y = HEIGHT/2;
 	this.x = WIDTH/10;
-	this.speedX = 5;
+	this.speedX = 350;
 	this.speedY = 2;
 }
 
@@ -303,7 +305,6 @@ function resize()
 //game functions ***************************************************************
 function newGame()
 {
-	console.log("new");
 	score = 0;
 	heli = new Helicopter();
 	
@@ -311,7 +312,7 @@ function newGame()
 	{
 		bricks[i] = 0;
 	}
-	for(var i = 0; i < WIDTH/50+1; i++)
+	for(var i = 0; i < WIDTH/50; i++)
 	{
 		ceiling[i] = new Brick(i*50,0);
 		floor[i] = new Brick(i*50,HEIGHT-50);
@@ -387,7 +388,6 @@ function update(modifier)
 		}
 		else if(gameOver)
 		{
-			console.log("gameover = true")
 			gameOver = false;
 			crash = false;
 			newGame();
@@ -407,7 +407,7 @@ function update(modifier)
 			hiscore = score;
 		}
 		
-		a += heli.speedX;
+		a += heli.speedX*modifier;
 		if(a >= 400)
 		{
 			a = 0;
@@ -424,30 +424,34 @@ function update(modifier)
 			}
 			block = 0;
 		}
-		for(var i = 0; i < ceiling.length; i++)
+		
+		for(var i = 0; i < backgrounds.length; i++)
 		{
-			ceiling[i].x -= heli.speedX;
-			floor[i].x -= heli.speedX;
-			if(ceiling[i].x <= -(ceiling[i].width))
-			{
-				ceiling.splice(i,1);
-				ceiling[ceiling.length] = new Brick(WIDTH+50,0);
-			}
-			if(floor[i].x <= -(floor[i].width))
-			{
-				floor.splice(i,1);
-				floor[floor.length] = new Brick(WIDTH+50,HEIGHT-50);
-			}
+			backgrounds[i] -= heli.speedX*modifier;
+			backgrounds2[i] -= 50*modifier;
 		}
+		if(backgrounds[1] <= 0)
+		{
+			backgrounds.splice(0,1);
+			backgrounds[2] = backgrounds[1]+WIDTH;
+		}
+		if(backgrounds2[1] <= 0)
+		{
+			backgrounds2.splice(0,1);
+			backgrounds2[2] = backgrounds2[1]+WIDTH;
+		}
+
+		
 		for(var i = 0; i < bricks.length; i++)
 		{
-			bricks[i].x -= heli.speedX;
+			bricks[i].x -= heli.speedX*modifier;
 			if(bricks[i].x <= 0-bricks[i].width)
 			{
 				bricks.splice(i,1);
 			}
 			if(collides(heli, bricks[i]))
 			{
+				ajax_post();
 				gameOver = true;
 				crash = true;
 				heli.speedX = 0;
@@ -459,6 +463,7 @@ function update(modifier)
 		{
 			if(collides(heli, ceiling[i]) || collides(heli, floor[i]))
 			{
+				ajax_post();
 				gameOver = true;
 				crash = true;
 				heli.speedX = 0;
@@ -466,17 +471,7 @@ function update(modifier)
 				score = 0;
 			}
 		}
-		for(var i = 0; i < WIDTH/50; i++)
-		{
-			if(collides(heli, ceiling[i]))
-			{
-				score = 0;
-			}
-			if(collides(heli, floor[i]))
-			{
-				score = 0;
-			}
-		}
+		
 		if(spaceIsDown)
 		{
 			heli.y -= heli.speedY+1;
@@ -504,29 +499,28 @@ function render()
 	var txtPaused = "PAUSED";
 	
 	//so game resizes (somewhat) smoothly on window resize
-	resize();
+	//resize();
 	
 	//draw images
     if(bgReady) 
 	{
-        ctx.drawImage(bgImage, 0, 0);
+		for(var i = 0; i < backgrounds.length; i++)
+		{
+			ctx.drawImage(bgImage, backgrounds[i], 0);
+		}
+		for(var i = 0; i < backgrounds2.length; i++)
+		{
+			ctx.drawImage(bgImage2, backgrounds2[i], 0);
+		}
     }
 	
-	if(heliReady && !crash)
-	{
-		ctx.drawImage(heliImage, heli.x, heli.y);
-	}
-	else if(boomReady)
-	{
-		ctx.drawImage(boomImage, heli.x, heli.y);
-	}
 	if(blockReady)
 	{
-		for(var i = 0; i < WIDTH/50; i++)	//ceiling/floor
-		{
-			ctx.drawImage(blockImage, ceiling[i].x, ceiling[i].y);
-			ctx.drawImage(blockImage, floor[i].x, floor[i].y);
-		}
+		// for(var i = 0; i < WIDTH/50; i++)	//ceiling/floor
+		// {
+			// ctx.drawImage(blockImage, ceiling[i].x, ceiling[i].y);
+			// ctx.drawImage(blockImage, floor[i].x, floor[i].y);
+		// }
 		
 		for(var i = 0; i < bricks.length; i++)
 		{
@@ -536,6 +530,16 @@ function render()
 			}
 		}
 	}
+	
+	if(heliReady && !crash)
+	{
+		ctx.drawImage(heliImage, heli.x, heli.y);
+	}
+	else if(boomReady)
+	{
+		ctx.drawImage(boomImage, heli.x, heli.y);
+	}
+	
     //set font
     ctx.fillStyle = "#FFF";
     ctx.font = "20px Share Tech Mono";
@@ -592,11 +596,27 @@ function main()
 
 //more handlers
 window.addEventListener('load', init(), false);
-window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
+//window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
 
 //game init
 newGame();
 
 //game start
 then = Date.now();
-main();
+main
+
+function ajax_post()
+{
+	var hr = new XMLHttpRequest();                                
+	hr.open("POST", "game.php", true);
+	hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	
+	hr.onreadystatechange = function()
+	{
+		if(hr.readyState == 4 && hr.status == 200){                        
+			console.log("score="+score); 
+		};
+	};
+
+	hr.send("score="+score);         
+}

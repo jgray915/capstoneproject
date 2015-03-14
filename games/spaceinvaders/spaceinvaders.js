@@ -11,12 +11,12 @@
 \******************************************************************************/
 {
 var WIDTH = 480;			//canvas size
-var HEIGHT = 640;			//canvas size
+var HEIGHT = 768;			//canvas size
 var then = Date.now();		//stores the time of the last game cycle
 var canvas = document.createElement("canvas");  //canvas element
 var ctx = canvas.getContext("2d");				//context
 var mouseX;					//holds mouse x position
-var scale;					//scale factor of canvas
+var scale = WIDTH/WIDTH;					//scale factor of canvas
 var score = 0;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
@@ -65,56 +65,56 @@ var bgImage = new Image();
 bgImage.onload = function () {
     bgReady = true;
 };
-bgImage.src = "media/background.png";
+bgImage.src = "spaceinvaders/media/background.png";
 
 var alienReady = false;
 var alienImage = new Image();
 alienImage.onload = function () {
     alienReady = true;
 };
-alienImage.src = "media/alien.png";
+alienImage.src = "spaceinvaders/media/alien.png";
 
 var alien2Ready = false;
 var alien2Image = new Image();
 alien2Image.onload = function () {
     alien2Ready = true;
 };
-alien2Image.src = "media/alien2.png";
+alien2Image.src = "spaceinvaders/media/alien2.png";
 
 var brickReady = false;
 var brickImage = new Image();
 brickImage.onload = function () {
     brickReady = true;
 };
-brickImage.src = "media/brick.png";
+brickImage.src = "spaceinvaders/media/brick.png";
 
 var bulletReady = false;
 var bulletImage = new Image();
 bulletImage.onload = function () {
     bulletReady = true;
 };
-bulletImage.src = "media/bullet.png";
+bulletImage.src = "spaceinvaders/media/bullet.png";
 
 var bullet2Ready = false;
 var bullet2Image = new Image();
 bullet2Image.onload = function () {
     bullet2Ready = true;
 };
-bullet2Image.src = "media/bullet2.png";
+bullet2Image.src = "spaceinvaders/media/bullet2.png";
 
 var shipReady = false;
 var shipImage = new Image();
 shipImage.onload = function () {
     shipReady = true;
 };
-shipImage.src = "media/ship.png";
+shipImage.src = "spaceinvaders/media/ship.png";
 
 var boomReady = false;
 var boomImage = new Image();
 boomImage.onload = function () {
     boomReady = true;
 };
-boomImage.src = "media/boom.png";
+boomImage.src = "spaceinvaders/media/boom.png";
 
 //load sound *******************************************************************
 // var noise = new Audio("media/noise.wav");
@@ -643,6 +643,7 @@ function update(modifier)
 		
 		if(!ships)
 		{
+			ajax_post();
 			gameOver = true;
 			newGame();
 			
@@ -667,7 +668,7 @@ function render()
 	var txtShips = "SHIPS: "+ships;
 	
 	//so game resizes (somewhat) smoothly on window resize
-	resize();
+	//resize();
 	
 	//draw images
     if (bgReady) 
@@ -793,7 +794,7 @@ function main()
 
 //more handlers
 window.addEventListener('load', init(), false);
-window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
+//window.addEventListener('resize', resize(), false);		//doesn't work, resize() runs in render()
 
 //game init
 //startNewLevel();
@@ -801,3 +802,19 @@ window.addEventListener('resize', resize(), false);		//doesn't work, resize() ru
 //game start
 then = Date.now();
 main();
+
+function ajax_post()
+{
+	var hr = new XMLHttpRequest();                                
+	hr.open("POST", "game.php", true);
+	hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	
+	hr.onreadystatechange = function()
+	{
+		if(hr.readyState == 4 && hr.status == 200){                        
+			console.log("score="+score); 
+		};
+	};
+
+	hr.send("score="+score);         
+}
