@@ -17,9 +17,10 @@ var canvas = document.createElement("canvas");  //canvas element
 var ctx = canvas.getContext("2d");				//context
 var mouseX;					//holds mouse x position
 var scale = WIDTH/WIDTH;					//scale factor of canvas
-var score = 0;				//current score
+var score;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
+var gameID = 3;
 
 
 var pause = false;			//whether or not user has paused
@@ -388,6 +389,8 @@ function update(modifier)
 		}
 		else if(gameOver)
 		{
+                   
+                    
 			gameOver = false;
 			crash = false;
 			newGame();
@@ -451,7 +454,7 @@ function update(modifier)
 			}
 			if(collides(heli, bricks[i]))
 			{
-				ajax_post();
+				
 				gameOver = true;
 				crash = true;
 				heli.speedX = 0;
@@ -463,8 +466,10 @@ function update(modifier)
 		{
 			if(collides(heli, ceiling[i]) || collides(heli, floor[i]))
 			{
-				ajax_post();
+                                
+				
 				gameOver = true;
+                               ajax_post();
 				crash = true;
 				heli.speedX = 0;
 				heli.speedY = 0;
@@ -483,6 +488,7 @@ function update(modifier)
 		
 	}
 }
+
 /******************************************************************************\
 *  --------------------------------  RENDER  --------------------------------  *
 \******************************************************************************/
@@ -605,18 +611,17 @@ newGame();
 then = Date.now();
 main();
 
-function ajax_post()
-{
-	var hr = new XMLHttpRequest();                                
-	hr.open("POST", "game.php", true);
-	hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-	
-	hr.onreadystatechange = function()
-	{
-		if(hr.readyState == 4 && hr.status == 200){                        
-			console.log("score="+score); 
-		};
-	};
-
-	hr.send("score="+score);         
-}
+function ajax_post(){
+                var hr = new XMLHttpRequest();                                
+                hr.open("POST", "game.php", true);
+                hr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                hr.onreadystatechange = function(){
+                    if(hr.readyState == 4 && hr.status == 200){                        
+                        
+                        
+                        };
+                    };
+                
+                hr.send("score="+score+"&gameID="+gameID);  
+                console.log(score);                
+            }

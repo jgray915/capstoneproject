@@ -30,7 +30,7 @@ switch ($_GET['gameID']) {
 if(!empty($_SESSION))
 {
 	$userID = getUserID($_SESSION['email']);   
-	 
+	$gameID = filter_input(INPUT_POST,'gameID');
 	$score = filter_input(INPUT_POST,'score');
 	$date = date("Y-m-d H:i:s"); 
 

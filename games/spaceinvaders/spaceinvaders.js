@@ -20,7 +20,7 @@ var scale = WIDTH/WIDTH;					//scale factor of canvas
 var score = 0;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
-
+var gameID = 2;
 
 var pause = false;			//whether or not user has paused
 var enterKeyHit = false;    //flag for enter key
@@ -642,9 +642,10 @@ function update(modifier)
 		}
 		
 		if(!ships)
-		{
-			ajax_post();
+		{			
 			gameOver = true;
+                       
+                        ajax_post();
 			newGame();
 			
 		}
@@ -812,9 +813,10 @@ function ajax_post()
 	hr.onreadystatechange = function()
 	{
 		if(hr.readyState == 4 && hr.status == 200){                        
-			console.log("score="+score); 
+			
 		};
 	};
 
-	hr.send("score="+score);         
+	hr.send("score="+score+"&gameID="+gameID);  
+        console.log("score="+score); 
 }

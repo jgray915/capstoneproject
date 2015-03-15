@@ -20,6 +20,7 @@ var scale = WIDTH/WIDTH;					//scale factor of canvas
 var score = 0;				//current score
 var hiscore = 5;			//highest of last played scores
 var level = 0;				//current set of bricks
+var gameID = 1;
 
 
 var pause = false;			//whether or not user has paused
@@ -395,7 +396,7 @@ function collisionDirection(obj1, obj2)
 
 //handle wall collisions
 function checkWallColl()
-{
+{    
     if(	
     ball.x<=0 ||
     ball.x>=WIDTH-ball.width &&
@@ -409,7 +410,7 @@ function checkWallColl()
     ball.y<=0 ||
     ball.y>=HEIGHT+(ball.height) &&
     ball.speedy > 0)
-    {
+    {        
 	    if(ball.y>=HEIGHT+(ball.height))
 	    {
 		    balls--;
@@ -417,6 +418,7 @@ function checkWallColl()
 		    if(balls === 0)
 		    {
 			    gameOver = true;
+                            
 				ajax_post(); 
 			    newGame();
 		    }
@@ -554,6 +556,7 @@ function update(modifier)
 		else if(gameOver)
 		{
 			gameOver = false;
+                        
 		}
 		else
 		{
@@ -695,9 +698,9 @@ function ajax_post()
 	hr.onreadystatechange = function()
 	{
 		if(hr.readyState == 4 && hr.status == 200){                        
-			console.log("score="+score); 
+			
 		};
 	};
 
-	hr.send("score="+score);         
+	hr.send("score="+score+"&gameID="+gameID);      
 }
