@@ -645,7 +645,7 @@ function update(modifier)
 		{			
 			gameOver = true;
                        
-                        ajax_post();
+            ajax_post();
 			newGame();
 			
 		}

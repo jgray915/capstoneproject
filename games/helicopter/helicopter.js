@@ -415,6 +415,7 @@ function update(modifier)
 		{
 			a = 0;
 			block = new Block();
+			var first = true;
 			for(var i = 0; i < block.shape.length; i++)
 			{
 				for(var j = 0; j < block.shape[i].length; j++)
@@ -422,6 +423,11 @@ function update(modifier)
 					if(block.shape[i][j] == 1)
 					{
 						bricks[bricks.length] = new Brick(block.x+(j*50), block.y+((i+1)*50));
+						if(first)
+						{
+							bricks[bricks.length] = new Brick(block.x+(j*50), block.y+((i+1)*50));
+							first = false;
+						}
 					}
 				}
 			}
@@ -431,7 +437,7 @@ function update(modifier)
 		for(var i = 0; i < backgrounds.length; i++)
 		{
 			backgrounds[i] -= heli.speedX*modifier;
-			backgrounds2[i] -= 50*modifier;
+			backgrounds2[i] -= 175 *modifier;
 		}
 		if(backgrounds[1] <= 0)
 		{
@@ -452,24 +458,26 @@ function update(modifier)
 			{
 				bricks.splice(i,1);
 			}
-			if(collides(heli, bricks[i]))
+			if(collides(heli, bricks[i]) && !crash)
 			{
 				
 				gameOver = true;
+				ajax_post();
 				crash = true;
 				heli.speedX = 0;
 				heli.speedY = 0;
 				score = 0;
 			}
 		}
+
 		for(var i = 0; i < ceiling.length; i++)
 		{
-			if(collides(heli, ceiling[i]) || collides(heli, floor[i]))
+			if(collides(heli, ceiling[i]) || collides(heli, floor[i]) && !crash)
 			{
                                 
 				
 				gameOver = true;
-                               ajax_post();
+                ajax_post();
 				crash = true;
 				heli.speedX = 0;
 				heli.speedY = 0;
@@ -494,8 +502,8 @@ function update(modifier)
 \******************************************************************************/
 //game drawing runs here
 function render() 
-{
-    //text to render
+{	
+	//text to render
 	var txtScore  = "SCORE: "+score;
     var txtHiScore  = "HI-SCORE: "+hiscore;
     var txtGameOver = "GAME OVER";
@@ -510,13 +518,13 @@ function render()
 	//draw images
     if(bgReady) 
 	{
-		for(var i = 0; i < backgrounds.length; i++)
-		{
-			ctx.drawImage(bgImage, backgrounds[i], 0);
-		}
 		for(var i = 0; i < backgrounds2.length; i++)
 		{
 			ctx.drawImage(bgImage2, backgrounds2[i], 0);
+		}
+		for(var i = 0; i < backgrounds.length; i++)
+		{
+			ctx.drawImage(bgImage, backgrounds[i], 0);
 		}
     }
 	

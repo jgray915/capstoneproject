@@ -1,33 +1,17 @@
-BREAKOUT																	4
+BREAKOUT									2
 ********************************************************************************
-MEDIA:
 change name
 make a title screen and better control instructions
 
-CODE:
-keep size fixed?
-give ajax call
-
-SPACE INVADERS																5
+SPACE INVADERS									3							
 ********************************************************************************
-MEDIA:
 make sound
 change name
 make a title screen and better control instructions
 
-CODE:
-keep size fixed?
-give ajax call
-
-HELICOPTER																	7
+HELICOPTER									4								
 ********************************************************************************
-MEDIA:
 update helicopter graphic
 make sound
 change name
 make a title screen and better control instructions
-
-CODE:
-keep size fixed?
-fix drifting blocks
-give ajax call
