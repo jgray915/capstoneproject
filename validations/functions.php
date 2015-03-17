@@ -254,7 +254,7 @@ function topTenGameScoresforWeek($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =1 AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -271,7 +271,7 @@ function topTenGameScoresforDay($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =1 AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -289,7 +289,7 @@ function topTenGameScoresforMonth($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =1 AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
