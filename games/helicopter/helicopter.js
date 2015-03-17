@@ -91,8 +91,8 @@ boomImage.onload = function () {
 boomImage.src = "helicopter/media/boom.png";
 
 //load sound *******************************************************************
-//var noise = new Audio("media/noise.wav");
-//noise.load();
+var bang = new Audio("helicopter/media/crash.wav");
+bang.load();
 
 }
 /******************************************************************************\
@@ -460,7 +460,7 @@ function update(modifier)
 			}
 			if(collides(heli, bricks[i]) && !crash)
 			{
-				
+				bang.play();
 				gameOver = true;
 				ajax_post();
 				crash = true;
@@ -474,8 +474,7 @@ function update(modifier)
 		{
 			if(collides(heli, ceiling[i]) || collides(heli, floor[i]) && !crash)
 			{
-                                
-				
+				bang.play();
 				gameOver = true;
                 ajax_post();
 				crash = true;
@@ -630,6 +629,5 @@ function ajax_post(){
                         };
                     };
                 
-                hr.send("score="+score+"&gameID="+gameID);  
-                console.log(score);                
+                hr.send("score="+score+"&gameID="+gameID);                
             }

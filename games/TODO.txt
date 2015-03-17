@@ -1,17 +1,1 @@
-BREAKOUT									2
-********************************************************************************
-change name
-make a title screen and better control instructions
-
-SPACE INVADERS									3							
-********************************************************************************
-make sound
-change name
-make a title screen and better control instructions
-
-HELICOPTER									4								
-********************************************************************************
-update helicopter graphic
-make sound
-change name
-make a title screen and better control instructions
+make title screens and better control instructions

@@ -117,8 +117,14 @@ boomImage.onload = function () {
 boomImage.src = "spaceinvaders/media/boom.png";
 
 //load sound *******************************************************************
-// var noise = new Audio("media/noise.wav");
-// noise.load();
+var shipBoom = new Audio("spaceinvaders/media/shipBoom.wav");
+shipBoom.load();
+var alienBoom = new Audio("spaceinvaders/media/alienBoom.wav");
+alienBoom.load();
+var alienZap = new Audio("spaceinvaders/media/alienZap.wav");
+alienZap.load();
+var zap = new Audio("spaceinvaders/media/zap.wav");
+zap.load();
 
 }
 /******************************************************************************\
@@ -549,6 +555,7 @@ function update(modifier)
 			if(rand < 1 && bottomAliens[i])
 			{
 				lasers[lasers.length] = new Bullet(bottomAliens[i].x + bottomAliens[i].width/2, bottomAliens[i].y + bottomAliens[i].height, 5);
+				alienZap.play();
 			}
 		}
 		
@@ -557,6 +564,7 @@ function update(modifier)
 		{
 			spaceHit = !spaceHit
 			bullet = new Bullet(ship.x + ship.width/2 - 2,ship.y,-5);
+			zap.play();
 		}
 		
 		//handle bullet
@@ -574,6 +582,7 @@ function update(modifier)
 						{
 							bullet = 0;
 							delete aliens[i][j]; //aliens[i].splice(j,1);
+							alienBoom.play();
 							score++;
 							if(score > hiscore)
 							{
@@ -616,6 +625,7 @@ function update(modifier)
 				{
 					lasers.splice(i,1);
 					ships--;
+					shipBoom.play()
 					shipHitTimer = 2;
 				}
 
@@ -818,5 +828,4 @@ function ajax_post()
 	};
 
 	hr.send("score="+score+"&gameID="+gameID);  
-        console.log("score="+score); 
 }
