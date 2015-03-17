@@ -248,6 +248,59 @@ function topTenGameScoresforAllTime($gameID){
 			}
 }
 
+
+// php code for retrieving top 10 scores for a week from the Scores table
+function topTenGameScoresforWeek($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
+		WHERE GameID =1 AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['score'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
+
+// php code for retrieving top 10 scores for a day from the Scores table
+function topTenGameScoresforDay($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
+		WHERE GameID =1 AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['score'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
+
+
+// php code for retrieving top 10 scores for a month from the Scores table
+function topTenGameScoresforMonth($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
+		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
+		WHERE GameID =1 AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['score'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
+
 // php code for retrieving top 10 user names from the Scores table
 function topTenUserNamesforAllTime($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
@@ -267,6 +320,59 @@ function topTenUserNamesforAllTime($gameID){
 			}
 }
 
+// php code for retrieving top 10 userNames for a week from the Scores table
+function topTenUserNamesforDay($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT users.userName 
+		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
+		INNER JOIN users ON(users.userID = scores.userID)
+		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['userName'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
+
+// php code for retrieving top 10 userNames for a week from the Scores table
+function topTenUserNamesforWeek($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT users.userName 
+		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
+		INNER JOIN users ON(users.userID = scores.userID)
+		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['userName'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
+
+// php code for retrieving top 10 userNames for a Month from the Scores table
+function topTenUserNamesforMonth($gameID){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT users.userName 
+		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
+		INNER JOIN users ON(users.userID = scores.userID)
+		WHERE games.gameID = :gameID AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+		$dbs->bindParam(':gameID', $gameID);
+		
+        if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+			foreach ($scores as $value) {
+			echo '<td>', $value['userName'],'</td>';?></br><?php
+			echo '</tr>';
+				}
+			}
+}
 // Function created by Mark to get a games name for display purposes
 function getGameNameByGameID ($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");

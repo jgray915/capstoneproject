@@ -322,3 +322,45 @@ text-decoration:none;
 }
 /******************* End footer styling and footer button stylings ******************/
 /******************* End footer styling and footer button stylings ******************/
+
+/* styling tabs */
+.tabs {
+  position: relative;   
+  min-height: 280px; 
+  clear: both;
+  margin: 0px 0;
+}
+.tab {
+  float: left;
+  color: #FAD384;
+   background: #0B2333;
+}
+.tab label {
+  background: #0B2333;; 
+  padding: 10px; 
+  //border: 1px solid #0B2333; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: #0B2333;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #0B2333; 
+}
+[type=radio]:checked ~ label {
+  background: lightslategrey;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  background: #0B2333;
+  z-index: 1;
+}
