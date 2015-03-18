@@ -227,7 +227,7 @@ function topTenGamesforUser($userID){
 			echo '</tr>';
 				}
 			}
-			else { echo 'You have no records to display!';}
+			//else { echo 'You have no records to display!';}
 }
 
 // php code for retrieving top 10 scores from the Scores table

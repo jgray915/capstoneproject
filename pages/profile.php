@@ -17,7 +17,7 @@ $Bio = getUserBio ($_SESSION['email']);
 				</div>
 				<div id ="biography">
 					<p class ="underlinedCenter">About Me</p>
-					<p><?php echo $Bio?> </p>
+					<p style="margin-left:20px;"><?php echo $Bio?> </p>
 				</div>
 				<div id= "scoresWrapper">
 					<div id ="profileTitle" class ="underlinedCenter">

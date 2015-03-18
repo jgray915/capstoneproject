@@ -7,7 +7,7 @@ body{
 	background-attachment:fixed;
 	font-family:Arial;
 	font-size:18px;
-	color:white;
+	color:lightgray;
 }
 
 /* Main wrapper for the entire page */
@@ -79,8 +79,9 @@ body{
 
 /* Main title styling */
 .titleMain {
+        text-transform: capitalize;
 	width:940px;
-	text-decoration:underline;
+	//text-decoration:underline;
 	font-size:44px;
 	color:#FAD384;
 	background-color:#0B2333;
@@ -114,11 +115,12 @@ body{
 
 /* Styling for the titles inside the article wrapper */
 .titleArticle {
+        text-transform: capitalize;
 	float:left;
 	text-align: center;
 	width:100%;
 	height: 40px;
-	text-decoration:underline;
+	//text-decoration:underline;
 	font-size:36px;
 	color:#FAD384;
 	margin-left:40px;
@@ -183,15 +185,15 @@ body{
 }
 .sortLinks a:link {
 	color:white;
-	text-decoration:underline;
+	//text-decoration:underline;
 }
 .sortLinks a:active {
 	color:white;
-	text-decoration:underline;
+	//text-decoration:underline;
 }
 .sortLinks a:visited {
 	color:white;
-	text-decoration:underline;
+	//text-decoration:underline;
 }
 /* Styling for the "play" button */
 .play{
@@ -221,24 +223,25 @@ body{
 
 /******************* Aditional stylings for profile page ******************/
 /******************* Aditional stylings for profile page ******************/
-#profilePic{
-	float:right;
-	width: 250px;
-	height: 300px;
-	margin-left:10px;
-	margin-right:10px;
-	border:2px solid white;
-	padding: 10px;
-}
+//#profilePic{
+	//float:right;
+	//width: 250px;
+	//height: 300px;
+	//margin-left:10px;
+	//margin-right:10px;
+	//border:2px solid white;
+	//padding: 10px;
+//}
 #biography{
-	float:right;
-	width: 360px;
-	height: 300px;
-	font-size:24px;
-	color:white;
-	margin-left:10px;
+    
+	//float:left;
+	width: 420px;
+	height: 400px;
+	font-size: 20px;
+	color:lightgray;
+	margin-left:160px;
 	margin-right:10px;
-	border:2px solid white;
+	//border:2px solid white;
 	padding: 10px;
 }
 .underlinedCenter{
@@ -246,34 +249,36 @@ body{
 	text-align:center;
 }
 #scoresWrapper{
+        border-top:2px dashed black;
 	float:right;
 	text-align: left;
 	width: 654px;
-	font-size:30px;
-	color:white;
-	margin-left:10px;
+	font-size:26px;
+	color:lightgray;
+	margin-left:30px;
 	margin-right:10px;
-	border:2px solid white;
+	//border:2px solid white;
 	padding: 10px;
 }
 #profileTitle{
-	float:right;
+        float:right;
 	text-align: center;
-	width: 654px;
+	width: 634px;
 	font-size:30px;
 	color:white;
-	margin-left:10px;
+	margin-left:30px;
 	margin-right:10px;
 }
 #profileScores{
+        margin-left:150px;
 	float:left;
 	text-align: left;
-	width: 225px;
+	width: 215px;
 }
 #profileGames{
 	float:left;
 	text-align: left;
-	width: 325px;
+	width: 230px;
 }
 /******************* End additional stylings for profile page ******************/
 /******************* End additional stylings for profile page ******************/
