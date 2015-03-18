@@ -275,6 +275,11 @@ body{
 	margin-top: 10px;
         
 }
+#bio{
+	width: 400px;
+	text-align: left;
+	margin-left: 172px;
+}
 #biography{
 	//float:left;
 	width: 654px;

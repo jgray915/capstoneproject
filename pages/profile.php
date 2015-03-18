@@ -13,10 +13,12 @@ $Bio = getUserBio ($_SESSION['email']);
 		<div id="main-content">
 			<div id="article-wrapper">
 				<div id ="biography">
-                                    <div id ="profileTitle" class ="underlinedCenter">
-                                        <p>All About <?php echo $Name?></p>
-                                    </div>
+                    <div id ="profileTitle" class ="underlinedCenter">
+                        <p>All About <?php echo $Name?></p>
+                    </div>
+					<div id ="bio">
 					<p ><?php echo $Bio?> </p>
+					</div>
 				</div>
 				<form>
 				<input id= "editButton" type="button" value="Edit Profile" onclick="parent.location='editProfile.php'">
