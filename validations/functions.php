@@ -331,7 +331,7 @@ function topTenUserNamesforDay($gameID){
 		INNER JOIN users ON(users.userID = scores.userID)
 		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 1 
 		ORDER BY score DESC LIMIT 10'); 
-		$dbs->bindParam(':gameID', $gameID);
+		$dbs->bindParam(':gameID', $gameID);		
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 

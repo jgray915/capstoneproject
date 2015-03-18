@@ -145,7 +145,7 @@ body{
 #scores-wrapper{
 	float:left;
 	width:100%;
-	width: 300px;
+	width: 400px;
 	min-height:250px;
 	margin-left:10px;
 	margin-bottom:10px; 
@@ -171,38 +171,21 @@ body{
 	float:left;
 	font-size:18px;
 	text-align: left;
-	width: 125px;
+	width: 240px;
 	color: #FF7F27;
 	margin-top:3px;
 }
-
-/*Styling for the links to sort data */
-.sortLinks{
-	float:left;
-	color: white;
-}
-.sortLinks a:link {
-	color:white;
-	text-decoration:underline;
-}
-.sortLinks a:active {
-	color:white;
-	text-decoration:underline;
-}
-.sortLinks a:visited {
-	color:white;
-	text-decoration:underline;
-}
 /* Styling for the "play" button */
 .play{
-	float:right;
-	width:120px;
-	height:150px;
+	float:left;
+	width:200px;
+	height:68px;
 	background-image:url("../media/playButton.png");
 	background-repeat:no-repeat;
-	margin-right:10px;
-	text-shadow:1px 1px 3px black;	
-    margin-top: 80px;
+	//margin-left:220px;
+	text-shadow:1px 1px 3px black;
+	border:2px solid #FF7F27;	
+    margin-top: 10px;
 }
 /*******************    Styling for tabs    *******************/
 .tabs {
@@ -214,7 +197,7 @@ body{
 .tab {
   float: left;
   color: #FAD384;
-   background: #0B2333;
+  background: #0B2333;
 }
 .tab label {
   background: #0B2333; 
@@ -228,7 +211,7 @@ body{
 }
 .content {
   position: absolute;
-  width: 280px;
+  width: 400px;
   top: 28px;
   left: 0;
   background: #0B2333;
