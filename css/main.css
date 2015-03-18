@@ -79,9 +79,8 @@ body{
 
 /* Main title styling */
 .titleMain {
-        text-transform: capitalize;
 	width:940px;
-	//text-decoration:underline;
+	
 	font-size:44px;
 	color:#FAD384;
 	background-color:#0B2333;
@@ -115,12 +114,11 @@ body{
 
 /* Styling for the titles inside the article wrapper */
 .titleArticle {
-        text-transform: capitalize;
 	float:left;
 	text-align: center;
 	width:100%;
 	height: 40px;
-	//text-decoration:underline;
+	text-decoration:underline;
 	font-size:36px;
 	color:#FAD384;
 	margin-left:40px;
@@ -185,15 +183,15 @@ body{
 }
 .sortLinks a:link {
 	color:white;
-	//text-decoration:underline;
+	text-decoration:underline;
 }
 .sortLinks a:active {
 	color:white;
-	//text-decoration:underline;
+	text-decoration:underline;
 }
 .sortLinks a:visited {
 	color:white;
-	//text-decoration:underline;
+	text-decoration:underline;
 }
 /* Styling for the "play" button */
 .play{
@@ -204,9 +202,51 @@ body{
 	background-repeat:no-repeat;
 	margin-right:10px;
 	text-shadow:1px 1px 3px black;	
-        margin-top: 80px;
+    margin-top: 80px;
 }
-
+/*******************    Styling for tabs    *******************/
+.tabs {
+  position: relative;   
+  min-height: 270px; 
+  clear: both;
+  margin: 0px 0;
+}
+.tab {
+  float: left;
+  color: #FAD384;
+   background: #0B2333;
+}
+.tab label {
+  background: #0B2333; 
+  padding: 10px; 
+  //border: 1px solid #0B2333; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  width: 280px;
+  top: 28px;
+  left: 0;
+  background: #0B2333;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #0B2333; 
+}
+[type=radio]:checked ~ label {
+  background: lightslategrey;
+  z-index: 2;
+}
+[type=radio]:checked ~ label ~ .content {
+  background: #0B2333;
+  z-index: 1;
+}
+/*******************    End Styling for tabs    *******************/
 
 /*******************	End Article Stylings	******************/
 /*******************	End Article Stylings 	******************/
@@ -233,12 +273,17 @@ body{
 	//border:2px solid white;
 	//padding: 10px;
 //}
+#editButton{
+	float:right;
+	margin-right:10px;
+	margin-top: 10px;
+}
 #biography{
-    
 	//float:left;
 	width: 420px;
-	height: 400px;
+	min-height: 400px;
 	font-size: 20px;
+	word-wrap: normal;
 	color:lightgray;
 	margin-left:160px;
 	margin-right:10px;
@@ -250,7 +295,7 @@ body{
 	text-align:center;
 }
 #scoresWrapper{
-        border-top:2px dashed black;
+    border-top:2px dashed black;
 	float:right;
 	text-align: left;
 	width: 654px;
@@ -262,7 +307,7 @@ body{
 	padding: 10px;
 }
 #profileTitle{
-        float:right;
+    float:right;
 	text-align: center;
 	width: 634px;
 	font-size:30px;
@@ -271,7 +316,7 @@ body{
 	margin-right:10px;
 }
 #profileScores{
-        margin-left:150px;
+    margin-left:150px;
 	float:left;
 	text-align: left;
 	width: 215px;
@@ -283,6 +328,23 @@ body{
 }
 /******************* End additional stylings for profile page ******************/
 /******************* End additional stylings for profile page ******************/
+
+
+/******************* Stylings for edit profile page ******************/
+/******************* Stylings for edit profile page ******************/
+#editBio{
+	height:200px;
+	width: 300px;
+	word-wrap: break-word;
+    font-size:12pt;
+}
+#editEmail{
+	height:20px;
+	width: 300px;
+    font-size:12pt;
+}
+/******************* End stylings for edit profile page ******************/
+/******************* End stylings for edit profile page ******************/
 
 
 /******************* Footer styling and footer button stylings ******************/
@@ -328,46 +390,3 @@ text-decoration:none;
 }
 /******************* End footer styling and footer button stylings ******************/
 /******************* End footer styling and footer button stylings ******************/
-
-/* styling tabs */
-.tabs {
-  position: relative;   
-  min-height: 270px; 
-  clear: both;
-  margin: 0px 0;
-}
-.tab {
-  float: left;
-  color: #FAD384;
-   background: #0B2333;
-}
-.tab label {
-  background: #0B2333;; 
-  padding: 10px; 
-  //border: 1px solid #0B2333; 
-  margin-left: -1px; 
-  position: relative;
-  left: 1px; 
-}
-.tab [type=radio] {
-  display: none;   
-}
-.content {
-  position: absolute;
-  width: 280px;
-  top: 28px;
-  left: 0;
-  background: #0B2333;
-  right: 0;
-  bottom: 0;
-  padding: 5px;
-  border: 1px solid #0B2333; 
-}
-[type=radio]:checked ~ label {
-  background: lightslategrey;
-  z-index: 2;
-}
-[type=radio]:checked ~ label ~ .content {
-  background: #0B2333;
-  z-index: 1;
-}
