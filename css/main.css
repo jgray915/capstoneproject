@@ -151,6 +151,14 @@ body{
 	margin-left:10px;
 	margin-bottom:10px; 
 }
+#scores-wrapperProfile{
+	float:left;
+	width:100%;
+	width: 600px;
+	min-height:250px;
+	margin-left:125px;
+	margin-bottom:10px; 
+}
 
 /* Styling for the scores displayed inside the article wrappers on the home page */
 #numbers {
@@ -300,7 +308,7 @@ body{
 	float:right;
 	text-align: left;
 	width: 654px;
-	font-size:26px;
+	font-size:19px;
 	color:lightgray;
 	margin-left:30px;
 	margin-right:10px;

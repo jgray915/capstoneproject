@@ -27,12 +27,64 @@ $Bio = getUserBio ($_SESSION['email']);
 					<div id ="profileTitle" class ="underlinedCenter">
 						<p>Top Scores for <?php echo $Name?></p>
 					</div>
-					<div id ="profileScores">
-						<p><?php topTenScoresforUser($ID) ?></p>
-					</div>
-					<div id ="profileGames">
-						<p><?php topTenGamesforUser($ID) ?></p>
-					</div>
+					<div id ="scores-wrapperProfile">
+            <div class="tabs">
+                <div class="tab">
+				<a>Sort By: </a>
+                    <input type="radio" id="allTime1" name="tabGroup1" checked="true">
+                    <label for="allTime1">All Time</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforAllTimeByUser($ID) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenGameNamesforAllTimeByuser($ID) ?></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab">
+                    <input type="radio" id="day1" name="tabGroup1">
+                    <label for="day1">Day</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforDayByUser($ID) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenGameNamesforDayByuser($ID) ?></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab">
+                    <input type="radio" id="week1" name="tabGroup1">
+                    <label for="week1">Week</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforWeekByUser($ID) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenGameNamesforWeekByuser($ID) ?></p>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab">
+                    <input type="radio" id="month1" name="tabGroup1">
+                    <label for="month1">Month</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforMonthByUser($ID) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenGameNamesforMonthByuser($ID) ?></p>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+				</div>
 				</div>
 			</div><!-- end article -->
 		</div><!-- end main content -->
