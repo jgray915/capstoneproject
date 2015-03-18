@@ -14,6 +14,7 @@
 	<div id ="scores-wrapper">
             <div class="tabs">
                 <div class="tab">
+				<a>Sort By: </a>
                     <input type="radio" id="allTime1" name="tabGroup1" checked="true">
                     <label for="allTime1">All Time</label>
                         <div class="content">
@@ -69,76 +70,6 @@
             </div>
         </div>
 		<a class="play" href="../games/game.php?gameID=1"> </a>
-		
-		
-</div><!-- end article -->
-
-<div id="article-wrapper">
-    <h1 class="titleArticle">Helicopter</h1>
-    <p class= "descriptionArticle"><?php getGameDescriptionByGameID(3)?></p>
-    <img src="../media/Helicopter.jpg" alt=""/>
-        <div id ="scores-wrapper">
-            <div class="tabs">
-                <div class="tab">
-                    <input type="radio" id="allTime2" name="tabGroup2" checked="true">
-                    <label for="allTime2">All Time</label>
-                        <div class="content">
-                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
-                            <div id ="mainScores">
-                                    <p><?php topTenGameScoresforAllTime(3) ?></p>
-                            </div>
-                            <div id ="mainUsers">
-                                    <p><?php topTenUserNamesforAllTime(3) ?></p>
-                            </div>
-                        </div>
-                    
-                </div>
-                <div class="tab">
-                    <input type="radio" id="day2" name="tabGroup2">
-                    <label for="day2">Day</label>
-                        <div class="content">
-                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
-                            <div id ="mainScores">
-                                    <p><?php topTenGameScoresforDay(3) ?></p>
-                            </div>
-                            <div id ="mainUsers">
-                                    <p><?php topTenUserNamesforDay(3) ?></p>
-                            </div>
-                        </div>
-                    
-                </div>
-                <div class="tab">
-                    <input type="radio" id="week2" name="tabGroup2">
-                    <label for="week2">Week</label>
-                        <div class="content">
-                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
-                            <div id ="mainScores">
-                                    <p><?php topTenGameScoresforWeek(3) ?></p>
-                            </div>
-                            <div id ="mainUsers">
-                                    <p><?php topTenUserNamesforWeek(3) ?></p>
-                            </div>
-                        </div>
-                    
-                </div>
-                <div class="tab">
-                    <input type="radio" id="month2" name="tabGroup2">
-                    <label for="month2">Month</label>
-                        <div class="content">
-                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
-                            <div id ="mainScores">
-                                    <p><?php topTenGameScoresforMonth(3) ?></p>
-                            </div>
-                            <div id ="mainUsers">
-                                    <p><?php topTenUserNamesforMonth(3) ?></p>
-                            </div>
-                        </div>
-                    
-                </div>
-			
-            </div>
-        </div>
-		<a class="play" href="../games/game.php?gameID=3"> </a>
 </div><!-- end article -->
 
 <div id="article-wrapper">
@@ -148,6 +79,7 @@
         <div id ="scores-wrapper">
             <div class="tabs">
                 <div class="tab">
+				<a>Sort By: </a>
                     <input type="radio" id="allTime3" name="tabGroup3" checked="true">
                     <label for="allTime3">All Time</label>
                         <div class="content">
@@ -207,6 +139,75 @@
             </div>
         </div>
 		<a class="play" href="../games/game.php?gameID=2"> </a>
+</div><!-- end article -->
+
+<div id="article-wrapper">
+    <h1 class="titleArticle">Helicopter</h1>
+    <p class= "descriptionArticle"><?php getGameDescriptionByGameID(3)?></p>
+    <img src="../media/Helicopter.jpg" alt=""/>
+        <div id ="scores-wrapper">
+            <div class="tabs">
+                <div class="tab">
+				<a>Sort By: </a>
+                    <input type="radio" id="allTime2" name="tabGroup2" checked="true">
+                    <label for="allTime2">All Time</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforAllTime(3) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenUserNamesforAllTime(3) ?></p>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="tab">
+                    <input type="radio" id="day2" name="tabGroup2">
+                    <label for="day2">Day</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforDay(3) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenUserNamesforDay(3) ?></p>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="tab">
+                    <input type="radio" id="week2" name="tabGroup2">
+                    <label for="week2">Week</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforWeek(3) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenUserNamesforWeek(3) ?></p>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="tab">
+                    <input type="radio" id="month2" name="tabGroup2">
+                    <label for="month2">Month</label>
+                        <div class="content">
+                            <div id = "numbers"></br> 1. </br> 2. </br> 3. </br> 4. </br> 5. </br> 6. </br> 7. </br> 8. </br> 9. </br> 10. </br></div>
+                            <div id ="mainScores">
+                                    <p><?php topTenGameScoresforMonth(3) ?></p>
+                            </div>
+                            <div id ="mainUsers">
+                                    <p><?php topTenUserNamesforMonth(3) ?></p>
+                            </div>
+                        </div>
+                    
+                </div>
+			
+            </div>
+        </div>
+		<a class="play" href="../games/game.php?gameID=3"> </a>
 </div><!-- end article -->
 
 </div><!-- end main content -->
