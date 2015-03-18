@@ -26,6 +26,17 @@ function check_email($email)
         return true;
     }
 }
+function check_userName($userName)
+{
+    $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+    $dbs = $db->prepare('SELECT * FROM users WHERE UserName = :userName');
+    $dbs->bindParam(':userName', $userName, PDO::PARAM_STR);
+    if ( $dbs->execute() && $dbs->rowCount() == 0 ) {
+        return false;
+    } else {
+        return true;
+    }
+}
 function valid_email($email)
 {
    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

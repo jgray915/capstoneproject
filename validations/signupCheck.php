@@ -14,8 +14,27 @@ if ($functions->valid_email($email)== false){
 if ($functions->valid_password($password)== false){
     $errors[] = "Password much be at least 4 characters.";
 }
+if (strlen($email) > 40)
+{
+   $errors[] = "Email cannot exceed 40 characters.";
+}
+if (strlen($bio) > 500)
+{
+   $errors[] = "Biography cannot exceed 500 characters.";
+}
+if (strlen($password) > 40)
+{
+   $errors[] = "Password cannot exceed 40 characters.";
+}
+if (strlen($userName) > 20)
+{
+   $errors[] = "UserName cannot exceed 20 characters.";
+}
 if ($functions->check_email($email)== true) {
    $errors[] = "Email already exists.  Please use different email or select login.";
+}
+if ($functions->check_userName($userName)== true) {
+   $errors[] = "User Name is taken.";
 }
 if (isset($email)&& count($errors)== 0){
     $password = sha1($password);
@@ -35,7 +54,7 @@ if (isset($email)&& count($errors)== 0){
 		$_SESSION['email'] = $email;
 		header('Location: ../pages/profile.php');
     } else {
-		var_dump($_POST);
+		//var_dump($_POST);
     }    
 } else {
     include('../pages/signup.php');

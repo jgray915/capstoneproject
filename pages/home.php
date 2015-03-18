@@ -25,7 +25,6 @@
                                     <p><?php topTenUserNamesforAllTime(1) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="day1" name="tabGroup1">
@@ -39,7 +38,6 @@
                                     <p><?php topTenUserNamesforDay(1) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="week1" name="tabGroup1">
@@ -53,7 +51,6 @@
                                     <p><?php topTenUserNamesforWeek(1) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="month1" name="tabGroup1">
@@ -69,7 +66,6 @@
                         </div>
                     
                 </div>
-			
             </div>
         </div>
 		<a class="play" href="../games/game.php?gameID=1"> </a>
