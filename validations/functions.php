@@ -209,6 +209,7 @@ function topTenScoresforUser($userID){
 			echo '</tr>';
 				}
 			}
+		else { echo 'Play more games!';}
 }
 
 // php code for retrieving top 10 game names for a user from the Scores table
@@ -227,7 +228,7 @@ function topTenGamesforUser($userID){
 			echo '</tr>';
 				}
 			}
-		else { echo 'Play some more games!';}
+		
 }
 
 // php code for retrieving top 10 scores from the Scores table
@@ -253,7 +254,8 @@ function topTenGameScoresforWeek($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =:gameID AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND datediff(curdate(), date) <= 7 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -270,7 +272,8 @@ function topTenGameScoresforDay($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =:gameID AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND datediff(curdate(), date) <= 1 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -288,7 +291,8 @@ function topTenGameScoresforMonth($gameID){
 	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
         $dbs = $db->prepare('SELECT Scores.userID, Scores.gameID, Scores.score, Users.username, Scores.date 
 		FROM Scores INNER JOIN Users ON Scores.userID = Users.userID 
-		WHERE GameID =:gameID AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+		WHERE GameID =:gameID AND Month(`date`) = Month(curdate()) 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -325,7 +329,8 @@ function topTenUserNamesforDay($gameID){
         $dbs = $db->prepare('SELECT users.userName 
 		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
 		INNER JOIN users ON(users.userID = scores.userID)
-		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 1 ORDER BY score DESC LIMIT 10'); 
+		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 1 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -343,7 +348,8 @@ function topTenUserNamesforWeek($gameID){
         $dbs = $db->prepare('SELECT users.userName 
 		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
 		INNER JOIN users ON(users.userID = scores.userID)
-		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 7 ORDER BY score DESC LIMIT 10'); 
+		WHERE games.gameID = :gameID AND datediff(curdate(), date) <= 7 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
@@ -361,7 +367,8 @@ function topTenUserNamesforMonth($gameID){
         $dbs = $db->prepare('SELECT users.userName 
 		FROM (scores INNER JOIN games ON scores.gameID = games.gameID )
 		INNER JOIN users ON(users.userID = scores.userID)
-		WHERE games.gameID = :gameID AND Month(`date`) = Month(curdate()) ORDER BY score DESC LIMIT 10'); 
+		WHERE games.gameID = :gameID AND Month(`date`) = Month(curdate()) 
+		ORDER BY score DESC LIMIT 10'); 
 		$dbs->bindParam(':gameID', $gameID);
 		
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
