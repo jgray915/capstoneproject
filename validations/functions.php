@@ -205,7 +205,7 @@ function topTenScoresforUser($userID){
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
 			foreach ($scores as $value) {
-			?> Score: <?php echo '<td>', $value['score'],'</td>';?></br><?php
+			echo '<td>', $value['score'],'</td>';?></br><?php
 			echo '</tr>';
 				}
 			}
@@ -223,11 +223,11 @@ function topTenGamesforUser($userID){
         if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
             $scores = $dbs->fetchAll(PDO::FETCH_ASSOC); 
 			foreach ($scores as $value) {
-			?> <?php echo '<td>', $value['GameName'],'</td>';?></br><?php
+			?><?php echo '<td>', $value['GameName'],'</td>';?></br><?php
 			echo '</tr>';
 				}
 			}
-			//else { echo 'You have no records to display!';}
+		else { echo 'Play some more games!';}
 }
 
 // php code for retrieving top 10 scores from the Scores table
@@ -247,7 +247,6 @@ function topTenGameScoresforAllTime($gameID){
 				}
 			}
 }
-
 
 // php code for retrieving top 10 scores for a week from the Scores table
 function topTenGameScoresforWeek($gameID){
@@ -437,6 +436,19 @@ function getUserBio($email)
 		}
 }
 
+// Function created by Mark to get User Email using UserID
+function getEmailByID($userID)
+{
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('SELECT email FROM users WHERE userID = :userID'); 
+		$dbs->bindParam(':userID', $userID);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+		$value = $dbs->fetch(PDO::FETCH_ASSOC); 
+		return $value['email'];
+		}
+}
+
 // Function created by Mark to get the top scores for the day for Display purposes
 function topTenScoresGameforDayAll($gameID){
     $db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
@@ -492,5 +504,20 @@ function topTenScoresGameforMonthAll($gameID){
 			echo '</tr>';
 				}
 			}                       
-    } 	
+    }
+
+// Function created by Mark to allow users to update their profile data.
+function updateProfile($userID, $email, $bio){
+	$db = new PDO("mysql:host=localhost;dbname=capstonegames", "root", "");
+        $dbs = $db->prepare('UPDATE users
+			SET Email= :email, Bio = :bio
+			WHERE UserID =:userID');
+		$dbs->bindParam(':bio', $bio);
+		$dbs->bindParam(':email', $email);
+		$dbs->bindParam(':userID',$userID);
+
+		if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
+            return true;
+				}                       
+	} 	
 ?>  
