@@ -21,8 +21,7 @@ if ($functions->valid_email($email)== true)
 }
 else
 {
-    $_SESSION['loggedin'] = false;
-    $errors[] = "Please reenter email";
+    $errors[] = "Please enter a valid email";
 }
-    include('../pages/login.php');
+    include('../pages/editProfile.php');
 ?>
