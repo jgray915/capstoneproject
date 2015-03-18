@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2015 at 06:28 PM
+-- Generation Time: Mar 18, 2015 at 11:05 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `scores` (
   PRIMARY KEY (`ScoreID`),
   KEY `ScoreID` (`ScoreID`,`UserID`,`GameID`,`Score`),
   KEY `UserID` (`UserID`,`GameID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=204 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=220 ;
 
 --
 -- Dumping data for table `scores`
@@ -135,65 +135,32 @@ INSERT INTO `scores` (`ScoreID`, `GameID`, `UserID`, `Score`, `date`) VALUES
 (71, 1, 28, 4, '2015-03-14 00:55:24'),
 (72, 1, 28, 7, '2015-03-14 00:57:28'),
 (73, 1, 28, 4, '2015-03-14 01:03:52'),
-(74, 1, 28, 0, '2015-03-14 01:04:02'),
-(75, 3, 34, 0, '2015-03-15 05:24:12'),
 (76, 3, 34, 52, '2015-03-15 05:24:15'),
-(77, 3, 34, 0, '2015-03-15 05:24:18'),
-(78, 3, 34, 0, '2015-03-15 05:24:21'),
-(79, 3, 34, 0, '2015-03-15 05:24:36'),
 (80, 3, 34, 52, '2015-03-15 05:24:39'),
-(81, 3, 34, 0, '2015-03-15 05:24:42'),
-(82, 3, 34, 0, '2015-03-15 05:24:45'),
-(83, 3, 34, 0, '2015-03-15 05:34:17'),
 (84, 3, 34, 52, '2015-03-15 05:34:20'),
-(85, 3, 34, 0, '2015-03-15 05:34:23'),
-(86, 3, 34, 0, '2015-03-15 05:34:26'),
 (87, 3, 34, 444, '2015-03-15 05:34:42'),
-(88, 3, 34, 0, '2015-03-15 05:34:45'),
-(89, 3, 34, 0, '2015-03-15 05:34:48'),
-(90, 3, 34, 0, '2015-03-15 05:36:37'),
 (91, 3, 34, 52, '2015-03-15 05:36:40'),
-(92, 3, 34, 0, '2015-03-15 05:36:43'),
-(93, 3, 34, 0, '2015-03-15 05:36:46'),
-(94, 3, 34, 0, '2015-03-15 05:38:48'),
-(95, 3, 34, 0, '2015-03-15 05:39:58'),
 (96, 3, 34, 114, '2015-03-15 05:40:01'),
 (97, 3, 34, 0, '2015-03-15 05:40:05'),
 (98, 3, 34, 514, '2015-03-15 05:43:32'),
-(99, 3, 34, 0, '2015-03-15 05:43:35'),
-(100, 3, 34, 0, '2015-03-15 05:43:38'),
 (101, 3, 34, 18, '2015-03-15 05:46:43'),
 (102, 3, 34, 116, '2015-03-15 05:52:33'),
-(103, 3, 34, 0, '2015-03-15 05:52:36'),
-(104, 3, 34, 0, '2015-03-15 05:52:40'),
 (105, 3, 34, 52, '2015-03-15 06:00:58'),
-(106, 3, 34, 0, '2015-03-15 06:01:01'),
-(107, 3, 34, 0, '2015-03-15 06:01:04'),
 (108, 2, 34, 6, '2015-03-15 06:12:43'),
 (109, 2, 34, 6, '2015-03-15 06:18:55'),
 (110, 3, 34, 62, '2015-03-15 06:24:08'),
-(111, 3, 34, 0, '2015-03-15 06:24:11'),
-(112, 3, 34, 0, '2015-03-15 06:24:14'),
 (113, 3, 34, 52, '2015-03-15 06:24:34'),
-(114, 3, 34, 0, '2015-03-15 06:24:37'),
-(115, 3, 34, 0, '2015-03-15 06:24:40'),
 (116, 1, 34, 6, '2015-03-15 06:25:15'),
 (117, 1, 35, 13, '2015-03-15 06:30:29'),
-(118, 1, 35, 0, '2015-03-15 06:31:21'),
 (119, 3, 35, 52, '2015-03-15 06:31:53'),
-(120, 3, 35, 0, '2015-03-15 06:31:56'),
-(121, 3, 35, 0, '2015-03-15 06:31:59'),
 (122, 2, 35, 6, '2015-03-15 06:32:27'),
 (123, 1, 35, 18, '2015-03-15 06:38:46'),
 (124, 3, 35, 52, '2015-03-15 06:40:00'),
-(125, 3, 35, 0, '2015-03-15 06:40:03'),
-(126, 3, 35, 0, '2015-03-15 06:40:06'),
 (127, 2, 35, 14, '2015-03-15 06:40:42'),
 (128, 1, 36, 18, '2015-03-17 05:56:41'),
 (129, 3, 36, 366, '2015-03-17 05:58:04'),
 (130, 3, 36, 315, '2015-03-17 05:58:13'),
 (131, 3, 36, 56, '2015-03-17 05:58:24'),
-(132, 3, 36, 0, '2015-03-17 05:58:31'),
 (133, 3, 36, 314, '2015-03-17 05:58:34'),
 (134, 3, 36, 0, '2015-03-17 05:58:37'),
 (135, 2, 36, 29, '2015-03-17 06:00:46'),
@@ -212,7 +179,6 @@ INSERT INTO `scores` (`ScoreID`, `GameID`, `UserID`, `Score`, `date`) VALUES
 (148, 1, 38, 1500, '2015-03-17 22:39:15'),
 (149, 1, 38, 160, '2015-03-17 22:39:21'),
 (150, 2, 38, 1553, '2015-03-17 22:39:30'),
-(151, 2, 38, 21450, '2015-03-17 22:39:34'),
 (152, 2, 38, 5120, '2015-03-17 22:39:43'),
 (153, 3, 38, 121, '2015-03-17 22:39:51'),
 (154, 3, 38, 42, '2015-03-17 22:39:54'),
@@ -264,7 +230,23 @@ INSERT INTO `scores` (`ScoreID`, `GameID`, `UserID`, `Score`, `date`) VALUES
 (200, 3, 14, 3205, '2015-03-02 00:00:00'),
 (201, 1, 43, 11, '2015-03-18 17:39:23'),
 (202, 1, 43, 10, '2015-03-18 17:40:05'),
-(203, 2, 43, 8, '2015-03-18 17:41:04');
+(203, 2, 43, 8, '2015-03-18 17:41:04'),
+(204, 2, 3, 5531, '2015-01-18 00:00:00'),
+(205, 3, 8, 3418, '2014-12-17 00:00:00'),
+(206, 2, 11, 6312, '2015-01-18 00:00:00'),
+(207, 3, 7, 2248, '2014-12-17 00:00:00'),
+(208, 3, 44, 1058, '2015-03-18 20:21:48'),
+(209, 3, 44, 195, '2015-03-18 20:21:53'),
+(210, 2, 13, 150, '2015-03-18 20:30:51'),
+(211, 1, 44, 25, '2015-03-18 20:49:37'),
+(212, 1, 44, 0, '2015-03-18 20:50:09'),
+(213, 2, 44, 25, '2015-03-18 20:57:24'),
+(214, 1, 44, 180, '2015-03-18 21:59:49'),
+(215, 1, 44, 215, '2015-03-18 21:59:58'),
+(216, 3, 44, 107, '2015-03-18 22:00:08'),
+(217, 3, 44, 302, '2015-03-18 22:00:13'),
+(218, 2, 44, 507, '2015-03-18 22:00:23'),
+(219, 2, 44, 44, '2015-03-18 22:00:28');
 
 -- --------------------------------------------------------
 
@@ -276,12 +258,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `UserID` int(11) NOT NULL AUTO_INCREMENT,
   `UserName` varchar(20) NOT NULL,
   `Password` varchar(60) NOT NULL,
-  `Email` varchar(25) NOT NULL,
+  `Email` varchar(40) NOT NULL,
   `SignUpDate` date NOT NULL,
   `Bio` varchar(500) NOT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `UserName` (`UserName`,`Password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `users`
@@ -289,24 +271,24 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`UserID`, `UserName`, `Password`, `Email`, `SignUpDate`, `Bio`) VALUES
 (1, 'Snix', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test@test.com', '2015-01-28', ''),
-(3, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test@email.com', '2015-01-19', ''),
-(4, 'Test123', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', '123@test.com', '2014-11-05', ''),
+(3, 'Glenn', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'test@email.com', '2015-01-19', ''),
+(4, 'Alison', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', '123@test.com', '2014-11-05', ''),
 (5, 'Carl', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'carl@email.com', '2015-01-28', 'I are Baboon'),
-(6, 'Bobby', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'bobby@email.com', '2015-01-28', 'abc123'),
+(6, 'Bobby', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'bobby@email.com', '2015-01-28', 'My current pet project is consulting about rubik''s cubes in Suffolk, NY. What gets me going now is licensing muffins in Pensacola, FL. Once had a dream of promoting inflatable dolls in Pensacola, FL. Spent two years licensing corncob pipes with no outside help. Uniquely-equipped for investing in dandruff in Nigeria. Spent a year developing strategies for tattoos in Washington, DC.\n'),
 (7, 'John', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'john@email.com', '2014-02-10', 'John was here'),
-(8, 'Sam', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'Sam@email.com', '2014-05-22', 'Once had a dream of marketing sauerkraut in Bethesda, MD. Spent the better part of the 90''s investing in bassoons for no pay. Earned praised for my work consulting about terrorism in Las Vegas, NV. Spent the 80''s consulting about toy elephants in the government sector. Uniquely-equipped for donating'),
-(9, 'bub', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'bub@email.com', '2014-03-11', ''),
+(8, 'GodzillaChrono ', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'GodzillaChrono @email.com', '2014-05-22', 'Once had a dream of marketing sauerkraut in Bethesda, MD. Spent the better part of the 90''s investing in bassoons for no pay. Earned praised for my work consulting about terrorism in Las Vegas, NV. Spent the 80''s consulting about toy elephants in the government sector. Uniquely-equipped for donating'),
+(9, 'MonsterDance ', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'MonsterDance @email.com', '2014-03-11', ''),
 (10, 'Stan', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'stan@email.com', '2015-01-10', ''),
 (11, 'Tim', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'tim@email.com', '2014-10-05', 'Timmy!!'),
 (12, 'Andy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'andy@email.com', '2015-02-01', ''),
 (13, 'mark', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'mark@email.com', '2015-02-02', 'Earned praised for my work developing sock monkeys in New York, NY. Spent 2001-2008 writing about lint for farmers. Spent high school summers implementing easy-bake-ovens in Salisbury, MD. Gifted in promoting crickets in Nigeria. Spent a weekend testing the market for jigsaw puzzles in Miami, FL. Ga'),
-(14, 'jimmy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'jimmy@email.com', '2015-03-05', ''),
+(14, 'jimmy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'jimmy@email.com', '2015-03-05', 'What gets me going now is marketing g.i. joes in Washington, DC. Spent the 80''s consulting about jigsaw puzzles in Phoenix, AZ. Earned praised for my work getting my feet wet with wooden tops in Naples, FL. Spent 2002-2010 working with toy monkeys in Atlantic City, NJ. Uniquely-equipped for working on psoriasis in Fort Walton Beach, FL. What gets me going now is analyzing wooden tops in Pensacola, FL.\n'),
 (15, 'mike', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'mike@email.com', '2015-03-05', ''),
 (16, 'sammy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'sammy@email.com', '2015-03-05', 'A real dynamo when it comes to lecturing about crickets in Las Vegas, NV. Managed a small team deploying weebles in Mexico. Spent two years building catfish in Las Vegas, NV. Spoke at an international conference about getting my feet wet with chess sets in Nigeria. Garnered an industry award while managing race cars in the UK. Spent 2001-2006 consulting about clip-on ties in Libya.\n'),
-(18, 'Blake', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'blake@mail.com', '2015-03-11', ''),
+(18, 'Blake', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'blake@mail.com', '2015-03-11', 'Earned praised for my work researching race cars in Jacksonville, FL. Was quite successful at building wooden tops in Tampa, FL. Spent a year getting to know hugs in Atlantic City, NJ. Gifted in getting to know methane in Miami, FL. Earned praise for working on etch-a-sketches in Washington, DC. Earned praise for creating marketing channels for Elvis Presley in Libya.\n'),
 (19, 'sara', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'sara@mail.com', '2015-03-12', ''),
 (20, 'blahh', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'blahh@mail.com', '2015-03-12', ''),
-(21, 'margret', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'margret@email.com', '2015-03-14', ''),
+(21, 'margret', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'margret@email.com', '2015-03-14', 'Won several awards for developing bacon in Atlantic City, NJ. Managed a small team developing easy-bake-ovens in Pensacola, FL. Spent a weekend merchandising sheep in Minneapolis, MN. At the moment I''m exporting squirt guns in Hanford, CA. Spent a year testing the market for rubik''s cubes in Los Angeles, CA. Won several awards for developing Yugos in West Palm Beach, FL.\n'),
 (26, 'janel', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'janel@email.com', '2015-03-14', ''),
 (27, 'devin', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'devin@email.com', '2015-03-14', 'Have a strong interest in selling ice cream in Ohio. A real dynamo when it comes to short selling birdhouses in Orlando, FL. Spent 2002-2008 implementing Yugos in Gainesville, FL. Spent 2001-2006 importing robotic shrimp in Libya. Enthusiastic about promoting tobacco in Ocean City, NJ. Have a strong interest in working with jigsaw puzzles on Wall Street.\n'),
 (28, 'zoe', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'zoe@email.com', '2015-03-14', ''),
@@ -318,13 +300,14 @@ INSERT INTO `users` (`UserID`, `UserName`, `Password`, `Email`, `SignUpDate`, `B
 (34, 'ricardo', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'ricardo@email.com', '2015-03-15', ''),
 (35, 'Cecil', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'cecil@email.com', '2015-03-15', ''),
 (36, 'mal', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'mal@email.com', '2015-03-17', ''),
-(37, 'lee', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'lee@email.com', '2015-03-17', 'Spent the 80''s buying and selling foreign currency for farmers. At the moment I''m importing race cars in Fort Lauderdale, FL. Spent 2001-2008 promoting bullwhips in New York, NY. Spent two years testing the market for Virgin Mary figurines in Salisbury, MD. Won several awards for exporting licorice '),
+(37, 'PrankPopular ', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'PrankPopular @email.com', '2015-03-17', 'Spent the 80''s buying and selling foreign currency for farmers. At the moment I''m importing race cars in Fort Lauderdale, FL. Spent 2001-2008 promoting bullwhips in New York, NY. Spent two years testing the market for Virgin Mary figurines in Salisbury, MD. Won several awards for exporting licorice '),
 (38, 'berny', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'berny@email.com', '2015-03-17', 'Spent 2001-2006 testing the market for glucose in Las Vegas, NV. Spent the 80''s donating g.i. joes in Suffolk, NY. Spent 2001-2006 exporting barbie dolls in Hanford, CA. In 2009 I was merchandising glue in Miami, FL. Garnered an industry award while marketing circus clowns in Atlantic City, NJ. Have some experience promoting toy planes in Edison, NJ.'),
 (39, 'rickey', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'rickey@3mail.com', '2015-03-17', 'Garnered an industry award while marketing wooden horses in Orlando, FL. Lead a team buying and selling race cars in Africa. Spent the 80''s building spit-takes in Africa. Spent 2001-2004 analyzing toy monkeys for fun and profit. In 2008 I was short selling sheep in Libya. Was quite successful at marketing toy elephants in Miami, FL.'),
 (40, 'shawn', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'shawn@email.com', '2015-03-18', 'In 2009 I was donating fried chicken in the UK. Had moderate success exporting pogo sticks in Atlantic City, NJ. In 2008 I was analyzing childrens books for no pay. Uniquely-equipped for analyzing licorice in Hanford, CA. My current pet project is working with easy-bake-ovens in the aftermarket. Spent 2002-2010 promoting carnival rides in Minneapolis, MN.'),
-(41, 'roy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'roy@email.com', '2015-03-18', 'Spent 2002-2010 working on yard waste in the government sector. Had moderate success exporting sheep in Nigeria. Spent high school summers developing strategies for soap scum in Bethesda, MD. Crossed the country getting to know wooden horses in Prescott, AZ. Spent two years lecturing about sauerkraut for the underprivileged. Enthusiastic about investing in mannequins in Cuba.'),
+(41, 'PatDictator ', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'PatDictator @email.com', '2015-03-18', 'Spent 2002-2010 working on yard waste in the government sector. Had moderate success exporting sheep in Nigeria. Spent high school summers developing strategies for soap scum in Bethesda, MD. Crossed the country getting to know wooden horses in Prescott, AZ. Spent two years lecturing about sauerkraut for the underprivileged. Enthusiastic about investing in mannequins in Cuba.'),
 (42, 'tara', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'tara@email.com', '2015-03-18', ' Earned praised for my work working with action figures for farmers. Spent a year lecturing about yard waste in Atlantic City, NJ. Gifted in implementing wooden horses in Fort Lauderdale, FL. Garnered an industry award while supervising the production of electric trains for the underprivileged. Lead a team consulting about Slinkies worldwide. Uniquely-equipped for training tobacco worldwide.'),
-(43, 'evan', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'evan@gmail.com', '2015-03-18', 'Spent high school summers investing in jump ropes in Bethesda, MD. Spent 2001-2006 testing the market for UFOs in West Palm Beach, FL. Uniquely-equipped for short selling heroin in Fort Walton Beach, FL. In 2008 I was working on pond scum in Deltona, FL. Had a brief career implementing terrorism in the financial sector. Spent 2001-2008 managing childrens books for the underprivileged.');
+(43, 'evan', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'evan@gmail.com', '2015-03-18', 'Spent high school summers investing in jump ropes in Bethesda, MD. Spent 2001-2006 testing the market for UFOs in West Palm Beach, FL. Uniquely-equipped for short selling heroin in Fort Walton Beach, FL. In 2008 I was working on pond scum in Deltona, FL. Had a brief career implementing terrorism in the financial sector. Spent 2001-2008 managing childrens books for the underprivileged.'),
+(44, 'kenny', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'kenny@email.com', '2015-03-18', 'Lead a team promoting mosquito repellent in the financial sector. Spent several months testing the market for electric trains in the UK. Practiced in the art of investing in mannequins in Atlantic City, NJ. Prior to my current job I was testing the market for velcro in Deltona, FL. Spoke at an international conference about writing about saliva in Naples, FL. Enthusiastic about developing strategies for wool in Fort Walton Beach, FL.');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
