@@ -7,6 +7,7 @@
 <!-- Main content div -->
 <div id="main-content">
 
+<!-- Set each games' data in a different div -->
 <div id="article-wrapper">
     <h1 class="titleArticle">Breakout</h1>
     <p class= "descriptionArticle"><?php getGameDescriptionByGameID(1)?></p>
@@ -72,6 +73,7 @@
 		<a class="play" href="../games/game.php?gameID=1"> </a>
 </div><!-- end article -->
 
+<!-- Set each games' data in a different div -->
 <div id="article-wrapper">
     <h1 class="titleArticle">Space Invaders</h1>
     <p class= "descriptionArticle"><?php getGameDescriptionByGameID(2)?></p>
@@ -91,7 +93,6 @@
                                     <p><?php topTenUserNamesforAllTime(2) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="day3" name="tabGroup3">
@@ -105,7 +106,6 @@
                                     <p><?php topTenUserNamesforDay(2) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="week3" name="tabGroup3">
@@ -119,7 +119,6 @@
                                     <p><?php topTenUserNamesforWeek(2) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="month3" name="tabGroup3">
@@ -133,14 +132,13 @@
                                     <p><?php topTenUserNamesforMonth(2) ?></p>
                             </div>
                         </div>
-                    
                 </div>
-			
             </div>
         </div>
 		<a class="play" href="../games/game.php?gameID=2"> </a>
 </div><!-- end article -->
 
+<!-- Set each games' data in a different div -->
 <div id="article-wrapper">
     <h1 class="titleArticle">Helicopter</h1>
     <p class= "descriptionArticle"><?php getGameDescriptionByGameID(3)?></p>
@@ -160,7 +158,6 @@
                                     <p><?php topTenUserNamesforAllTime(3) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="day2" name="tabGroup2">
@@ -174,7 +171,6 @@
                                     <p><?php topTenUserNamesforDay(3) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="week2" name="tabGroup2">
@@ -188,7 +184,6 @@
                                     <p><?php topTenUserNamesforWeek(3) ?></p>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="tab">
                     <input type="radio" id="month2" name="tabGroup2">
@@ -202,9 +197,7 @@
                                     <p><?php topTenUserNamesforMonth(3) ?></p>
                             </div>
                         </div>
-                    
                 </div>
-			
             </div>
         </div>
 		<a class="play" href="../games/game.php?gameID=3"> </a>
@@ -213,6 +206,7 @@
 </div><!-- end main content -->
 <!-- sidebar -->
 
+<!-- Advertisements -->
 <div id="sidebar">
 	<a class="sponsors">Visit Our Sponsors</a></br>
 	<a class="ads" href="http://www.penny-arcade.com/" target="_blank"><img src="../media/advertisements/penny.jpg" alt="Penny Arcade" title="Penny Arcade"/></a>

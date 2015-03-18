@@ -81,13 +81,14 @@ $Bio = getUserBio ($_SESSION['email']);
                                     <p><?php topTenGameNamesforMonthByuser($ID) ?></p>
                             </div>
                         </div>
-                    
                 </div>
             </div>
 				</div>
 				</div>
 			</div><!-- end article -->
 		</div><!-- end main content -->
+		
+<!-- Advertisements -->		
 <!-- sidebar -->
 	<div id="sidebar">
 		<a class="sponsors">Visit Our Sponsors</a></br>
