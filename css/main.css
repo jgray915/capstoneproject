@@ -147,7 +147,7 @@ body{
 #scores-wrapper{
 	float:left;
 	width:100%;
-	width: 400px;
+	width: 300px;
 	min-height:250px;
 	margin-left:10px;
 	margin-bottom:10px; 
@@ -173,7 +173,7 @@ body{
 	float:left;
 	font-size:18px;
 	text-align: left;
-	width: 238px;
+	width: 125px;
 	color: #FF7F27;
 	margin-top:3px;
 }
@@ -197,13 +197,14 @@ body{
 }
 /* Styling for the "play" button */
 .play{
-	float:left;
-	width:250px;
-	height:59px;
-	background-image:url("../media/Play.jpg");
+	float:right;
+	width:120px;
+	height:150px;
+	background-image:url("../media/playButton.png");
 	background-repeat:no-repeat;
-	margin-left:10px;
+	margin-right:10px;
 	text-shadow:1px 1px 3px black;	
+        margin-top: 80px;
 }
 
 
@@ -331,7 +332,7 @@ text-decoration:none;
 /* styling tabs */
 .tabs {
   position: relative;   
-  min-height: 280px; 
+  min-height: 270px; 
   clear: both;
   margin: 0px 0;
 }
@@ -353,6 +354,7 @@ text-decoration:none;
 }
 .content {
   position: absolute;
+  width: 280px;
   top: 28px;
   left: 0;
   background: #0B2333;
