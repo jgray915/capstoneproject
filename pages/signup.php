@@ -58,16 +58,8 @@ $bio = "";}
 </div><!-- end main content -->
 <!-- sidebar -->
 <div id="sidebar">
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+	<a class="sponsors">Visit Our Sponsors</a></br>
+	<a class="ads" href="http://google.com/" target="_blank"><img src="../media/advertisements/google.jpg" alt="Google.com" title="Google.com"/></a>
 </div><!--  end sidebar -->
 </div><!-- end container -->
 <?php include ('footer.php');?>

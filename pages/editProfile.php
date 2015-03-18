@@ -15,7 +15,7 @@ $biography = getUserBio($_SESSION['email']);}
 <!-- Start Inner Wrapper for site content -->
 <!-- Start Inner Wrapper for site content -->
 <div id="container">
-<h1 class="titleMain">Capstone Arcade Presents:</h1>
+<h1 class="titleMain">Capstone Arcade</h1>
 
 <!-- Main content div -->
 <div id="main-content">
@@ -47,16 +47,9 @@ $biography = getUserBio($_SESSION['email']);}
 </div><!-- end main content -->
 <!-- sidebar -->
 <div id="sidebar">
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+	<a class="sponsors">Visit Our Sponsors</a></br>
+	<a class="ads" href="http://smokefree.gov/" target="_blank"><img src="../media/advertisements/smoking.jpg" alt="Stop Smoking" title="Stop Smoking"/></a>
+	<a class="ads" href="http://www.match.com/" target="_blank"><img src="../media/advertisements/match.jpeg" alt="Match" title="Match.com"/></a>
 </div><!--  end sidebar -->
 </div><!-- end container -->
 <?php include ('footer.php');?>

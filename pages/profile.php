@@ -12,9 +12,8 @@ $Bio = getUserBio ($_SESSION['email']);
 	<!-- Main content div -->
 		<div id="main-content">
 			<div id="article-wrapper">
-				<h1 class="titleArticle"><?php echo $Name?></h1>
 				<div id ="biography">
-					<p class ="underlinedCenter">About Me</p>
+					<p class ="underlinedCenter">All About <?php echo $Name?></p>
 					<p style="margin-left:20px;"><?php echo $Bio?> </p>
 				</div>
 				<form>
@@ -35,16 +34,10 @@ $Bio = getUserBio ($_SESSION['email']);
 		</div><!-- end main content -->
 <!-- sidebar -->
 	<div id="sidebar">
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-		<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
+		<a class="sponsors">Visit Our Sponsors</a></br>
+		<a class="ads" href="http://smokefree.gov/" target="_blank"><img src="../media/advertisements/smoking.jpg" alt="Stop Smoking" title="Stop Smoking"/></a>
+		<a class="ads" href="http://www.match.com/" target="_blank"><img src="../media/advertisements/match.jpeg" alt="Match" title="Match.com"/></a>
+		<a class="ads" href="http://www.apple.com/" target="_blank"><img src="../media/advertisements/iphone.jpeg" alt="Apple" title="Apple.com"/></a>
 	</div><!--  end sidebar -->
 </div><!-- end container -->
 <?php include ('footer.php');?>

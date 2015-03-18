@@ -217,19 +217,13 @@
 <!-- sidebar -->
 
 <div id="sidebar">
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	<div class="thumb"><img src="../media/ad.jpg" alt=""/></div>
-	
+	<a class="sponsors">Visit Our Sponsors</a></br>
+	<a class="ads" href="http://www.penny-arcade.com/" target="_blank"><img src="../media/advertisements/penny.jpg" alt="Penny Arcade" title="Penny Arcade"/></a>
+	<a class="ads" href="http://www.penny-arcade.com/" target="_blank"><img src="../media/advertisements/arcade.jpg" alt="Penny Arcade" title="Penny Arcade"/></a>
+	<a class="ads" href="http://www.apple.com/" target="_blank"><img src="../media/advertisements/iphone.jpeg" alt="Apple" title="Apple.com"/></a>
+	<a class="ads" href="http://jayandsilentbob.com/" target="_blank"><img src="../media/advertisements/stash.jpg" alt="Secret Stash" title="Secret Stash"/></a>
+	<a class="ads" href="http://smokefree.gov/" target="_blank"><img src="../media/advertisements/smoking.jpg" alt="Stop Smoking" title="Stop Smoking"/></a>
+	<a class="ads" href="http://google.com/" target="_blank"><img src="../media/advertisements/google.jpg" alt="Google.com" title="Google.com"/></a>	
 </div><!--  end sidebar -->
 </div><!-- end inner container -->
 <?php include ('footer.php');?>
