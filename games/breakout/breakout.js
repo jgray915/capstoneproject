@@ -589,11 +589,12 @@ function render()
     //text to render
     var txtHiScore;
     var txtGameOver = "GAME OVER";
-    var txtGameOver2 = "CLICK OR TAP TO PLAY AGAIN";
-	var txtFirstPlay = "CLICK OR TAP TO PLAY";
+    var txtGameOver2 = "CLICK TO PLAY AGAIN";
+	var txtFirstPlay = "CLICK TO PLAY";
 	var txtnewLevel = "LEVEL "+level;
 	var txtPaused = "PAUSED";
-	
+	var txtGameName = "BREAKOUT";
+
 	//so game resizes (somewhat) smoothly on window resize
 	//resize();
 	
@@ -652,7 +653,11 @@ function render()
 	//show first play message
 	if(firstPlay)
     {
+		ctx.font = "40px Share Tech Mono";
+		ctx.fillText(txtGameName,WIDTH/2-(ctx.measureText(txtGameName).width/2),(HEIGHT/4));
+		ctx.font = "20px Share Tech Mono";
 		ctx.fillText(txtFirstPlay,WIDTH/2-(ctx.measureText(txtFirstPlay).width/2),(HEIGHT/2)-32);
+		//ctx.fillText(txtInstruction,WIDTH/2-(ctx.measureText(txtInstruction).width/2),(HEIGHT/2));
     }
 	
 	//show pause message
